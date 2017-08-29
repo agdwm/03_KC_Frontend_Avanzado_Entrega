@@ -1,0 +1,12 @@
+//Importamos todos los partials
+@import "reset";
+@import "override-variables";
+@import "bootstrap-custom";
+//@import url('https://fonts.googleapis.com/css?family=Bree+Serif|Zilla+Slab');
+@import "variables";
+@import "html-tags";
+
+//components
+@import "components/header";
+@import "components/container";
+@import "components/footer";

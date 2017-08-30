@@ -1,4 +1,13 @@
+body {
+    &.move-mobile{
+        position: relative;
+        left: $menu-mobile-width;
+        transition: .15s ease-in-out;
+    }
+}
+
 a{
+    color: $color-green-dark;
     &:hover{
         text-decoration: none;  
     }

@@ -1,14 +1,15 @@
 // Font families
-$main-font-family: 'Open Sans', sans-serif;;
-$title-font-family: serif;
-$brand-font-family: 'Baloo Bhaijaan', cursive;
+$main-font-family: 'Roboto', sans-serif;
+$brand-font-family: 'Abril Fatface', cursive;
 $body-font-family: $main-font-family;
 
 // Font Sizes
-$font-size-base: 15px;
-$font-size-small: $font-size-base - 5px;
-$font-size-large: $font-size-base + 5px;
-$font-size-h1: $font-size-base + 15px;
+$font-size-body: 13px;
+$font-size-base: 16px;
+$font-size-small: $font-size-base - 5px; 
+$font-size-medium: $font-size-base + 3px; 
+$font-size-large: $font-size-base + 5px; 
+$font-size-h1: $font-size-base + 20px; 
 $font-size-h2: $font-size-base + 12px;
 $font-size-h3: $font-size-base + 9px;
 $font-size-h4: $font-size-base + 6px;
@@ -16,10 +17,15 @@ $font-size-h5: $font-size-base + 3px;
 $font-size-h6: $font-size-base;
 
 // Base Colors
-$color-gray-medium: #828282;
+$color-black-brand: #000000;
+$color-gray-dark: #333333;
+$color-gray-medium: #ddd;
 $color-blue-brand: #0078b5;
-$color-green-brand: #01aaae;
-$color-white-brand: #FFF;
+$color-green-brand: #00c496;
+$color-green-dark: #089a78;
+$color-white-brand: #ffffff;
+$color-orange-brand: #e36b52;
+$color-yellow-brand: #ffe000;
 /*$color-amazing-39: #F8695B;
 $color-grastur: #17434E;
 $color-sidonia: #FDAA10;
@@ -27,8 +33,8 @@ $color-sidonia: #FDAA10;
 $color-silver: #DBDBDB;*/
 
 // Main components colors
-/*$main-text-color: $color-grastur;
-$links-color: $color-amazing-39;*/
+/*$main-text-color: $color-grastur;*/
+$link-color: $color-green-dark;
 
 // Forms variables
 /*$form-input-border-color: $color-grastur;
@@ -37,3 +43,6 @@ $form-button-bg-color: $color-grastur;
 $form-button-font-color: $color-less-is-less;
 $form-error-bg-color: $color-amazing-39;
 $form-error-font-color: $color-less-is-less;*/
+
+// Navigation
+$menu-mobile-width: 200px;

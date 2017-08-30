@@ -1,12 +1,12 @@
 //Importamos todos los partials
 @import "reset";
 @import "override-variables";
+@import "mixins";
 @import "bootstrap-custom";
-@import url('https://fonts.googleapis.com/css?family=Baloo+Bhaijaan');
-@import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400,400i,700');
+@import url('https://fonts.googleapis.com/css?family=Abril+Fatface');
+@import url('https://fonts.googleapis.com/css?family=Roboto:400,700');
 @import "variables";
 @import "html-tags";
-@import "grid-utils";
 
 //components
 @import "components/header";

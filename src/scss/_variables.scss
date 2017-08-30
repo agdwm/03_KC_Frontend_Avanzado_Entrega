@@ -1,6 +1,7 @@
 // Font families
-$main-font-family: serif;
+$main-font-family: 'Open Sans', sans-serif;;
 $title-font-family: serif;
+$brand-font-family: 'Baloo Bhaijaan', cursive;
 $body-font-family: $main-font-family;
 
 // Font Sizes
@@ -15,10 +16,14 @@ $font-size-h5: $font-size-base + 3px;
 $font-size-h6: $font-size-base;
 
 // Base Colors
+$color-gray-medium: #828282;
+$color-blue-brand: #0078b5;
+$color-green-brand: #01aaae;
+$color-white-brand: #FFF;
 /*$color-amazing-39: #F8695B;
 $color-grastur: #17434E;
 $color-sidonia: #FDAA10;
-$color-less-is-less: #EFF0EA;
+
 $color-silver: #DBDBDB;*/
 
 // Main components colors

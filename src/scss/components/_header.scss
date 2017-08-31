@@ -230,3 +230,12 @@
     -o-transform: rotate(-135deg);
     transform: rotate(-135deg);
   }
+
+  .container-fill{
+      height: 70px;
+      border:1px solid black;
+      display: block;
+      background-color: $color-gray-medium;
+      margin-top:15px;
+      
+  }

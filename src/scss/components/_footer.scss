@@ -3,11 +3,13 @@
     bottom: 0;
     left: 0;
     right: 0;
-
+    background-color: $color-gray-medium;
 }
 .footer-main {
+    display: table;
     width: 100%;
-    background-color: $color-gray-medium;
+    padding-top: 10px;
+    padding-bottom: 10px;
     &:after{
         content: "";
         display: block;
@@ -16,9 +18,12 @@
 
     }
 }
+.footer-brand, .scroll-top{
+    display: table-cell;
+    vertical-align: middle;
+}
 .footer-brand{
-    padding-top: 15px;
-    padding-bottom: 15px;
+
     h3 {
         margin-top: 0;
         margin-bottom: 0;
@@ -26,4 +31,18 @@
     .brand-link{
         font-size: $font-size-h3;
     }
+}
+
+.scroll-top{
+    a{
+        padding: 10px 15px;
+        display: block;
+        font-size: $font-size-large;
+        color: $color-black-brand;
+        &:hover{
+            color: lighten($color-black-brand, 50%);
+        }
+    }
+    float: right;
+    background-color: $color-yellow-brand;
 }

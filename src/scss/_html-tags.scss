@@ -1,8 +1,12 @@
+html{
+    
+    //height: auto;
+    position: relative;
+}
 body {
-    min-height: 100%;
+    height: 100%;
     position: relative;
     &.move-mobile{
-        position: relative;
         left: $menu-mobile-width;
         transition: .15s ease-in-out;
     }

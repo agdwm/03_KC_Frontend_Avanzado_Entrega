@@ -19,7 +19,6 @@
     @extend .nav-left;
     float:right;
 }
-
 .nav-menu, .nav-brand, .nav-search, .nav-login{
     display: inline-block;
     vertical-align: middle;
@@ -31,12 +30,7 @@
         display: none;
     }
 }
-.nav-brand{
-    a{
-        cursor: pointer;
-        color: $color-black-brand
-    }  
-}
+
 .nav-navigation{
     width: $menu-mobile-width;
     position: fixed;
@@ -91,15 +85,24 @@
     }
 }
 .nav-brand {
-    font-family: $brand-font-family;
     text-align: left;
     h1{
         margin-top: 0;
         margin-bottom: 0;
         font-size: $font-size-h1;
-        color: $color-black-brand;
         position: relative;
         top: 2px;
+    }
+}
+
+//Use for Header & Footer
+.brand-link{
+
+    cursor: pointer;
+    color: $color-black-brand;
+    font-family: $brand-font-family;
+    &:hover, &:active{
+        color: $color-black-brand;
     }
 }
 .nav-actions{

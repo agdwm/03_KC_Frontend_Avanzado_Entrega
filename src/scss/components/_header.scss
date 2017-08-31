@@ -1,15 +1,28 @@
 /* NAVEGATION */
-.nav-main {
-    padding-top: 12px;
-    padding-bottom: 8px;
+.nav-wrap {
+    padding-top: 10px;
+    padding-bottom: 10px;
     overflow: hidden;
     background-color: $color-yellow-brand;
     width: 100%;
-    text-align: center;
     box-sizing: border-box;
 }
+.nav-main{
+    display: table;
+    width: 100%;
+}
+.nav-left{
+    display: table-cell;
+    vertical-align: middle;
+}
+.nav-right {
+    @extend .nav-left;
+    float:right;
+}
+
 .nav-menu, .nav-brand, .nav-search, .nav-login{
     display: inline-block;
+    vertical-align: middle;
 }
 .nav-menu{
     padding-top: 5px;
@@ -86,7 +99,7 @@
         font-size: $font-size-h1;
         color: $color-black-brand;
         position: relative;
-        top:-2px;
+        top: 2px;
     }
 }
 .nav-actions{
@@ -97,8 +110,7 @@
     padding-left: 5px;
     padding-right: 5px;
 }
-.search-btn, .login-btn{
-    display: block;
+.search-btn{
     i{
         font-size: $font-size-h2;
         color: $color-black-brand;
@@ -106,8 +118,17 @@
         padding: 6px;
     }
 }
-.search-btn{
+.search-btn, .login-btn, .signUp-btn{
     cursor: pointer;
+    display: inline-block;
+    vertical-align: middle;
+}
+.login-btn, .signUp-btn {
+    padding: 15px; 
+}
+.signUp-btn{
+    @extend .login-btn;
+    background-color: $color-green-brand;
 }
 .field-search{
     padding: 15px;

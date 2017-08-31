@@ -62,7 +62,7 @@
         &:hover, &:active{
             transition: background-color 0.25s ease;
             text-decoration: none;
-            background-color: lighten($color-green-brand, 2%);
+            background-color: lighten($color-green-brand, 5%);
         }
     }
     &.open-mobile {
@@ -124,13 +124,31 @@
     vertical-align: middle;
 }
 .login-btn, .signUp-btn {
-    padding: 10px; 
+    a{
+        padding: 10px;
+        display: block;
+        color: $color-black-brand;
+    }
+    
+}
+.login-btn{
+    a{
+        &:hover, &:active{
+            color: lighten($color-black-brand, 30%);
+        }
+    }
 }
 .signUp-btn{
-    @extend .login-btn;
     background-color: $color-green-brand;
+    a{
+        &:hover, &:active{
+            background-color: lighten($color-green-brand, 5%);
+        }
+    }
     @media screen and (min-width: 768px) {
-        padding: 15px;
+        a{
+            padding: 15px;
+        }
     }
 }
 .field-search{

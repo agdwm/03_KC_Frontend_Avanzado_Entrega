@@ -76,7 +76,7 @@
         display: inline-block;
         background-color: transparent;
         @include centerer(true, true);
-        top: calc(50% - 6px);
+        top: 50%;
         li{
             display: inline-block;
             text-align: center;
@@ -124,11 +124,14 @@
     vertical-align: middle;
 }
 .login-btn, .signUp-btn {
-    padding: 15px; 
+    padding: 10px; 
 }
 .signUp-btn{
     @extend .login-btn;
     background-color: $color-green-brand;
+    @media screen and (min-width: 768px) {
+        padding: 15px;
+    }
 }
 .field-search{
     padding: 15px;

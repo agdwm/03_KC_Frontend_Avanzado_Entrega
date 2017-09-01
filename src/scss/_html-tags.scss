@@ -1,8 +1,7 @@
-html{
-    
-    //height: auto;
-    position: relative;
+* {
+    box-sizing: border-box;
 }
+
 body {
     height: 100%;
     position: relative;
@@ -14,8 +13,9 @@ body {
 
 a{
     cursor: pointer;
-    color: $color-green-dark;
+    color: $link-color;
     &:hover, &:active{
-        text-decoration: none;  
+        text-decoration: none;
+        color: $link-color;
     }
 }

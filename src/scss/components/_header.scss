@@ -39,6 +39,9 @@
     bottom: 0;
     height: 100%;
     background-color: $color-green-brand;
+    position: fixed;
+
+    //overflow: auto;
     li{
         border-bottom: 1px solid $color-green-dark;
         text-align: left;

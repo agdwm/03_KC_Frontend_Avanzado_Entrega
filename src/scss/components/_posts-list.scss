@@ -19,4 +19,76 @@
         padding: 50px; 
         text-align: center;
     }
+
+    //FIGURE STYLES
+    .img-frame{
+        height: 180px;
+        overflow: hidden;
+        .img-responsive {
+            display: block;
+        }
+    }
+    .img-figcaption{
+        height: 250px;
+        border: 1px solid $color-gray-lighen;
+        margin-bottom: 30px;
+        padding: 15px;
+        position: relative;
+        box-sizing: border-box;
+        &:hover{
+            background-color: $color-orange-brand;
+            border: 1px solid $color-orange-brand;
+        }
+    }
+    .fig-header{
+        font-size: $font-size-h6;
+        color: $color-black-brand;
+    }
+    .fig-header_type{
+        text-transform: uppercase;
+        font-weight: bold;
+        &:after {
+            content: "/";
+            margin-left: 10px;
+            position: relative;
+            font-size: 20px;
+            right: -1px;
+            color: $color-gray-lighen;
+        }
+    }
+    .fig-header_date {
+        margin-left: 10px;
+    }
+    .fig-header_title {
+        font-size: $font-size-h3;
+        font-weight: bold;
+    }
+    .fig-body_text{
+        $lines-to-show: 3; //Local variable
+        font-size: $font-size-base;
+        color: $main-text-color;
+        width: 100%;
+        max-width: 100%;
+        display: block; /* Fallback for non-webkit */
+        display: -webkit-box;
+        height: $font-size-base*$line-height-default*$lines-to-show; /* Fallback for non-webkit */
+        margin: 0 auto;
+        line-height: $line-height-default;
+        -webkit-line-clamp: $lines-to-show;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        text-overflow: ellipsis;    
+    }
+    .fig-footer{
+        position: absolute;
+        bottom: 10px;
+        width: calc(100% - 30px);
+    }
+    .fig-footer_more{
+        font-size: $font-size-h2;
+        padding-left: 5px;
+        padding-right: 5px;
+        float:right;
+        color: $color-black-brand;
+    }
 }

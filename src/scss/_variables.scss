@@ -16,13 +16,16 @@ $font-size-h4: $font-size-base + 6px;
 $font-size-h5: $font-size-base + 3px;
 $font-size-h6: $font-size-base;
 
+//Line Height
+$line-height-default: 1.4;
+
 // Base Colors
 $color-black-brand: #000000;
-$color-gray-dark: #333333;
+$color-gray-dark: #31353a;
 $color-gray-light: #ddd;
 $color-gray-lighen: #eaeaea;
-//$color-gray-medium: #999;
-$color-gray-medium: #aaaaaa;
+$color-gray-medium: #999;
+//$color-gray-medium: #aaaaaa;
 $color-violet-brand: #4257b2;
 $color-blue-brand: #0078b5;
 $color-green-brand: #00c496;
@@ -37,8 +40,9 @@ $color-sidonia: #FDAA10;
 $color-silver: #DBDBDB;*/
 
 // Main components colors
-/*$main-text-color: $color-grastur;*/
-$link-color: $color-green-dark;
+$main-text-color: $color-gray-dark;
+$link-color: $color-green-brand;
+$link-color-hover: lighten($color-green-brand, 10%);
 
 // Forms variables
 /*$form-input-border-color: $color-grastur;

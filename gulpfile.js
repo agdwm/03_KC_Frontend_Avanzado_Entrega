@@ -137,12 +137,12 @@ gulp.task("js", function () {
 gulp.task("img", function () {
     gulp.src("src/img/*")
         .pipe(imagemin()) // optimizamos el peso de las imágenes
-        .pipe(responsive({
+        /*.pipe(responsive({
             '*.png': [
                 {width: 150, rename:{suffix: "-150px"}}, //mobile
                 {width: 250, rename:{suffix: "-250px"}}, //tablet
                 {width: 300, rename:{suffix: "-300px"}}  //desktop
             ]
-        })) //generamos las versiones responsive
+        }))*/ //generamos las versiones responsive
         .pipe(gulp.dest(dest + "img/"));
 });

@@ -28,13 +28,15 @@
             display: block;
         }
     }
-    .img-figcaption{
+    .figcaption{
+
         height: 250px;
         border: 1px solid $color-gray-lighen;
         margin-bottom: 30px;
         padding: 15px;
         position: relative;
         box-sizing: border-box;
+        cursor: pointer;
         &:hover{
             background-color: $color-orange-brand;
             border: 1px solid $color-orange-brand;
@@ -64,20 +66,31 @@
         font-weight: bold;
     }
     .fig-body_text{
-        $lines-to-show: 3; //Local variable
+        //height: $font-size-base*$line-height-default*$lines-to-show;
         font-size: $font-size-base;
         color: $main-text-color;
         width: 100%;
         max-width: 100%;
-        display: block; /* Fallback for non-webkit */
-        display: -webkit-box;
-        height: $font-size-base*$line-height-default*$lines-to-show; /* Fallback for non-webkit */
+        height: ceil(16*1.4*3)+px;
         margin: 0 auto;
-        line-height: $line-height-default;
-        -webkit-line-clamp: $lines-to-show;
+        line-height: 1.4;
+        -webkit-line-clamp: 3;
         -webkit-box-orient: vertical;
         overflow: hidden;
-        text-overflow: ellipsis;    
+        text-overflow: ellipsis;
+        display: block;
+        display: -webkit-box;
+        p{
+            display: initial;
+        }
+        @media screen and (min-width: 992px){
+            height: ceil(16*1.4*2)+px;
+            -webkit-line-clamp: 2;
+        }
+        @media screen and (min-width: 1200px){
+            height: ceil(16*1.4*3)+px;
+            -webkit-line-clamp: 3;            
+        }
     }
     .fig-footer{
         position: absolute;

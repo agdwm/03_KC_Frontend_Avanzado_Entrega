@@ -10,5 +10,5 @@ headerManager.init();
 const footerManager = new FooterManager("#js_scroll-link");
 footerManager.init();
 
-const postsList = new PostsList("#video_little");
+const postsList = new PostsList();
 postsList.init();

@@ -56,6 +56,9 @@
             border: 1px solid $color-orange-brand;
         }*/
     }
+    .fig-content {
+        cursor: pointer;
+    }
     .fig-header{
         font-size: $font-size-h6;
         color: $color-black-brand;
@@ -165,21 +168,61 @@
                 position: relative;
                 box-sizing: border-box;
                 margin-top: -5px;
+                transform-origin: center center;
+                p{
+                    @include centerer(true,true);
+                }
                 i{
                     display: none;
                     padding: 5px;
-                    @include centerer(true,true);
                     cursor: pointer;
                     font-size: $font-size-h3;
                     color: saturate($color-orange-brand, 10%);
                     &.active{
                         display: block;
+                        z-index: 1;
+                        &:hover{
+                            opacity: 0.5;
+                            transition: opacity 0.5s ease;
+                        }
+                    }
+                    /*&.active.fill{
+                        &:hover{
+                            opacity: 1;
+                        }            
+                    }*/
+                    &.active.icon-pulse{
+                        &:hover{
+                            opacity: 1;
+                        }            
+                    }                    
+                    &.icon-pulse {
+                        animation: icon-pulse 1s linear;
+                        animation-duration: 1s;
+                        animation-fill-mode: both;
+                        transform: scale(1.1);
+                    }
+                    @keyframes icon-pulse {
+                        0% {
+                            transform: scale(1.1);
+                            transform-origin: center center;
+                        }
+                    
+                        50% {
+                            transform: scale(0.8);
+                            transform-origin: center center;
+                        }
+                    
+                        to {
+                            transform: scale(1);
+                            transform-origin: center center;
+                        }
                     }
                 }
             }
-
         }
     }
+
 
     .fig-footer_more{
         font-size: $font-size-h2;

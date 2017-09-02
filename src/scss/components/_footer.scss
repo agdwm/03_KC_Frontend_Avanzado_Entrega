@@ -18,7 +18,6 @@
         display: block;
         clear: both;
         height: 0;
-
     }
 }
 .footer-brand, .scroll-top{
@@ -26,7 +25,6 @@
     vertical-align: middle;
 }
 .footer-brand{
-
     h3 {
         margin-top: 0;
         margin-bottom: 0;
@@ -42,9 +40,6 @@
         display: block;
         font-size: $font-size-large;
         color: $color-black-brand;
-        &:hover{
-            color: lighten($color-black-brand, 50%);
-        }
     }
     float: right;
     background-color: $color-yellow-brand;

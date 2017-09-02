@@ -24,12 +24,26 @@
     .img-frame{
         height: 180px;
         overflow: hidden;
+        position: relative;
         .img-responsive {
             display: block;
         }
     }
-    .figcaption{
+    .video-wrapper {
+        height: 100%;
+        cursor: pointer;
+        position: relative;
+        background-color: $color-black-brand;
+        transition: opacity .3s;
 
+        video {
+            background: transparent;
+            position: absolute;
+            top:0;
+            left: 0;
+        }
+    }
+    .figcaption{
         height: 250px;
         border: 1px solid $color-gray-lighen;
         margin-bottom: 30px;

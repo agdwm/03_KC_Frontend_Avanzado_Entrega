@@ -5,10 +5,6 @@
 body {
     height: 100%;
     position: relative;
-    &.move-mobile{
-        left: $menu-mobile-width;
-        transition: .15s ease-in-out;
-    }
 }
 
 a{

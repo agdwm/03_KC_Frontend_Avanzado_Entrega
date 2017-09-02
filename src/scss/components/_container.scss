@@ -2,6 +2,10 @@
     height: 100%;
     position: relative;
     padding-bottom: 70px;
+    &.move-mobile{
+        left: $menu-mobile-width;
+        transition: .15s ease-in-out;
+    }
 }
 .main-container{
     margin-bottom: 50px;

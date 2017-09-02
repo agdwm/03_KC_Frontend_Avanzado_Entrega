@@ -2,10 +2,13 @@ window.$ = window.jQuery = require("jquery"); //Hace jQuery accesible públicame
 
 import HeaderManager from "./services/headerManager";
 import FooterManager from "./services/footerManager";
+import PostsList from "./services/postsList";
 
-
-const headerManager = new HeaderManager("#js_nav-icon", "#js_nav-navigation", "#js_search-btn");
+const headerManager = new HeaderManager();
 headerManager.init();
 
 const footerManager = new FooterManager("#js_scroll-link");
 footerManager.init();
+
+const postsList = new PostsList("#video_little");
+postsList.init();

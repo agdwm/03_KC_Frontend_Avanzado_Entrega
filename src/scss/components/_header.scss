@@ -67,13 +67,11 @@
         transition: left 0.25s ease;
     }
     @media screen and (min-width: 992px) {
-        position: absolute;
-        left: 0;
+        text-align: center;
         width: 50%;
         display: inline-block;
         background-color: transparent;
         @include centerer(true, true);
-        top: 50%;
         li{
             display: inline-block;
             text-align: center;

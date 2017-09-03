@@ -6,16 +6,18 @@ $body-font-family: $main-font-family;
 // Font Sizes
 $font-size-body: 13px;
 $font-size-base: 16px;
-$font-size-small: $font-size-base - 5px; 
-$font-size-medium: $font-size-base + 3px; 
-$font-size-large: $font-size-base + 5px;
-$font-size-detail-title: $font-size-h2 + 2px;
-$font-size-h1: $font-size-base + 20px; 
-$font-size-h2: $font-size-base + 12px;
-$font-size-h3: $font-size-base + 9px;
-$font-size-h4: $font-size-base + 6px;
-$font-size-h5: $font-size-base + 3px;
-$font-size-h6: $font-size-base;
+
+$font-size-small: $font-size-base - 5px; //11
+$font-size-medium: $font-size-base + 3px; //19
+$font-size-large: $font-size-base + 5px; //21
+$font-size-detail-title: $font-size-h2 + 2px; //30
+
+$font-size-h1: $font-size-base + 20px; //36
+$font-size-h2: $font-size-base + 12px; //28
+$font-size-h3: $font-size-base + 9px; //25
+$font-size-h4: $font-size-base + 6px; //22
+$font-size-h5: $font-size-base + 3px; //19
+$font-size-h6: $font-size-base; //16
 
 // Base Colors
 $color-black-brand: #000000;

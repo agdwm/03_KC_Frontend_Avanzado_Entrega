@@ -1,17 +1,12 @@
-/*No haría falta hacer un require de jquery en este archivo ya que se está importando en el main.js.
-De hecho Browserify solo va a importar jquery 1 vez
-Pero de este modo sabemos lo que significa "$" */
-const $ = require("jquery");
-
-//SongsService {} únicamente ENVIA y RECIBE datos, no hace nada con ellos
+//PostsService {} únicamente ENVIA y RECIBE datos, no hace nada con ellos
 export default class PostsService {
     
     constructor(url){
         this.url = url;
     }
 
-    // Obtener listado de canciones GET
-    //list recibe 2 parametros (2 funciones callback): songs() y error()
+    // Obtener listado de articulos GET
+    //list recibe 2 parametros (2 funciones callback): posts() y error()
     list(successCallback, errorCallback) {
         $.ajax({
             url: this.url,
@@ -53,5 +48,28 @@ export default class PostsService {
             success: successCallback,
             error: errorCallback
         });
+    }
+    // Actualizar una canción
+    update(post, successCallback, errorCallback) {
+        $.ajax({
+            //al actualizar un recurso pasamos el ID
+            url: `${this.url}${post.id}`,
+            method: 'put',
+            //Pasamos los datos del recurso en JSON
+            data: post,
+            success: successCallback,
+            error: errorCallback
+        });
+    }
+
+    // Eliminar una canción (postsService.delete(4, response => {}, error => {}))
+    delete(postId, successCallback, errorCallback) {
+        $.ajax({
+            url: `${this.url}${postId}`,// "/posts/id"
+            //si no especificamos "method", en ajax x defecto es "get"
+            method: 'delete',
+            success: successCallback,
+            error: errorCallback
+        });    
     }
 }

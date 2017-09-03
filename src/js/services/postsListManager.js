@@ -1,8 +1,6 @@
-//En este servicio no es necesario importar jQuery porque no se está utilizando
-//const $ = require("jquery");
 import UIManager from './UIManager';
 
-//PostsList SOLO recorre las canciones y las pinta
+//PostsList SOLO recorre los artículos y los pinta
 export default class PostsListManager extends UIManager{
     
     constructor(elementSelector, postsService, pubSub) {
@@ -15,8 +13,9 @@ export default class PostsListManager extends UIManager{
     }
 
     init(post) {
-       
+        this.loadPosts();
         let self = this;
+
         
         this.video.on("click", function(e) {
             let $this = $(this);
@@ -45,7 +44,7 @@ export default class PostsListManager extends UIManager{
     //loadPost() solo carga las canciones
     loadPosts() {
         //PostsService.list(post => {},  error => {});
-        /*Llamamos al método "list()" del objeto "songService" y le pasamos 2 funciones que gestionará 
+        /*Llamamos al método "list()" del objeto "postService" y le pasamos 2 funciones que gestionará 
         el objeto en caso de éxito o error de la llamada Ajax.*/
         this.postsService.list(
             posts => {
@@ -64,10 +63,10 @@ export default class PostsListManager extends UIManager{
                 //Mostramos el estado de error
                 this.setError();
                 //Hacemos log del error en la consola
-                console.log("ERROR al cargar las canciones. :(", error);
+                console.log("ERROR al cargar los artículos. :(", error);
             });
 
-        this.postsService.getDetail(5);
+        //this.postsService.getDetail(5); //?
     }
 
     //renderPosts() PINTA los post en el html
@@ -80,71 +79,71 @@ export default class PostsListManager extends UIManager{
         this.setIdealHtml(html);
     }
 
-        //renderiza una única canción
-        renderPost(post) {
-            let post_img = post.post-img;
-            let author_img = post.author-img;
-            let srcset = "";
+    //renderiza una única canción
+    renderPost(post) {
+        let post_img = post.post_img;
+        let author_img = post.author_img;
+        let srcset = "";
 
-            //Imágenes por defecto tanto para el post como para el autor
-            if (post_img === "") {
-                post_img = "img/lorem.jpg";
-                //srcset = ' srcset="img/disk-150px.png 150w, img/disk-250px.png 250w, img/disk-300px.png 300w"';
-            }
+        //Imágenes por defecto tanto para el post como para el autor
+        if (post_img == "") {
+            post_img = "img/lorem.jpg";
+            //srcset = ' srcset="img/disk-150px.png 150w, img/disk-250px.png 250w, img/disk-300px.png 300w"';
+        }
 
-            if (author_img === "") {
-                author_img = "img/author_lorem.jpg";
-                //srcset = ' srcset="img/disk-150px.png 150w, img/disk-250px.png 250w, img/disk-300px.png 300w"';
-            }
+        if (author_img == "") {
+            author_img = "img/author_lorem.jpg";
+            //srcset = ' srcset="img/disk-150px.png 150w, img/disk-250px.png 250w, img/disk-300px.png 300w"';
+        }
 
-            return `<article data-id="${post.post-id}">
-                        <figure>
-                            <div class="fig-img_frame">
-                                <img class="img-responsive" src="img/article_01.jpg" alt="">
+        return `<article data-id="${post.post_id}">
+                    <figure>
+                        <div class="fig-img_frame">
+                            <img class="img-responsive" src="${post.post_img}" alt="">
+                        </div>
+                        <figcaption class="figcaption">
+                            <div class="fig-content">
+                                <div class="fig-header">
+                                    <p>
+                                        <span class="fig-header_type">${post.post_type}</span>
+                                        <span class="fig-header_date">${post.post_date}</span>
+                                    </p>
+                                    <h2 class="fig-header_title">${post.post_title}</h2>
+                                </div>
+                                <div class="fig-body">
+                                    <div class="fig-body_text">
+                                        ${post.post_text}
+                                    </div>
+                                </div>
                             </div>
-                            <figcaption class="figcaption">
-                                <div class="fig-content">
-                                    <div class="fig-header">
-                                        <p>
-                                            <span class="fig-header_type">${post.post-type}</span>
-                                            <span class="fig-header_date">${post.post-date}</span>
+                            <div class="fig-postNotes clearfix">
+                                <div class="fig-author">
+                                    <div class="fig-author_img">
+                                        <div class="fig-author_img_frame">
+                                            <img src="${post.author_img}" class="img-responsive" alt="imagen de perfil">
+                                        </div>
+                                    </div>
+                                    <div class="fig-author_details">
+                                        <div class="fig-author_name">
+                                            <h5>${post.author_name}</h5>
+                                        </div>
+                                        <p class="fig-author_comments">
+                                            <a href="javascript:;">Comentarios: <span class="fig-comments_num">${post.post_comments_num}</span>
+                                            </a>
                                         </p>
-                                        <h2 class="fig-header_title">Valencia, la ciudad ilustrada. Arte Urbano</h2>
-                                    </div>
-                                    <div class="fig-body">
-                                        <div class="fig-body_text">
-                                        ${post.post-text}
-                                        </div>
                                     </div>
                                 </div>
-                                <div class="fig-postNotes clearfix">
-                                    <div class="fig-author">
-                                        <div class="fig-author_img">
-                                            <div class="fig-author_img_frame">
-                                                <img src="${post.author-img}" class="img-responsive" alt="imagen de perfil">
-                                            </div>
-                                        </div>
-                                        <div class="fig-author_details">
-                                            <div class="fig-author_name">
-                                                <h5>${post.author-img}</h5>
-                                            </div>
-                                            <p class="fig-author_comments">
-                                                <a href="javascript:;">Comentarios: <span class="fig-comments_num">${post.post-comments-num}</span>
-                                                </a>
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <div class="fig-like">
-                                        <div class="fig-like_icon">
-                                            <p>
-                                                <i class="glyphicon glyphicon-heart-empty active"></i>
-                                                <i class="glyphicon glyphicon-heart"></i>
-                                            </p>
-                                        </div>
+                                <div class="fig-like">
+                                    <div class="fig-like_icon">
+                                        <p>
+                                            <i class="glyphicon glyphicon-heart-empty active"></i>
+                                            <i class="glyphicon glyphicon-heart"></i>
+                                        </p>
                                     </div>
                                 </div>
-                            </figcaption>
-                        </figure>
-                    </article>`;
+                            </div>
+                        </figcaption>
+                    </figure>
+                </article>`;
         }
 }

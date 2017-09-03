@@ -2,9 +2,9 @@ window.$ = window.jQuery = require("jquery"); //Hace jQuery accesible públicame
 
 
 import PostsService from "./services/PostsService";
+import PostsListManager from "./services/PostsListManager";
 import HeaderManager from "./services/headerManager";
 import FooterManager from "./services/footerManager";
-import PostsListManager from "./services/postsListManager";
 import PubSub from 'pubsub-js';
 
 const postsService = new PostsService("/posts/");

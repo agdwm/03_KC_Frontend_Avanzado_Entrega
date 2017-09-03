@@ -19,7 +19,7 @@ export default class PostsList {
         this.iconLike.on("click", function(e) {
             e.preventDefault();
             self.clickIconLike($(this));
-            //return false;
+            return false;
         });
     }
     
@@ -30,7 +30,6 @@ export default class PostsList {
 
     clickIconLike(anchor) {
         let emptyHeart = anchor.find(".glyphicon-heart-empty").toggleClass("active");
-        let fillHeart = anchor.find(".glyphicon-heart").toggleClass("active");
-        fillHeart.addClass("icon-pulse");
+        let fillHeart = anchor.find(".glyphicon-heart").toggleClass("active fill");
     }
 }

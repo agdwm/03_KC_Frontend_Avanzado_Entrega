@@ -6,6 +6,15 @@
     background-color: $color-yellow-brand;
     width: 100%;
     box-sizing: border-box;
+    position: fixed;
+    left: 0;
+    right: 0;
+    z-index:10;
+    height: 69px;       
+
+    &.move-mobile{
+        left: $menu-mobile-width;
+    }
 }
 .nav-main{
     display: table;
@@ -95,7 +104,7 @@
     }
 }
 
-//Use for Header & Footer
+//USE for Header & Footer !
 .brand-link{
     cursor: pointer;
     color: $color-black-brand;
@@ -103,6 +112,17 @@
     &:hover, &:active{
         color: $color-black-brand;
     }
+    &:after{
+        cursor: pointer;
+        content : "Blockquote!";
+        
+    }
+    @media screen and (max-width: 480px) {
+        &:after{
+            content : "Bq!";
+        }
+    }
+
 }
 .nav-actions{
     float: right;
@@ -113,11 +133,17 @@
     padding-right: 5px;
 }
 .search-btn{
+    color: darken($color-yellow-brand, 10%);
+    &:hover{
+        color: $color-black-brand;
+    }
     i{
         font-size: $font-size-h2;
-        color: $color-black-brand;
         font-weight: bold;
         padding: 6px;
+    }
+    &.search-active{
+        color: $color-black-brand;
     }
 }
 .search-btn, .login-btn, .signUp-btn{
@@ -127,9 +153,14 @@
 }
 .login-btn, .signUp-btn {
     a{
-        padding: 10px;
+        padding: 10px 5px;
         display: block;
         color: $color-black-brand;
+    }
+    @media screen and (min-width: 480px){
+        a{
+            padding: 10px;
+        }
     }
     
 }
@@ -154,7 +185,7 @@
     }
 }
 .field-search{
-    padding: 15px;
+    margin: 15px;
 }
 .search-input {
     border: none;

@@ -7,6 +7,8 @@ export default class HeaderManager {
         this.mainNavigation = $("#js_nav-navigation");
         this.navSearchBtn = $("#js_search-btn");
         this.pushableContent = $("#js_pushable-content");
+        this.navWrap = $("#js_nav-wrap");
+        this.mainContainer = $("#js_main-container");
         this.deviceWidth = 992;
     }
 
@@ -36,7 +38,6 @@ export default class HeaderManager {
         this.checkWidth();
     }
 
-
     checkWidth(){
         
         let windowSize = $(window).outerWidth();
@@ -44,6 +45,7 @@ export default class HeaderManager {
 
         if (windowSize >= this.deviceWidth) {
             this.removeMovileClass();
+            return false;
         }else {
             //El icono solo se activa en movil. Ok
             this.navIcon.on("click", function (e) {
@@ -51,7 +53,7 @@ export default class HeaderManager {
                 let anchor = $(this);
                 self.toggleNavIcon(anchor);
                 self.translateMenu();
-                
+                return false;
             });
         }
     }
@@ -68,6 +70,9 @@ export default class HeaderManager {
         if (this.navIcon.hasClass("open")) {
             this.navIcon.removeClass("open");
         }
+        if (this.navWrap.hasClass("move-mobile")) {
+            this.navWrap.removeClass("move-mobile");
+        }
     }
 
     //Toggle Hamburger Icon. Solo aparece < 992
@@ -80,12 +85,16 @@ export default class HeaderManager {
     translateMenu() {
         this.mainNavigation.toggleClass("open-mobile");
         this.pushableContent.toggleClass("move-mobile");
+        this.navWrap.toggleClass("move-mobile");
         return false;
     }
 
     //Toggle Input Buscador. Aparece en todas las resoluciones
     toggleSearcher(ancla){
-        $("#js_search-input").fadeToggle("fast");
+        let inputSearch = $("#js_search-input");
+        
+        inputSearch.fadeToggle("fast");
+        ancla.toggleClass("search-active");
         console.log("search");
     }
 }

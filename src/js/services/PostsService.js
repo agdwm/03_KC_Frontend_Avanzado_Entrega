@@ -5,7 +5,7 @@ export default class PostsService {
         this.url = url;
     }
 
-    // Obtener listado de articulos GET
+    // Obtener listado de artículos GET
     //list recibe 2 parametros (2 funciones callback): posts() y error()
     list(successCallback, errorCallback) {
         $.ajax({
@@ -15,7 +15,7 @@ export default class PostsService {
         });
     }
 
-    // Crear o actualizar una canción
+    // Crear o actualizar un artículo
     //¿Cómo diferenciamos si queremos actualizar o crear un recurso?
     //Por el ID
     save(post, successCallback, errorCallback) {
@@ -28,7 +28,7 @@ export default class PostsService {
         }
     }
 
-    // Crear una canción
+    // Crear un artículo
     create(post, successCallback, errorCallback) {
         $.ajax({
             //al crear un recurso NO pasamos Id xq eso lo gestiona el servidor automáticamente
@@ -41,7 +41,7 @@ export default class PostsService {
         });
     }
 
-    // Obtener el detalle de una canción GET + id song
+    // Obtener el detalle de un artículo GET + id song
     getDetail(postId, successCallback, errorCallback) {
         $.ajax({
             url: `${this.url}${postId}`,
@@ -49,7 +49,7 @@ export default class PostsService {
             error: errorCallback
         });
     }
-    // Actualizar una canción
+    // Actualizar un artículo
     update(post, successCallback, errorCallback) {
         $.ajax({
             //al actualizar un recurso pasamos el ID
@@ -62,7 +62,7 @@ export default class PostsService {
         });
     }
 
-    // Eliminar una canción (postsService.delete(4, response => {}, error => {}))
+    // Eliminar un artículo (postsService.delete(4, response => {}, error => {}))
     delete(postId, successCallback, errorCallback) {
         $.ajax({
             url: `${this.url}${postId}`,// "/posts/id"

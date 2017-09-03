@@ -28,8 +28,8 @@ export default class HeaderManager {
         this.checkWidth();
         
         this.navSearchBtn.on("click", function (e) {
-            let ancla = $(this);
-            self.toggleSearcher(ancla);
+            let $this = $(this);
+            self.toggleSearcher($this);
             return false;
         });
     }
@@ -50,8 +50,8 @@ export default class HeaderManager {
             //El icono solo se activa en movil. Ok
             this.navIcon.on("click", function (e) {
                 e.stopImmediatePropagation();
-                let anchor = $(this);
-                self.toggleNavIcon(anchor);
+                let $this = $(this);
+                self.toggleNavIcon($this);
                 self.translateMenu();
                 return false;
             });
@@ -76,8 +76,8 @@ export default class HeaderManager {
     }
 
     //Toggle Hamburger Icon. Solo aparece < 992
-    toggleNavIcon(anchor) {
-        anchor.toggleClass('open');
+    toggleNavIcon($this) {
+        $this.toggleClass('open');
         return false;
     }
 

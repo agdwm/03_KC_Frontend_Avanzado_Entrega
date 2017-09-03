@@ -16,8 +16,7 @@ export default class PostsListManager extends UIManager{
         this.loadPosts();
         let self = this;
 
-        
-        this.video.on("click", function(e) {
+        this.element.on("click", ".video", function(e)  {
             let $this = $(this);
             self.playVideo($this);
             return false;
@@ -41,21 +40,21 @@ export default class PostsListManager extends UIManager{
         let fillHeart = $this.find(".glyphicon-heart").toggleClass("active fill");
     }
 
-    //loadPost() solo carga las canciones
+    //loadPost() solo carga los artículos
     loadPosts() {
         //PostsService.list(post => {},  error => {});
         /*Llamamos al método "list()" del objeto "postService" y le pasamos 2 funciones que gestionará 
         el objeto en caso de éxito o error de la llamada Ajax.*/
         this.postsService.list(
             posts => {
-                //Comprobamos si hay canciones
+                //Comprobamos si hay artículos
                 if (posts.length == 0) {
                     //Mostramos el estado vacío
                     this.setEmpty();
                 } else {
-                    //Componemos el html con todas las canciones
+                    //Componemos el html con todas los artículos
                     this.renderPosts(posts);
-                    //Quitamos el mensaje de cargando y mostramos la lista de canciones
+                    //Quitamos el mensaje de cargando y mostramos la lista de artículos
                     this.setIdeal();
                 }
             },
@@ -75,32 +74,47 @@ export default class PostsListManager extends UIManager{
         for (let post of posts) {
             html += this.renderPost(post)
         }
-        //Metemos el HTML en el div que contiene las canciones
+        //Metemos el HTML en el div que contiene los artículos
         this.setIdealHtml(html);
     }
 
-    //renderiza una única canción
+    //renderiza una único artículo
     renderPost(post) {
         let post_img = post.post_img;
         let author_img = post.author_img;
+        let post_src_type = post.post_src_type;
         let srcset = "";
-
+        let htmlPartial = "";
+        
         //Imágenes por defecto tanto para el post como para el autor
-        if (post_img == "") {
+        if (post_img === "") {
             post_img = "img/lorem.jpg";
             //srcset = ' srcset="img/disk-150px.png 150w, img/disk-250px.png 250w, img/disk-300px.png 300w"';
         }
 
-        if (author_img == "") {
+        if (author_img === "") {
             author_img = "img/author_lorem.jpg";
             //srcset = ' srcset="img/disk-150px.png 150w, img/disk-250px.png 250w, img/disk-300px.png 300w"';
         }
 
-        return `<article data-id="${post.post_id}">
+        if (post_src_type === "video" )
+            htmlPartial =  `<div class="fig-vid_frame">
+                    <div class="video-wrapper">
+                        <video class="video" width="100%" height="100%" preload="auto" controls poster="img/preview_little.jpg">
+                            <source src="/video/little_talks.m4v" type="video/mp4">
+                        </video>
+                    </div>
+                </div>`;
+        else {
+            htmlPartial = `<div class="fig-img_frame">
+                    <img class="img-responsive" src="${post.post_img}" alt="Fotografía de manos tatuadas">
+                </div>`;
+        }
+
+        return `<div class="col-xs-12 col-sm-6 col-md-4">
+                <article data-id="${post.post_id}">
                     <figure>
-                        <div class="fig-img_frame">
-                            <img class="img-responsive" src="${post.post_img}" alt="">
-                        </div>
+                    ${htmlPartial}
                         <figcaption class="figcaption">
                             <div class="fig-content">
                                 <div class="fig-header">
@@ -144,6 +158,7 @@ export default class PostsListManager extends UIManager{
                             </div>
                         </figcaption>
                     </figure>
-                </article>`;
+                </article>
+            </div>`;
         }
 }

@@ -64,10 +64,13 @@
         cursor: pointer;
         position: relative;
         transition: color 0.3s ease;
-        &:hover, &:active{
-            transition: background-color 0.25s ease;
+        &:hover{
+            transition: color 0.15s ease;
             text-decoration: none;
-            background-color: lighten($color-green-brand, 5%);
+            color: darken($color-green-dark, 10%);
+        }
+        &:active{
+            background-color: $color-green-light;
         }
     }
     &.open-mobile {
@@ -109,8 +112,9 @@
     cursor: pointer;
     color: $color-black-brand;
     font-family: $brand-font-family;
-    &:hover, &:active{
+    &:hover, &:focus{
         color: $color-black-brand;
+        text-decoration: none;
     }
     &:after{
         cursor: pointer;
@@ -153,29 +157,26 @@
 }
 .login-btn, .signUp-btn {
     a{
-        padding: 10px 5px;
+        padding: 10px;
         display: block;
         color: $color-black-brand;
     }
-    @media screen and (min-width: 480px){
-        a{
-            padding: 10px;
-        }
-    }
-    
 }
 .login-btn{
     a{
         &:hover, &:active{
-            color: lighten($color-black-brand, 30%);
+            color: $color-green-light;
         }
     }
 }
 .signUp-btn{
     background-color: $color-green-brand;
     a{
-        &:hover, &:active{
-            background-color: lighten($color-green-brand, 5%);
+        &:hover{
+             color: darken($color-green-dark, 10%);
+        }
+        &:active{
+            background-color: $color-green-light;
         }
     }
     @media screen and (min-width: 768px) {

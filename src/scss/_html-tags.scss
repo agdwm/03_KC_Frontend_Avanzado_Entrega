@@ -5,13 +5,13 @@
 body {
     height: 100%;
     position: relative;
+    font-family: $body-font-family;
 }
 
 a{
     cursor: pointer;
     color: $link-color;
-    &:hover, &:active{
+    &:hover, &:active, &:focus{
         text-decoration: none;
-        color: $link-color;
     }
 }

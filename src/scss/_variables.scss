@@ -19,13 +19,14 @@ $font-size-h6: $font-size-base;
 // Base Colors
 $color-black-brand: #000000;
 $color-gray-dark: #31353a;
+$color-gray-ligthen: #eaeaea;
 $color-gray-light: #ddd;
-$color-gray-lighen: #eaeaea;
 $color-gray-medium: #999;
 //$color-gray-medium: #aaaaaa;
 $color-violet-brand: #4257b2;
 $color-blue-brand: #0078b5;
 $color-green-brand: #00c496;
+$color-green-light: lighten($color-green-brand, 5%);
 $color-green-dark: #089a78;
 $color-white-brand: #ffffff;
 $color-orange-brand: #e36b52;

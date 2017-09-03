@@ -11,11 +11,17 @@
     <![endif]-->
 </head>
 <body>
-    @import "header.html"
-    <div class="container">
-        @import "post-detail.html"
+    <div class="pushable-content" id="js_pushable-content">
+        @import "header.html"
+        <div class="container">
+            <div class="row">
+                <main class="main-container" id="js_main-container">
+                    @import "post-detail.html"
+                </main>
+            </div>
+        </div>
+        <script src="main.js" async></script>
+        @import "footer.html"
     </div>
-    <script src="main.js" async></script>
-    @import "footer.html"
 </body>
 </html>

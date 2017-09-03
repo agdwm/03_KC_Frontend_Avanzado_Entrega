@@ -63,7 +63,7 @@ gulp.task('fonts', function () {
 gulp.task("default", ["img", "html", "sass", "js"], function () {
     browserSync.init({
         //server: "./dist/",
-        proxy: "http://127.0.0.1:3100/",
+        proxy: "http://127.0.0.1:3100/detail.html",
         // Don't show any notifications in the browser.
         notify: false,
         browser: ["google chrome"/*, "firefox"*/]

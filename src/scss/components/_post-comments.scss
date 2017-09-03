@@ -2,8 +2,22 @@
     padding-top: 20px;
     margin-bottom: 50px;
 }
+.comments-wrap {
+    @media screen and (min-width: 992px){
+        width: 83.33%;
+        margin-left: auto; 
+        margin-right: auto;
+    }
+}
+.comment-content{
+    margin-bottom: 60px;
+    .post-comments_title {
+        color: $color-gray-medium;
+    }
+}
 .post-comments_title {
-    color: darken($color-gray-medium, 15%);
+    color: $color-gray-medium;
+
     h6{
         font-size: $font-size-h6;
         font-size: bold;
@@ -43,7 +57,6 @@
     }
     .com-author_name {
         h5{
-            font-size: calc($font-size-body +1);
             margin-bottom: 4px;
             color: $color-green-brand;
         }
@@ -55,4 +68,53 @@
 }
 .com-text{
     color: darken($color-gray-medium, 15%);
+}
+
+//FORM STYLES
+.comment-form {
+    background-color: $color-green-brand;
+    padding: 30px 10px 35px 10px;
+    
+    .com-form_input, .com-form_textarea, .com-form_submit{
+        appearance: none;
+        
+        border: 0;
+    }
+
+    .com-form_input, .com-form_textarea{
+        color: $color-gray-dark;
+        width: 100%;
+        display: block;
+        border: 0;
+        padding: 15px 10px;
+        margin-bottom: 25px;
+        outline-color: #089a78;
+        caret-color: #089a78;
+        &::placeholder{
+            color: darken($color-gray-light, 10%);
+        }
+    }
+    .com-form_textarea{
+        min-height: 50px;
+        position: relative;
+    }
+    .textarea_limit{
+        position: absolute;
+        bottom: 40px;
+        right: 30px;
+        border: 1px solid #efefef;
+        font-size: 13px;
+        color: $color-gray-medium;
+        padding: 0.25em 1em;
+        background-color: rgba(255,255,255,0.8);
+    }
+    .com-form_submit {
+        background-color: $color-gray-light;
+        color: $color-black-brand;
+        padding: 15px 30px;
+        float:right;
+        &:hover, &:active{
+            background-color: lighten($color-gray-light, 5%);
+        }
+    }
 }

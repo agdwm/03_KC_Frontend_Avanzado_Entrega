@@ -22,7 +22,6 @@ $color-gray-dark: #31353a;
 $color-gray-ligthen: #eaeaea;
 $color-gray-light: #ddd;
 $color-gray-medium: #999;
-//$color-gray-medium: #aaaaaa;
 $color-violet-brand: #4257b2;
 $color-blue-brand: #0078b5;
 $color-green-brand: #00c496;
@@ -31,16 +30,12 @@ $color-green-dark: #089a78;
 $color-white-brand: #ffffff;
 $color-orange-brand: #e36b52;
 $color-yellow-brand: #ffe000;
-/*$color-amazing-39: #F8695B;
-$color-grastur: #17434E;
-$color-sidonia: #FDAA10;
 
-$color-silver: #DBDBDB;*/
 
 // Main components colors
 $main-text-color: $color-gray-dark;
 $link-color: $color-green-brand;
-$link-color-hover: lighten($color-green-brand, 10%);
+$link-color-hover: lighten($color-green-brand, 5%);
 
 // Forms variables
 /*$form-input-border-color: $color-grastur;

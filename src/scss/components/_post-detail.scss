@@ -1,0 +1,38 @@
+.post-detail {
+    padding-top: 50px;
+}
+.det-content {
+    border: 1px solid $color-gray-ligthen;
+    padding: 15px;
+}
+.det-header {
+    font-size: $font-size-h6;
+    color: $color-black-brand;
+    padding-bottom: 20px;
+}
+.det-header_type{
+    text-transform: uppercase;
+    font-weight: bold;
+    &:after {
+        content: "/";
+        margin-left: 10px;
+        position: relative;
+        font-size: 20px;
+        right: -1px;
+        color: $color-gray-ligthen;
+    }
+}
+.det-header_title {
+    font-size: $font-size-h2;
+    font-weight: bold;
+}
+.det-body_text{
+    font-size: $font-size-base;
+    a:hover{
+        text-decoration: underline;
+    }
+}
+.det-img_frame{
+    padding-top: 15px;
+    padding-bottom: 20px;
+}

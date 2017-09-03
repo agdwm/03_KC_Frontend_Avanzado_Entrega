@@ -13,5 +13,6 @@ a{
     color: $link-color;
     &:hover, &:active, &:focus{
         text-decoration: none;
+        color: $link-color-hover;
     }
 }

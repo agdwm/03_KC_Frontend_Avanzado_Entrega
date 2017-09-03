@@ -112,6 +112,10 @@
     cursor: pointer;
     color: $color-black-brand;
     font-family: $brand-font-family;
+    font-weight: bold;
+    position: relative;
+    top: 2px;
+
     &:hover, &:focus{
         color: $color-black-brand;
         text-decoration: none;

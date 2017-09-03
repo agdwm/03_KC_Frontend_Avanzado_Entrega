@@ -21,11 +21,13 @@ export default class PostsListManager extends UIManager{
             self.playVideo($this);
             return false;
         });
-        
-        this.iconLike.on("click", function(e) {
-            e.preventDefault();
+
+        this.element.on("click", ".fig-like_icon", function(e)  {
+            //e.preventDefault();
             let $this = $(this);
+            let postId = $this.closest(".post-item").data("id");
             self.clickIconLike($this);
+            self.saveLikeInBrowser(postId, $this);
             return false;
         });
     }
@@ -40,6 +42,20 @@ export default class PostsListManager extends UIManager{
         let fillHeart = $this.find(".glyphicon-heart").toggleClass("active fill");
     }
 
+    saveLikeInBrowser(postId, $this) {
+    
+        if(typeof(Storage) !== "undefined") {
+            //Evaluar si ya existe
+            if(localStorage.getItem(postId, 1)){
+                console.log("Ya has votado");
+            }else{
+                //Guardar me gusta en WebStorage
+                localStorage.setItem(postId, 1);
+            }
+        }else {
+            alert("El navegador no permite localStorage...");
+        }
+    }
     //loadPost() solo carga los artículos
     loadPosts() {
         //PostsService.list(post => {},  error => {});
@@ -112,7 +128,7 @@ export default class PostsListManager extends UIManager{
         }
 
         return `<div class="col-xs-12 col-sm-6 col-md-4">
-                <article data-id="${post.post_id}">
+                <article class="post-item" data-id="${post.post_id}">
                     <figure>
                     ${htmlPartial}
                         <figcaption class="figcaption">

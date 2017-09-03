@@ -1,19 +1,135 @@
 {
   "posts": [
     {
-      "id": 1,
-      "title": "json-server",
-      "author": "typicode"
-    }
-  ],
-  "comments": [
+      "post-id": 1,
+      "post-type": "Arts",
+      "post-date": "16.06.2016 12:35:12",
+      "post-img": "img/article_01.jpg",
+      "post-title": "Valencia, la ciudad ilustrada. Arte Urbano",
+      "post-text": "<p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quasi incidunt cupiditate harum tenetur dolorem laborum dolore excepturi nobis debitis deleniti obcaecati animi, impedit quidem perspiciatis enim aliquam praesentium, quis quod. Possimus pariatur natus ipsam quam rerum itaque voluptas veritatis facilis, voluptatem quo impedit praesentium molestiae at eos est qui dolorem ullam sequi officiis</p><p>Quam adipisci consectetur aut quia, officia ullam. Perferendis velit autem illum, nemo consectetur inventore id ab dolor culpa eos natus temporibus minima officiis similique nobis asperiores quisquam nesciunt veritatis hic minus amet ex! Ea nihil vero illum.</p>",
+      "author-img": "img/jase-ess.jpeg",
+      "author-name": "Jase Ess",
+      "post-comments-num": 5,
+      "post-like-num": 2
+    },
     {
-      "id": 1,
-      "body": "some comment",
-      "postId": 1
+      "post-id": 2,
+      "post-type": "Arts",
+      "post-date": "16.06.2016 12:35:12",
+      "post-img": "img/article_02.jpg",
+      "post-title": "Valencia, la ciudad ilustrada. Arte Urbano",
+      "post-text": "<p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quasi incidunt cupiditate harum tenetur dolorem laborum dolore excepturi nobis debitis deleniti obcaecati animi, impedit quidem perspiciatis enim aliquam praesentium, quis quod. Possimus pariatur natus ipsam quam rerum itaque voluptas veritatis facilis, voluptatem quo impedit praesentium molestiae at eos est qui dolorem ullam sequi officiis</p><p>Quam adipisci consectetur aut quia, officia ullam. Perferendis velit autem illum, nemo consectetur inventore id ab dolor culpa eos natus temporibus minima officiis similique nobis asperiores quisquam nesciunt veritatis hic minus amet ex! Ea nihil vero illum.</p>",
+      "author-img": "img/nicolas-picard.jpg",
+      "author-name": "Nicolas Picard",
+      "post-comments-num": 6,
+      "post-like-num": 5
+    },
+    {
+      "post-id": 3,
+      "post-type": "Arts",
+      "post-date": "16.06.2016 12:35:12",
+      "post-img": "img/article_03.jpg",
+      "post-title": "Valencia, la ciudad ilustrada. Arte Urbano",
+      "post-text": "<p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quasi incidunt cupiditate harum tenetur dolorem laborum dolore excepturi nobis debitis deleniti obcaecati animi, impedit quidem perspiciatis enim aliquam praesentium, quis quod. Possimus pariatur natus ipsam quam rerum itaque voluptas veritatis facilis, voluptatem quo impedit praesentium molestiae at eos est qui dolorem ullam sequi officiis</p><p>Quam adipisci consectetur aut quia, officia ullam. Perferendis velit autem illum, nemo consectetur inventore id ab dolor culpa eos natus temporibus minima officiis similique nobis asperiores quisquam nesciunt veritatis hic minus amet ex! Ea nihil vero illum.</p>",
+      "author-img": "img/annie-spratt.jpeg",
+      "author-name": "Annie Spratt",
+      "post-comments-num": 0,
+      "post-like-num": 0
+    },
+    {
+      "post-id": 4,
+      "post-type": "Arts",
+      "post-date": "16.06.2016 12:35:12",
+      "post-img": "img/article_04.jpg",
+      "post-title": "Valencia, la ciudad ilustrada. Arte Urbano",
+      "post-text": "<p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quasi incidunt cupiditate harum tenetur dolorem laborum dolore excepturi nobis debitis deleniti obcaecati animi, impedit quidem perspiciatis enim aliquam praesentium, quis quod. Possimus pariatur natus ipsam quam rerum itaque voluptas veritatis facilis, voluptatem quo impedit praesentium molestiae at eos est qui dolorem ullam sequi officiis</p><p>Quam adipisci consectetur aut quia, officia ullam. Perferendis velit autem illum, nemo consectetur inventore id ab dolor culpa eos natus temporibus minima officiis similique nobis asperiores quisquam nesciunt veritatis hic minus amet ex! Ea nihil vero illum.</p>",
+      "author-img": "img/matthew-kane.jpeg",
+      "author-name": "Matthew kane",
+      "post-comments-num": 1,
+      "post-like-num": 10
+    },
+    {
+      "post-id": 5,
+      "post-type": "Arts",
+      "post-date": "16.06.2016 12:35:12",
+      "post-img": "img/article_05.jpg",
+      "post-title": "Valencia, la ciudad ilustrada. Arte Urbano",
+      "post-text": "<p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quasi incidunt cupiditate harum tenetur dolorem laborum dolore excepturi nobis debitis deleniti obcaecati animi, impedit quidem perspiciatis enim aliquam praesentium, quis quod. Possimus pariatur natus ipsam quam rerum itaque voluptas veritatis facilis, voluptatem quo impedit praesentium molestiae at eos est qui dolorem ullam sequi officiis</p><p>Quam adipisci consectetur aut quia, officia ullam. Perferendis velit autem illum, nemo consectetur inventore id ab dolor culpa eos natus temporibus minima officiis similique nobis asperiores quisquam nesciunt veritatis hic minus amet ex! Ea nihil vero illum.</p>",
+      "author-img": "img/samuel-zeller.jpeg",
+      "author-name": "Samuel Zeller",
+      "post-comments-num": 5,
+      "post-like-num": 4
+    },
+    {
+      "post-id": 6,
+      "post-type": "Arts",
+      "post-date": "16.06.2016 12:35:12",
+      "post-img": "img/article_06.jpg",
+      "post-title": "Valencia, la ciudad ilustrada. Arte Urbano",
+      "post-text": "<p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quasi incidunt cupiditate harum tenetur dolorem laborum dolore excepturi nobis debitis deleniti obcaecati animi, impedit quidem perspiciatis enim aliquam praesentium, quis quod. Possimus pariatur natus ipsam quam rerum itaque voluptas veritatis facilis, voluptatem quo impedit praesentium molestiae at eos est qui dolorem ullam sequi officiis</p><p>Quam adipisci consectetur aut quia, officia ullam. Perferendis velit autem illum, nemo consectetur inventore id ab dolor culpa eos natus temporibus minima officiis similique nobis asperiores quisquam nesciunt veritatis hic minus amet ex! Ea nihil vero illum.</p>",
+      "author-img": "img/author_lorem.jpg",
+      "author-name": "Collie Morgan",
+      "post-comments-num": 2,
+      "post-like-num": 0
+    },
+    {
+      "post-id": 7,
+      "post-type": "Arts",
+      "post-date": "16.06.2016 12:35:12",
+      "post-img": "img/article_07.jpg",
+      "post-title": "Valencia, la ciudad ilustrada. Arte Urbano",
+      "post-text": "<p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quasi incidunt cupiditate harum tenetur dolorem laborum dolore excepturi nobis debitis deleniti obcaecati animi, impedit quidem perspiciatis enim aliquam praesentium, quis quod. Possimus pariatur natus ipsam quam rerum itaque voluptas veritatis facilis, voluptatem quo impedit praesentium molestiae at eos est qui dolorem ullam sequi officiis</p><p>Quam adipisci consectetur aut quia, officia ullam. Perferendis velit autem illum, nemo consectetur inventore id ab dolor culpa eos natus temporibus minima officiis similique nobis asperiores quisquam nesciunt veritatis hic minus amet ex! Ea nihil vero illum.</p>",
+      "author-img": "img/alex-hockett.jpeg",
+      "author-name": "Alex Hockett",
+      "post-comments-num": 0,
+      "post-like-num": 7
+    },
+    {
+      "post-id": 8,
+      "post-type": "Arts",
+      "post-date": "16.06.2016 12:35:12",
+      "post-img": "video/little_talks.m4v",
+      "post-title": "Valencia, la ciudad ilustrada. Arte Urbano",
+      "post-text": "<p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quasi incidunt cupiditate harum tenetur dolorem laborum dolore excepturi nobis debitis deleniti obcaecati animi, impedit quidem perspiciatis enim aliquam praesentium, quis quod. Possimus pariatur natus ipsam quam rerum itaque voluptas veritatis facilis, voluptatem quo impedit praesentium molestiae at eos est qui dolorem ullam sequi officiis</p><p>Quam adipisci consectetur aut quia, officia ullam. Perferendis velit autem illum, nemo consectetur inventore id ab dolor culpa eos natus temporibus minima officiis similique nobis asperiores quisquam nesciunt veritatis hic minus amet ex! Ea nihil vero illum.</p>",
+      "author-img": "img/lionel-gustave.jpeg",
+      "author-name": "Of Monsters And Men",
+      "post-comments-num": 70,
+      "post-like-num": 54
+    },
+    {
+      "post-id": 9,
+      "post-type": "Arts",
+      "post-date": "16.06.2016 12:35:12",
+      "post-img": "img/article_09.jpg",
+      "post-title": "Valencia, la ciudad ilustrada. Arte Urbano",
+      "post-text": "<p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quasi incidunt cupiditate harum tenetur dolorem laborum dolore excepturi nobis debitis deleniti obcaecati animi, impedit quidem perspiciatis enim aliquam praesentium, quis quod. Possimus pariatur natus ipsam quam rerum itaque voluptas veritatis facilis, voluptatem quo impedit praesentium molestiae at eos est qui dolorem ullam sequi officiis</p><p>Quam adipisci consectetur aut quia, officia ullam. Perferendis velit autem illum, nemo consectetur inventore id ab dolor culpa eos natus temporibus minima officiis similique nobis asperiores quisquam nesciunt veritatis hic minus amet ex! Ea nihil vero illum.</p>",
+      "author-img": "img/eugenio-mazzone.jpeg",
+      "author-name": "Lionel Gustave",
+      "post-comments-num": 1,
+      "post-like-num": 0
+    },
+    {
+      "post-id": 10,
+      "post-type": "Arts",
+      "post-date": "16.06.2016 12:35:12",
+      "post-img": "img/article_10.jpg",
+      "post-title": "Valencia, la ciudad ilustrada. Arte Urbano",
+      "post-text": "<p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quasi incidunt cupiditate harum tenetur dolorem laborum dolore excepturi nobis debitis deleniti obcaecati animi, impedit quidem perspiciatis enim aliquam praesentium, quis quod. Possimus pariatur natus ipsam quam rerum itaque voluptas veritatis facilis, voluptatem quo impedit praesentium molestiae at eos est qui dolorem ullam sequi officiis</p><p>Quam adipisci consectetur aut quia, officia ullam. Perferendis velit autem illum, nemo consectetur inventore id ab dolor culpa eos natus temporibus minima officiis similique nobis asperiores quisquam nesciunt veritatis hic minus amet ex! Ea nihil vero illum.</p>",
+      "author-img": "img/jase-ess.jpeg",
+      "author-name": "Eugeniom Mazzone",
+      "post-comments-num": 10,
+      "post-like-num": 3
     }
   ],
-  "profile": {
-    "name": "typicode"
-  }
+   "comments": [
+    {
+      "com-id": 1,
+      "com-author-img": "Starlight",
+      "com-author-name": "Muse",
+      "com-author-surname": "https://images-na.ssl-images-amazon.com/images/I/81eIMvbLnfL._SL1500_.jpg",
+      "com-author-": "https://images-na.ssl-images-amazon.com/images/I/81eIMvbLnfL._SL1500_.jpg",
+      "com-date": "https://images-na.ssl-images-amazon.com/images/I/81eIMvbLnfL._SL1500_.jpg",
+      "com-text": "https://images-na.ssl-images-amazon.com/images/I/81eIMvbLnfL._SL1500_.jpg"
+    }
+  ]
 }

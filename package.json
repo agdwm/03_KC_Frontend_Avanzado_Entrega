@@ -4,7 +4,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "server": "json-server --watch --static ./dist --port 3100 db.json"
+    "server": "json-server --watch --static ./dist --port 3200 db.json"
   },
   "author": "",
   "license": "ISC",

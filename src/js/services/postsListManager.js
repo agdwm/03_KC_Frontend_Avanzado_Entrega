@@ -23,10 +23,8 @@ export default class PostsListManager extends UIManager{
         });
 
         this.element.on("click", ".fig-like_icon", function(e)  {
-            //e.preventDefault();
             let $this = $(this);
             let postId = $this.closest(".post-item").data("id");
-            self.clickIconLike($this);
             self.saveLikeInBrowser(postId, $this);
             return false;
         });
@@ -37,23 +35,30 @@ export default class PostsListManager extends UIManager{
         video.paused ? video.play() : video.pause();
     }
 
-    clickIconLike($this) {
-        let emptyHeart = $this.find(".glyphicon-heart-empty").toggleClass("active");
-        let fillHeart = $this.find(".glyphicon-heart").toggleClass("active fill");
+    toggleFillIconLike($this, boolean) {
+        let fillHeart = $this.find(".glyphicon-heart").toggleClass("active fill", boolean);
+    }
+    toggleEmptyIconLike($this, boolean){
+        let emptyHeart = $this.find(".glyphicon-heart-empty").toggleClass("active", boolean);        
     }
 
     saveLikeInBrowser(postId, $this) {
     
         if(typeof(Storage) !== "undefined") {
-            //Evaluar si ya existe
-            if(localStorage.getItem(postId, 1)){
-                console.log("Ya has votado");
-            }else{
+            //Si NO existe crealo
+            if(!localStorage.getItem(postId)){
                 //Guardar me gusta en WebStorage
-                localStorage.setItem(postId, 1);
+                localStorage.setItem(postId, "<3");
+                this.toggleFillIconLike($this, true);
+                this.toggleEmptyIconLike($this, false);
+            }else{
+                //Si ya existe eliminarlo
+                localStorage.removeItem(postId);
+                this.toggleFillIconLike($this, false);
+                this.toggleEmptyIconLike($this, true);
             }
         }else {
-            alert("El navegador no permite localStorage...");
+            alert("El navegador no permite localStorage... :(");
         }
     }
     //loadPost() solo carga los artículos

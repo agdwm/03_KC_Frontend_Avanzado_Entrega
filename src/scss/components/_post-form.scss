@@ -43,15 +43,27 @@
         min-height: 50px;
         position: relative;
     }
-    .textarea_limit{
+    .limit-words{
         position: absolute;
         bottom: 40px;
         right: 30px;
-        border: 1px solid #efefef;
+
         font-size: 13px;
-        color: $color-gray-medium;
+
         padding: 0.25em 1em;
         background-color: rgba(255,255,255,0.8);
+        &.empty{
+            border: 1px solid #efefef;
+            color: $color-gray-medium;
+        }
+        &.error {
+            border: 1px solid $color-orange-brand;
+            color: $color-orange-brand;
+        }
+        &.ideal{
+            border: 1px solid $color-green-dark;
+            color: $color-green-dark;
+        }
     }
     .com-form_submit {
         background-color: $color-gray-light;

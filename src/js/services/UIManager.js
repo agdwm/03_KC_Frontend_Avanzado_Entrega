@@ -8,9 +8,15 @@ export default class UIManager {
         //seleccionamos el elemento de jquery en el constructor
         this.element = $(selector);
     }
+
     setEmpty() {
         $(this.element).removeClass(this.uiStateClasses).addClass("empty");
     }
+
+    setFieldEmpty(field) {
+        $(field).removeClass(this.uiStateClasses).addClass("empty");
+    }
+
     setLoading() {
         $(this.element).removeClass(this.uiStateClasses).addClass("loading");
     }
@@ -33,7 +39,11 @@ export default class UIManager {
 
     setFieldIdeal(field) {
         $(field).removeClass(this.uiStateClasses).addClass("ideal");
-    }    
+    }
+
+    setFieldErrorHtml(field, errorMessage) {
+        $(field).attr("placeholder", errorMessage);
+    }
 
     setEmptyHtml(html) {
         this.element.find(".ui-status.empty").html(html);

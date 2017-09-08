@@ -8,10 +8,39 @@ export default class PostFormManager extends UIManager {
         super(formSelector);
         this.postsService = postsService;
         this.pubSub = pubSub;
+        this.textarea = $("#message");
+        this.boxOfLimit = this.element.find("#limit-words");
+        this.boxLimitInitialText = this.boxOfLimit.text();
     }
 
     init() {
         this.setupSubmitEventHandler();
+        let self = this;
+
+        this.textarea.on("keyup", function(e){
+            let $this = $(this);
+            self.limitWords($this);
+            return false;
+        });
+    }
+
+    limitWords($this) {
+        let numberOfWords = this.textarea.val().trim().replace(/\s\s+/g, ' ');
+        let lengthOfWords = numberOfWords.split(' ').length;
+        let boxOfLimit = this.element.find("#limit-words");
+        
+        
+        if($this.val() === ""){
+            console.log(boxOfLimit.text(this.boxLimitInitialText));
+            this.setFieldEmpty(boxOfLimit);
+        }else{
+            boxOfLimit.text(`Palabras: ${lengthOfWords}`);
+            if(lengthOfWords > 120){
+                this.setFieldError(boxOfLimit);
+            }else{
+                this.setFieldIdeal(boxOfLimit);
+            }
+        }
     }
 
     setupSubmitEventHandler() {

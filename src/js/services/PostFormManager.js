@@ -34,11 +34,9 @@ export default class PostFormManager extends UIManager {
         const fields = this.element.find('input, textarea');
         
         for (let field of fields) {
-            
+
             if (field.checkValidity() == false) {
-                //con "validationMessage" usamos la propia validación de HTML5
-                console.log($(field).val());
-                let errorMessage = field.validationMessage;
+                const errorMessage = field.validationMessage;
                 field.focus();
                 this.setFieldError(field);
                 this.setFieldErrorHtml(field, errorMessage);
@@ -49,6 +47,7 @@ export default class PostFormManager extends UIManager {
                 this.setFieldIdeal(field);
             }
         }
+        console.log(placeholders);
         // Llegamos aquí, si no hay ningún error
         this.setIdeal();
         return true;

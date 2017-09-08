@@ -2,22 +2,22 @@
     <h5>Deja tu comentario</h5>
 </div>
 <div class="comment-form clearfix">
-    <form action="" id="post-form" method="post" name="comment" target="" enctype="" novalidate="">
+    <form class="ui-status" id="post-form" action=""  method="post" name="comment" target="" enctype="" novalidate="">
         <div class="col-xs-12 col-md-6">
-            <input class="com-form_input" type="text" name="name" id="name" placeholder="Nombre *" pattern="[A-Z]" required>
+            <input class="com-form_input ui-status" type="text" name="name" id="name" placeholder="Nombre *" pattern="[A-Za-z/\s/g\w(\w|'|\ )*\w]{1,50}" required>
         </div>
         <div class="col-xs-12 col-md-6">
-            <input class="com-form_input" type="text" name="surname" id="surname" placeholder="Apellidos *" pattern="[A-Z]" required>
+            <input class="com-form_input ui-status" type="text" name="surname" id="surname" placeholder="Apellidos *" pattern="[A-Za-z/\s/g\w(\w|'|\ )*\w]{1,50}" required>
         </div>
         <div class="col-xs-12">
-            <input class="com-form_input"  type="email" name="email" id="email" placeholder="Email *" required>
+            <input class="com-form_input ui-status"  type="email" name="email" id="email" placeholder="Email *" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" required>
         </div>
         <div class="col-xs-12">
-            <textarea class="com-form_textarea" name="message" id="message" cols="30" rows="10" placeholder="Escribe aquí tu comentario *" required></textarea>
+            <textarea class="com-form_textarea ui-status" name="message" id="message" cols="30" rows="10" placeholder="Escribe aquí tu comentario *" required></textarea>
             <span id="text-limit" class="textarea_limit">* Máximo 120 palabras</span>
         </div>
         <div class="col-xs-12">
-            <button class="com-form_submit" type="submit" class="submit" id="submit">Enviar</button>
+            <button class="com-form_submit ui-status" type="submit" class="submit" id="submit">Enviar</button>
         </div>
     </form>
 </div>

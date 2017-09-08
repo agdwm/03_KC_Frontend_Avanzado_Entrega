@@ -63,7 +63,7 @@ gulp.task('fonts', function () {
 gulp.task("default", ["img", "html", "sass", "js"], function () {
     browserSync.init({
         //server: "./dist/",
-        proxy: "http://127.0.0.1:3200/",
+        proxy: "http://127.0.0.1:3200/detail.html",
         // Don't show any notifications in the browser.
         notify: false,
         browser: ["google chrome"/*, "firefox"*/]
@@ -101,7 +101,8 @@ gulp.task("html", function () {
     gulp.src(source + "*.html")
         //Una vez cargados todos esos html haces un pipe de gulpImport y
         //te paso la carpeta donde van a estar todos esos trocitos de html que vas a poder importar ("components")
-        .pipe(gulpImport(source + "components/")) //reemplaza los imports de los html
+                        
+        .pipe(gulpImport([source + "components/"])) //reemplaza los imports de los html
         .pipe(htmlmin({collapseWhitespace: true})) //minifica el HTML
         //una vez importados, déjame los archivos resultantes en la carpeta "dist"
         .pipe(gulp.dest(dest))

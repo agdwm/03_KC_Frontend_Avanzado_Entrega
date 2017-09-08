@@ -2,7 +2,15 @@
 .comment-form {
     .ui-status {
         &.error {
-
+            .com-form_input , .com-form_textarea {
+                &.error{
+                    border: 2px solid $color-orange-brand;
+                    outline-color: $color-orange-brand;
+                    &::placeholder{
+                        color: $color-orange-brand;
+                    }
+                }
+            }
         }
     }
 }
@@ -18,7 +26,7 @@
         border: 0;
     }
 
-    .com-form_input, .com-form_textarea{
+    .com-form_input, .com-form_textarea {
         color: $color-gray-dark;
         width: 100%;
         display: block;

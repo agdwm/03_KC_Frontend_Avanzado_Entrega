@@ -19,6 +19,10 @@ export default class UIManager {
         $(this.element).removeClass(this.uiStateClasses).addClass("error");
     }
 
+    setFieldError(field) {
+        $(field).removeClass(this.uiStateClasses).addClass("error");
+    }
+
     setPartial() {
         $(this.element).removeClass(this.uiStateClasses).addClass("partial");
     }
@@ -26,6 +30,10 @@ export default class UIManager {
     setIdeal() {
         $(this.element).removeClass(this.uiStateClasses).addClass("ideal");
     }
+
+    setFieldIdeal(field) {
+        $(field).removeClass(this.uiStateClasses).addClass("ideal");
+    }    
 
     setEmptyHtml(html) {
         this.element.find(".ui-status.empty").html(html);
@@ -37,6 +45,10 @@ export default class UIManager {
 
     setErrorHtml(html) {
         this.element.find(".ui-status.error").html(html);
+    }
+
+    setFieldErrorHtml(field, errorMessage) {
+        $(field).attr("placeholder", errorMessage);
     }
 
     setPartialHtml(html) {

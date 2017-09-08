@@ -2,7 +2,7 @@ const $ = require("jquery");
 
 import UIManager from './UIManager';
 
-export default class SongFormManager extends UIManager {
+export default class PostFormManager extends UIManager {
 
     constructor(formSelector, postsService, pubSub) {
         super(formSelector);
@@ -30,18 +30,27 @@ export default class SongFormManager extends UIManager {
     }
 
     isValid() {
+        //this.element == form
         const fields = this.element.find('input, textarea');
-        for (let input of fields) {
+        
+        for (let field of fields) {
+            
             if (field.checkValidity() == false) {
-                const errorMessage = field.validationMessage;
+                //con "validationMessage" usamos la propia validación de HTML5
+                console.log($(field).val());
+                let errorMessage = field.validationMessage;
                 field.focus();
-                this.setErrorHtml(errorMessage);
+                this.setFieldError(field);
+                this.setFieldErrorHtml(field, errorMessage);
                 this.setError();
+                this.setErrorHtml(errorMessage);
                 return false;
+            }else{
+                this.setFieldIdeal(field);
             }
         }
         // Llegamos aquí, si no hay ningún error
-        this.setIdeal(); 
+        this.setIdeal();
         return true;
     }
 
@@ -52,14 +61,13 @@ export default class SongFormManager extends UIManager {
             surname: this.element.find('#apellidos').val(),
             email: this.element.find('#email').val(),
             message: this.element.find('#message').val()
-
         };
-        this.songsService.save(song, success => {
-            this.pubSub.publish("new-song", song); // publicamos el evento que informa de la creación de una canción 
+        this.postsService.save(post, success => {
+            this.pubSub.publish("new-post", post); // publicamos el evento que informa de la creación de una canción 
             this.resetForm();
             this.setIdeal();
         }, error => {
-            this.setErrorHtml("Se ha producido un error al guardar la canción en el servidor.");
+            this.setErrorHtml("Se ha producido un error enviar los datos.");
             this.setError();
         });
     }

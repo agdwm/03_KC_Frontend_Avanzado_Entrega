@@ -9,8 +9,10 @@ export default class PostFormManager extends UIManager {
         this.postsService = postsService;
         this.pubSub = pubSub;
         this.textarea = $("#message");
-        this.boxOfLimit = this.element.find("#limit-words");
+        this.boxOfLimit = this.element.find("#limit-words"); //this.element = form
         this.boxLimitInitialText = this.boxOfLimit.text();
+        this.fields = this.element.find('input, textarea');
+        this.namesAndPlaceholders = {};
     }
 
     init() {
@@ -22,6 +24,27 @@ export default class PostFormManager extends UIManager {
             self.limitWords($this);
             return false;
         });
+        this.savePlaceholders();
+    }
+
+    savePlaceholders(){
+        let listNames = [];
+        let listPlaceholders = [];
+        //const namesAndPlaceholders = {};
+        let i;
+
+        for (i = 0; i < this.fields.length; i++) {
+            let field = this.fields[i];
+
+            const inputName = $(field).attr("name");
+            const inputPlaceholder = $(field).attr("placeholder");
+
+            listNames.push(inputName);
+            listPlaceholders.push(inputPlaceholder);
+
+            this.namesAndPlaceholders[listNames[i]] = listPlaceholders[i];    
+        }
+        console.log(this.namesAndPlaceholders);
     }
 
     limitWords($this) {
@@ -59,10 +82,8 @@ export default class PostFormManager extends UIManager {
     }
 
     isValid() {
-        //this.element == form
-        const fields = this.element.find('input, textarea');
-        
-        for (let field of fields) {
+
+        for (let field of this.fields) {
 
             if (field.checkValidity() == false) {
                 const errorMessage = field.validationMessage;

@@ -84,20 +84,38 @@ export default class PostFormManager extends UIManager {
     isValid() {
 
         for (let field of this.fields) {
-
+            //Si es inválido
             if (field.checkValidity() == false) {
-                const errorMessage = field.validationMessage;
+                //Si está vacío
+                const placeholder = $(field).attr("placeholder");
+                let errorMessage = "";
+
+                if (!$(field).val()) {
+                    errorMessage = "Este campo es obligatorio";
+                    $(field).attr("placeholder", errorMessage);
+                   /* field.focus();
+                    this.setFieldError(field);
+                    this.setError();
+                    return false;*/
+                }else{
+                    $(field).val(""),
+                    errorMessage = $(field).data("error");
+                    $(field).attr("placeholder", errorMessage);
+                }
+                //Si no está vacío
+                
                 field.focus();
                 this.setFieldError(field);
                 this.setFieldErrorHtml(field, errorMessage);
                 this.setError();
                 this.setErrorHtml(errorMessage);
                 return false;
+            //Si es válido
             }else{
                 this.setFieldIdeal(field);
             }
         }
-        console.log(placeholders);
+        
         // Llegamos aquí, si no hay ningún error
         this.setIdeal();
         return true;

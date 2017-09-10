@@ -14,10 +14,11 @@ headerManager.init();
 const footerManager = new FooterManager("#js_scroll-link");
 footerManager.init();
 
-const postsService = new PostsService("/comments/");
+const postsService = new PostsService("/posts/");
+const commentsService = new PostsService("/comments/");
 
 const postsListManager = new PostsListManager("#posts-list", postsService, PubSub);
 postsListManager.init();
 
-const postFormManager = new PostFormManager("#post-form", postsService, PubSub);
+const postFormManager = new PostFormManager("#post-form", commentsService, PubSub);
 postFormManager.init();

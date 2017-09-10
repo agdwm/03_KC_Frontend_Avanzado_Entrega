@@ -184,9 +184,9 @@ export default class PostFormManager extends UIManager {
     }
 
        
-    /*resetForm() {
+    resetForm() {
         this.element[0].reset(); // resetea el formulario
-    }*/
+    }
 
     disableFormControls() {
         this.element.find("input, textarea, button").attr("disabled", true);

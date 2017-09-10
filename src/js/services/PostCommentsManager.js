@@ -11,12 +11,11 @@ export default class PostCommentsManager extends UIManager{
     }
 
     init(){
-        this.loadComments();
+
     }
 
     scroll(){
-       //this.checkScrollAndLoad();
-
+       this.checkScrollAndLoad();
     }
 
     checkScrollAndLoad() {

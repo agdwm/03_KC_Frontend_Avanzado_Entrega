@@ -8,7 +8,8 @@ export default class PostFormManager extends UIManager {
         super(formSelector);
         this.postsService = postsService;
         this.pubSub = pubSub;
-        this.textarea = $("#message");
+        this.textarea = $(".com-form_textarea");
+        this.input = $(".com-form_input");
         this.boxOfLimit = this.element.find("#limit-words"); //this.element = form
         this.boxLimitInitialText = this.boxOfLimit.text();
         this.fields = this.element.find('input, textarea');
@@ -17,6 +18,7 @@ export default class PostFormManager extends UIManager {
 
     init() {
         this.setupSubmitEventHandler();
+        this.inputChangeEventHandler();
         let self = this;
 
         this.textarea.on("keyup", function(e){
@@ -45,6 +47,13 @@ export default class PostFormManager extends UIManager {
         }
     }
 
+    inputChangeEventHandler() {
+        let self = this;
+        this.element.find(this.input, this.textarea).on("change", function(){
+            self.addIcon();
+        })
+    }
+
     setupSubmitEventHandler() {
         //element (from UIManager)
         this.element.on("submit", () => {
@@ -61,9 +70,40 @@ export default class PostFormManager extends UIManager {
         }
     }
 
+    addIcon() {
+        for (let field of this.fields) {
+            let inputWrapper = $(field).parent(".input_wrapper");
+            let textareaWrapper = $(field).parent(".textarea_wrapper");
+            
+            if (field.checkValidity() == false) {
+                
+                if ($(field).val()) {
+                    if (inputWrapper){
+                        inputWrapper.removeClass(this.uiStateClasses).addClass("error");
+                        this.setFieldError(field, inputWrapper);
+                    }else if(textareaWrapper){
+                        textareaWrapper.removeClass(this.uiStateClasses).addClass("error");
+                        this.setFieldError(field, textareaWrapper);
+                    }
+                }
+            }else{
+                if (inputWrapper){
+                    inputWrapper.removeClass(this.uiStateClasses).addClass("ideal");
+                    this.setFieldIdeal(field, inputWrapper);
+                }else if(textareaWrapper){
+                    textareaWrapper.removeClass(this.uiStateClasses).addClass("ideal");
+                    this.setFieldIdeal(field, textareaWrapper);
+                }
+            } 
+        }
+    }
+
+
     isValid() {
 
         for (let field of this.fields) {
+            //let inputWrapper = $(field).parent(".input_wrapper");
+            //let textareaWrapper = $(field).parent(".textarea_wrapper");
             //Si es inválido
             if (field.checkValidity() == false) {
                 //Si está vacío
@@ -73,17 +113,13 @@ export default class PostFormManager extends UIManager {
                 if (!$(field).val()) {
                     errorMessage = "Este campo es obligatorio";
                     $(field).attr("placeholder", errorMessage);
-                   /* field.focus();
-                    this.setFieldError(field);
-                    this.setError();
-                    return false;*/
                 }else{
                     $(field).val("");
                     errorMessage = $(field).data("error");
                     $(field).attr("placeholder", errorMessage);
                 }
                 //Si no está vacío
-                
+
                 field.focus();
                 this.setFieldError(field);
                 this.setFieldErrorHtml(field, errorMessage);

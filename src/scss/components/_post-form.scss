@@ -25,19 +25,80 @@
         appearance: none;
         border: 0;
     }
+    .input_wrapper, .textarea_wrapper{
+        display: block;
+        position: relative;
+        margin-bottom: 25px;
+        &:after{
+            font-family: Glyphicons Halflings;
+            position: absolute;
+            right: 10px;
+            font-size: 16px;
+            display: block;
+            z-index: 1;
+            color: lighten($color-green-brand, 5%);
+            display:none;
+            opacity:0;
+            transition:opacity 0.5s linear;
+        }
+        &.error{
+            &:after{
+                content: "\e014"; //cruz
+                color: lighten($color-orange-brand, 5%);
+                display:block;
+                opacity:1;
+            }
+        }
+        &.ideal{
+            &:after{
+                content: "\e013"; //check
+                color: lighten($color-green-brand, 5%);
+                display:block;
+                opacity:1;
+            }
+        }
+    }
+    .input_wrapper{
+        &:after{
+            top: 50%;
+            line-height: 26px;
+            transform: translateY(-50%);
+        }
+    }
+    .textarea_wrapper{
+        &:after{
+            top: 15px;
+        }       
+    }
 
     .com-form_input, .com-form_textarea {
         color: $color-gray-dark;
         width: 100%;
         display: block;
         border: 0;
-        padding: 15px 10px;
-        margin-bottom: 25px;
+        padding: 15px 40px 15px 10px;
+        
         outline-color: #089a78;
         caret-color: #089a78;
         position: relative;
         &::placeholder{
             color: darken($color-gray-light, 10%);
+        }
+    }
+    i{
+        &.glyphicon{
+            top: 17px;
+            right: 30px;
+            position: absolute;
+            z-index: 2;
+            font-size: 16px;
+            
+            &.glyphicon-ok {
+                color: $color-green-brand;
+            }
+            &.glyphicon-remove {
+                color: $color-orange-brand;
+            }
         }
     }
     .com-form_textarea{

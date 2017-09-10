@@ -25,8 +25,11 @@ export default class UIManager {
         $(this.element).removeClass(this.uiStateClasses).addClass("error");
     }
 
-    setFieldError(field) {
+    setFieldError(field, fieldParent = false) {
         $(field).removeClass(this.uiStateClasses).addClass("error");
+        if(fieldParent){
+            fieldParent.removeClass(this.uiStateClasses).addClass("error");
+        }  
     }
 
     setPartial() {
@@ -37,8 +40,11 @@ export default class UIManager {
         $(this.element).removeClass(this.uiStateClasses).addClass("ideal");
     }
 
-    setFieldIdeal(field) {
+    setFieldIdeal(field, fieldParent = false) {
         $(field).removeClass(this.uiStateClasses).addClass("ideal");
+        if(fieldParent){
+            fieldParent.removeClass(this.uiStateClasses).addClass("ideal");
+        }  
     }
 
     setFieldErrorHtml(field, errorMessage) {

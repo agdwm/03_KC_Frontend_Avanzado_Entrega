@@ -2,18 +2,18 @@
     <h5>Deja tu comentario</h5>
 </div>
 <div class="comment-form clearfix">
-    <form class="ui-status" id="post-form" action=""  method="post" name="comment" target="" enctype="" novalidate="">
+    <form class="ui-status" id="post-form" action=""  method="post" name="comment" target="" enctype="text/plain" novalidate="">
         <div class="col-xs-12 col-md-6">
-            <input class="com-form_input" type="text" name="name" id="name" placeholder="Nombre *" pattern="[A-Za-z]{1,50}" data-error="Escribe un nombre válido" autofocus required>
+            <input class="com-form_input" type="text" name="name" id="name" placeholder="Nombre *" pattern="[A-Za-zä-üÄ-Üá-úÁ-Úâ-ûÂ-Ûà-ùÀ-Ù.-]{1,50}" data-error="Escribe un nombre válido" autofocus required>
         </div>
         <div class="col-xs-12 col-md-6">
-            <input class="com-form_input" type="text" name="surname" id="surname" placeholder="Apellidos *" pattern="[A-Za-z]{1,50}" data-error="Escribe un apellido válido" required>
+            <input class="com-form_input" type="text" name="surname" id="surname" placeholder="Apellidos *" pattern="[A-Za-zä-üÄ-Üá-úÁ-Úâ-ûÂ-Ûà-ùÀ-Ù.-]{1,50}" data-error="Escribe un apellido válido" required>
         </div>
         <div class="col-xs-12">
             <input class="com-form_input"  type="email" name="email" id="email" placeholder="Email *" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" data-error="Escribe un email válido" required>
         </div>
         <div class="col-xs-12">
-            <textarea class="com-form_textarea" name="message" id="message" cols="30" rows="10" placeholder="Escribe aquí tu comentario *" data-error="Escribe un comentario inferior a 120 palabras" required></textarea>
+            <textarea class="com-form_textarea" name="message" id="message" cols="30" rows="10" placeholder="Escribe aquí tu comentario *" data-error="Escribe un comentario inferior a 120 palabras" pattern="([A-z0-9À-ž\s]){2,120}" required></textarea>
             <span id="limit-words" class="limit-words empty">* Máximo 120 palabras</span>
         </div>
         <div class="col-xs-12">

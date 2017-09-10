@@ -14,7 +14,7 @@ headerManager.init();
 const footerManager = new FooterManager("#js_scroll-link");
 footerManager.init();
 
-const postsService = new PostsService("/posts/");
+const postsService = new PostsService("/comments/");
 
 const postsListManager = new PostsListManager("#posts-list", postsService, PubSub);
 postsListManager.init();

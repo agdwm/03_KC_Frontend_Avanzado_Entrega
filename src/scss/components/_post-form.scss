@@ -7,7 +7,7 @@
                     border: 2px solid $color-orange-brand;
                     outline-color: $color-orange-brand;
                     &::placeholder{
-                        color: $color-orange-brand;
+                        color: lighten($color-orange-brand, 15%);
                     }
                 }
             }

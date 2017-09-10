@@ -131,15 +131,76 @@
       "post_like-num": 3
     }
   ],
-   "comments": [
+  "comments": [
     {
-      "com-id": 1,
-      "com-author_img": "Starlight",
-      "com-author_name": "Muse",
-      "com-author_surname": "https://images-na.ssl-images-amazon.com/images/I/81eIMvbLnfL._SL1500_.jpg",
-      "com-author_": "https://images-na.ssl-images-amazon.com/images/I/81eIMvbLnfL._SL1500_.jpg",
-      "com-date": "https://images-na.ssl-images-amazon.com/images/I/81eIMvbLnfL._SL1500_.jpg",
-      "com-text": "https://images-na.ssl-images-amazon.com/images/I/81eIMvbLnfL._SL1500_.jpg"
+      "id": 1,
+      "name": "Juan",
+      "surname": "Andres",
+      "email": "pruebas@pruebas.com",
+      "message": "Lorem ipsum, dolor sit amet consectetur adipisicing elit."
+    },
+    {
+      "id": 2,
+      "name": "Manuel",
+      "surname": "Lopez",
+      "email": "pruebas@pruebas.com",
+      "message": "Lorem ipsum, dolor sit amet consectetur adipisicing elit."
+    },
+    {
+      "id": 3,
+      "name": "Luis",
+      "surname": "Perez",
+      "email": "pruebas@pruebas.com",
+      "message": "Lorem ipsum, dolor sit amet consectetur adipisicing elit."
+    },
+    {
+      "id": 4,
+      "name": "Juan Jose",
+      "surname": "Perez",
+      "email": "pruebas@pruebas.com",
+      "message": "Lorem ipsum, dolor sit amet consectetur adipisicing elit."
+    },
+    {
+      "id": 5,
+      "name": "Maria",
+      "surname": "Andres",
+      "email": "pruebas@pruebas.com",
+      "message": "Lorem ipsum, dolor sit amet consectetur adipisicing elit."
+    },
+    {
+      "id": 6,
+      "name": "Almudena",
+      "surname": "Guerras",
+      "email": "pruebas@pruebas.com",
+      "message": "Lorem ipsum, dolor sit amet consectetur adipisicing elit."
+    },
+    {
+      "id": 7,
+      "name": "Luis",
+      "surname": "Perez",
+      "email": "pruebas@pruebas.com",
+      "message": "Lorem ipsum, dolor sit amet consectetur adipisicing elit."
+    },
+    {
+      "id": 8,
+      "name": "Vistor",
+      "surname": "Martin",
+      "email": "pruebas@pruebas.com",
+      "message": "Lorem ipsum, dolor sit amet consectetur adipisicing elit."
+    },
+    {
+      "id": 9,
+      "name": "Juan",
+      "surname": "Andres",
+      "com_email": "pruebas@pruebas.com",
+      "message": "Lorem ipsum, dolor sit amet consectetur adipisicing elit."
+    },
+    {
+      "name": "Almudena",
+      "surname": "Guerras",
+      "email": "almudenaguerras@gmail.com",
+      "message": "Este es mi primer comentario",
+      "id": 10
     }
   ]
 }

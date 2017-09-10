@@ -12,7 +12,7 @@ export default class PostFormManager extends UIManager {
         this.boxOfLimit = this.element.find("#limit-words"); //this.element = form
         this.boxLimitInitialText = this.boxOfLimit.text();
         this.fields = this.element.find('input, textarea');
-        this.namesAndPlaceholders = {};
+        this.formData = {};
     }
 
     init() {
@@ -24,27 +24,6 @@ export default class PostFormManager extends UIManager {
             self.limitWords($this);
             return false;
         });
-        this.savePlaceholders();
-    }
-
-    savePlaceholders(){
-        let listNames = [];
-        let listPlaceholders = [];
-        //const namesAndPlaceholders = {};
-        let i;
-
-        for (i = 0; i < this.fields.length; i++) {
-            let field = this.fields[i];
-
-            const inputName = $(field).attr("name");
-            const inputPlaceholder = $(field).attr("placeholder");
-
-            listNames.push(inputName);
-            listPlaceholders.push(inputPlaceholder);
-
-            this.namesAndPlaceholders[listNames[i]] = listPlaceholders[i];    
-        }
-        console.log(this.namesAndPlaceholders);
     }
 
     limitWords($this) {
@@ -77,6 +56,7 @@ export default class PostFormManager extends UIManager {
 
     validateAndSendData() {
         if (this.isValid()) {
+            this.getFormData();
             this.send();
         }
     }
@@ -98,7 +78,7 @@ export default class PostFormManager extends UIManager {
                     this.setError();
                     return false;*/
                 }else{
-                    $(field).val(""),
+                    $(field).val("");
                     errorMessage = $(field).data("error");
                     $(field).attr("placeholder", errorMessage);
                 }
@@ -121,16 +101,37 @@ export default class PostFormManager extends UIManager {
         return true;
     }
 
+    getFormData() {
+        let listNames = [];
+        let listValues = [];
+        let i;
+
+        for (i = 0; i < this.fields.length; i++) {
+            let field = this.fields[i];
+
+            const inputName = $(field).attr("name");
+            const inputValue = $(field).val();
+
+            listNames.push(inputName);
+            listValues.push(inputValue);
+
+            this.formData[listNames[i]] = listValues[i];
+        }
+
+        if(this.formData){
+            return true;   
+        }else{
+            console.log("Se ha producido un error al procesar los datos");
+            return false;
+        }
+        
+    }
+
     send() {
         this.setLoading();
-        const post = {
-            name: this.element.find('#nombre').val(),
-            surname: this.element.find('#apellidos').val(),
-            email: this.element.find('#email').val(),
-            message: this.element.find('#message').val()
-        };
-        this.postsService.save(post, success => {
-            this.pubSub.publish("new-post", post); // publicamos el evento que informa de la creación de una canción 
+
+        this.postsService.save(this.formData, success => {
+            this.pubSub.publish("new-comment", this.formData); // publicamos el evento que informa del envío de un comentario
             this.resetForm();
             this.setIdeal();
         }, error => {
@@ -139,6 +140,7 @@ export default class PostFormManager extends UIManager {
         });
     }
 
+       
     /*resetForm() {
         this.element[0].reset(); // resetea el formulario
     }*/

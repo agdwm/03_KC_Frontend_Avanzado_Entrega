@@ -15,27 +15,27 @@ export default class PostsService {
         });
     }
 
-    // Crear o actualizar un artículo
+    // Crear un comentario
     //¿Cómo diferenciamos si queremos actualizar o crear un recurso?
     //Por el ID
-    save(post, successCallback, errorCallback) {
-        //Cuando actualizamos un recurso SI pasamos el ID porque el ID del recurso ya existe.
-        if (post.id){
-            this.update(post, successCallback, errorCallback);
-        //Cuando creamos un nuevo recurso NO pasamos el ID porque no existe aún y lo gestiona automáticamente el servidor.
+    save(comment, successCallback, errorCallback) {
+        //Cuando "actualizamos" un recurso SÍ pasamos el ID porque el ID del recurso ya existe.
+        if (comment.id){
+            this.update(comment, successCallback, errorCallback);
+        //Cuando "creamos" un nuevo recurso NO pasamos el ID porque no existe aún y lo crea automáticamente el servidor.
         } else {
-            this.create(post, successCallback, errorCallback);
+            this.create(comment, successCallback, errorCallback);
         }
     }
 
-    // Crear un artículo
-    create(post, successCallback, errorCallback) {
+    // Crear un comentario
+    create(comment, successCallback, errorCallback) {
         $.ajax({
             //al crear un recurso NO pasamos Id xq eso lo gestiona el servidor automáticamente
             url: this.url,
             method: 'post',
             //Pasamos los datos del recurso en JSON
-            data: post,
+            data: comment,
             success: successCallback,
             error: errorCallback
         });
@@ -49,7 +49,7 @@ export default class PostsService {
             error: errorCallback
         });
     }
-    // Actualizar un artículo
+    // Actualizar un comentario
     update(post, successCallback, errorCallback) {
         $.ajax({
             //al actualizar un recurso pasamos el ID

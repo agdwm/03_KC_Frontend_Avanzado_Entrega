@@ -49,7 +49,7 @@ export default class PostFormManager extends UIManager {
 
     inputChangeEventHandler() {
         let self = this;
-        this.element.find(this.input, this.textarea).on("change", function(){
+        this.element.find(this.input, this.textarea).bind("change", function(){
             self.addIcon();
         })
     }
@@ -72,25 +72,32 @@ export default class PostFormManager extends UIManager {
 
     addIcon() {
         for (let field of this.fields) {
+           
             let inputWrapper = $(field).parent(".input_wrapper");
             let textareaWrapper = $(field).parent(".textarea_wrapper");
             
+            //Es inválido
             if (field.checkValidity() == false) {
-                
+                //El campo está relleno
                 if ($(field).val()) {
                     if (inputWrapper){
                         inputWrapper.removeClass(this.uiStateClasses).addClass("error");
                         this.setFieldError(field, inputWrapper);
-                    }else if(textareaWrapper){
+                    }
+                    if(textareaWrapper){
+                        console.log("El campo está relleno y existe el textarea. Mostrar ERROR");
                         textareaWrapper.removeClass(this.uiStateClasses).addClass("error");
                         this.setFieldError(field, textareaWrapper);
                     }
                 }
+            //Es válido y tiene el formato correcto
             }else{
                 if (inputWrapper){
                     inputWrapper.removeClass(this.uiStateClasses).addClass("ideal");
                     this.setFieldIdeal(field, inputWrapper);
-                }else if(textareaWrapper){
+                }
+                if(textareaWrapper){
+                    console.log("El campo está relleno y existe el textarea. Mostrar OK");
                     textareaWrapper.removeClass(this.uiStateClasses).addClass("ideal");
                     this.setFieldIdeal(field, textareaWrapper);
                 }

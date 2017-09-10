@@ -25,6 +25,7 @@
         appearance: none;
         border: 0;
     }
+    //Wrapper to include validation icon
     .input_wrapper, .textarea_wrapper{
         display: block;
         position: relative;
@@ -77,7 +78,7 @@
         display: block;
         border: 0;
         padding: 15px 40px 15px 10px;
-        
+        box-sizing: border-box;
         outline-color: #089a78;
         caret-color: #089a78;
         position: relative;

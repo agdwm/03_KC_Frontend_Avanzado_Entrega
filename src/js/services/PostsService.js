@@ -49,6 +49,7 @@ export default class PostsService {
             error: errorCallback
         });
     }
+    
     // Actualizar un comentario
     update(post, successCallback, errorCallback) {
         $.ajax({

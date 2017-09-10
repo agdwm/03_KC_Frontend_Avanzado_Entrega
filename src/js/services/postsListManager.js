@@ -2,7 +2,7 @@ import UIManager from './UIManager';
 
 //PostsList SOLO recorre los artículos y los pinta
 export default class PostsListManager extends UIManager{
-    
+
     constructor(elementSelector, postsService, pubSub) {
         super(elementSelector); //llamamos al constructor de la clase UIManager
         this.postsService = postsService;
@@ -14,8 +14,10 @@ export default class PostsListManager extends UIManager{
 
     init(post) {
         this.loadPosts();
-        let self = this;
+        this.openDetail();
 
+        let self = this;
+        
         this.element.on("click", ".video", function(e)  {
             let $this = $(this);
             self.playVideo($this);
@@ -29,7 +31,13 @@ export default class PostsListManager extends UIManager{
             return false;
         });
     }
-    
+
+    openDetail() {
+        this.element.on("click", ".fig-content", function(e)  {
+            window.location.href = `./detail.html`;
+        })
+    }
+
     playVideo($this) {
         let video = $this[0];
         video.paused ? video.play() : video.pause();
@@ -38,6 +46,7 @@ export default class PostsListManager extends UIManager{
     toggleFillIconLike($this, boolean) {
         let fillHeart = $this.find(".glyphicon-heart").toggleClass("active fill", boolean);
     }
+
     toggleEmptyIconLike($this, boolean){
         let emptyHeart = $this.find(".glyphicon-heart-empty").toggleClass("active", boolean);        
     }
@@ -61,6 +70,7 @@ export default class PostsListManager extends UIManager{
             alert("El navegador no permite localStorage... :(");
         }
     }
+
     //loadPost() solo carga los artículos
     loadPosts() {
         //PostsService.list(post => {},  error => {});
@@ -163,7 +173,7 @@ export default class PostsListManager extends UIManager{
                                             <h5>${post.author_name}</h5>
                                         </div>
                                         <p class="fig-author_comments">
-                                            <a href="javascript:;">Comentarios: <span class="fig-comments_num">${post.post_comments_num}</span>
+                                            <a href="./detail.html#anchor-commnets">Comentarios: <span class="fig-comments_num">${post.post_comments_num}</span>
                                             </a>
                                         </p>
                                     </div>

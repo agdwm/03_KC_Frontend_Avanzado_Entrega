@@ -173,7 +173,7 @@ export default class PostsListManager extends UIManager{
                                             <h5>${post.author_name}</h5>
                                         </div>
                                         <p class="fig-author_comments">
-                                            <a href="./detail.html#anchor-commnets">Comentarios: <span class="fig-comments_num">${post.post_comments_num}</span>
+                                            <a href="./detail.html#anchor-comments">Comentarios: <span class="fig-comments_num">${post.post_comments_num}</span>
                                             </a>
                                         </p>
                                     </div>

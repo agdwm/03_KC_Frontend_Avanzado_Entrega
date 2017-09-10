@@ -4,9 +4,9 @@ import UIManager from './UIManager';
 
 export default class PostFormManager extends UIManager {
 
-    constructor(formSelector, postsService, pubSub) {
+    constructor(formSelector, commentsService, pubSub) {
         super(formSelector);
-        this.postsService = postsService;
+        this.postsService = commentsService;
         this.pubSub = pubSub;
         this.textarea = $(".com-form_textarea");
         this.input = $(".com-form_input");

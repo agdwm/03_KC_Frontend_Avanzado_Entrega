@@ -17,7 +17,7 @@ export default class PostsListManager extends UIManager{
         this.openDetail();
 
         let self = this;
-        
+
         this.element.on("click", ".video", function(e)  {
             let $this = $(this);
             self.playVideo($this);
@@ -32,18 +32,18 @@ export default class PostsListManager extends UIManager{
         });
     }
 
-    openDetail() {
+    openDetail(){
         this.element.on("click", ".fig-content", function(e)  {
             window.location.href = `./detail.html`;
         })
     }
 
-    playVideo($this) {
+    playVideo($this){
         let video = $this[0];
         video.paused ? video.play() : video.pause();
     }
 
-    toggleFillIconLike($this, boolean) {
+    toggleFillIconLike($this, boolean){
         let fillHeart = $this.find(".glyphicon-heart").toggleClass("active fill", boolean);
     }
 
@@ -51,8 +51,8 @@ export default class PostsListManager extends UIManager{
         let emptyHeart = $this.find(".glyphicon-heart-empty").toggleClass("active", boolean);        
     }
 
-    saveLikeInBrowser(postId, $this) {
-    
+    saveLikeInBrowser(postId, $this){
+
         if(typeof(Storage) !== "undefined") {
             //Si NO existe crealo
             if(!localStorage.getItem(postId)){
@@ -72,9 +72,9 @@ export default class PostsListManager extends UIManager{
     }
 
     //loadPost() solo carga los artículos
-    loadPosts() {
+    loadPosts(){
         //PostsService.list(post => {},  error => {});
-        /*Llamamos al método "list()" del objeto "postService" y le pasamos 2 funciones que gestionará 
+        /*Llamamos al método "list()" del objeto "postService" y le pasamos 2 funciones callback que gestionará 
         el objeto en caso de éxito o error de la llamada Ajax.*/
         this.postsService.list(
             posts => {
@@ -111,22 +111,22 @@ export default class PostsListManager extends UIManager{
 
     //renderiza una único artículo
     renderPost(post) {
-        let post_img = post.post_img;
-        let author_img = post.author_img;
-        let post_src_type = post.post_src_type;
-        let srcset = "";
-        let htmlPartial = "";
-        
-        //Imágenes por defecto tanto para el post como para el autor
+        var post_img = post.post_img;
+        var author_img = post.author_img;
+        var post_src_type = post.post_src_type;
+        var srcset = "";
+        var htmlPartial = "";
+
+        //Imagenes por defecto tanto para el post como para el autor
         if (post_img === "") {
             post_img = "img/lorem.jpg";
             //srcset = ' srcset="img/disk-150px.png 150w, img/disk-250px.png 250w, img/disk-300px.png 300w"';
-        }
+        }else{}
 
         if (author_img === "") {
             author_img = "img/author_lorem.jpg";
             //srcset = ' srcset="img/disk-150px.png 150w, img/disk-250px.png 250w, img/disk-300px.png 300w"';
-        }
+        }else{}
 
         if (post_src_type === "video" )
             htmlPartial =  `<div class="fig-vid_frame">
@@ -138,7 +138,7 @@ export default class PostsListManager extends UIManager{
                 </div>`;
         else {
             htmlPartial = `<div class="fig-img_frame">
-                    <img class="img-responsive" src="${post.post_img}" alt="Fotografía de manos tatuadas">
+                    <img class="img-responsive" src="${post_img}" alt="Fotografía de manos tatuadas">
                 </div>`;
         }
 
@@ -165,7 +165,7 @@ export default class PostsListManager extends UIManager{
                                 <div class="fig-author">
                                     <div class="fig-author_img">
                                         <div class="fig-author_img_frame">
-                                            <img src="${post.author_img}" class="img-responsive" alt="imagen de perfil">
+                                            <img src="${author_img}" class="img-responsive" alt="imagen de perfil">
                                         </div>
                                     </div>
                                     <div class="fig-author_details">

@@ -1,6 +1,6 @@
 //PostsService {} únicamente ENVIA y RECIBE datos, no hace nada con ellos
 export default class PostsService {
-    
+
     constructor(url){
         this.url = url;
     }
@@ -49,7 +49,7 @@ export default class PostsService {
             error: errorCallback
         });
     }
-    
+
     // Actualizar un comentario
     update(post, successCallback, errorCallback) {
         $.ajax({
@@ -71,6 +71,6 @@ export default class PostsService {
             method: 'delete',
             success: successCallback,
             error: errorCallback
-        });    
+        });
     }
 }

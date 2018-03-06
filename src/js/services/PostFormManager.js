@@ -32,26 +32,28 @@ export default class PostFormManager extends UIManager {
         let numberOfWords = this.textarea.val().trim().replace(/\s\s+/g, ' ');
         let lengthOfWords = numberOfWords.split(' ').length;
         let boxOfLimit = this.element.find("#limit-words");
-        
-        
+
         if($this.val() === ""){
             console.log(boxOfLimit.text(this.boxLimitInitialText));
             this.setFieldEmpty(boxOfLimit);
         }else{
-            boxOfLimit.text(`Palabras: ${lengthOfWords}`);
+            boxOfLimit.text(`Total de palabras: ${lengthOfWords}`);
             if(lengthOfWords > 120){
                 this.setFieldError(boxOfLimit);
+                this.switchSubmit(false);
+                return false;
             }else{
                 this.setFieldIdeal(boxOfLimit);
+                this.switchSubmit(true);
             }
         }
     }
 
-    inputChangeEventHandler() {
+    inputChangeEventHandler(){
         let self = this;
         this.element.find(this.input, this.textarea).bind("change", function(){
             self.addIcon();
-        })
+        });
     }
 
     setupSubmitEventHandler() {
@@ -63,7 +65,17 @@ export default class PostFormManager extends UIManager {
         });
     }
 
-    validateAndSendData() {
+    switchSubmit(value){
+        let self = this;
+
+        if (value === false){
+            this.element.find("#submit").prop('disabled', true);
+        }else if(value === true){
+            this.element.find("#submit").prop('disabled', false);
+        }
+    }
+
+    validateAndSendData(){
         if (this.isValid()) {
             this.getFormData();
             this.send();
@@ -72,25 +84,27 @@ export default class PostFormManager extends UIManager {
 
     addIcon() {
         for (let field of this.fields) {
-           
+
             let inputWrapper = $(field).parent(".input_wrapper");
             let textareaWrapper = $(field).parent(".textarea_wrapper");
-            
-            //Es inválido
-            if (field.checkValidity() == false) {
-                //El campo está relleno
+
+            //Si es inválido
+            if (field.checkValidity() === false) {
+                //Si el campo está relleno y tiene formato incorrecto
                 if ($(field).val()) {
                     if (inputWrapper){
                         inputWrapper.removeClass(this.uiStateClasses).addClass("error");
                         this.setFieldError(field, inputWrapper);
+                        return false;
                     }
                     if(textareaWrapper){
                         console.log("El campo está relleno y existe el textarea. Mostrar ERROR");
                         textareaWrapper.removeClass(this.uiStateClasses).addClass("error");
                         this.setFieldError(field, textareaWrapper);
+                        return false;
                     }
                 }
-            //Es válido y tiene el formato correcto
+            //Si es válido y tiene el formato correcto
             }else{
                 if (inputWrapper){
                     inputWrapper.removeClass(this.uiStateClasses).addClass("ideal");
@@ -101,7 +115,7 @@ export default class PostFormManager extends UIManager {
                     textareaWrapper.removeClass(this.uiStateClasses).addClass("ideal");
                     this.setFieldIdeal(field, textareaWrapper);
                 }
-            } 
+            }
         }
     }
 
@@ -111,34 +125,38 @@ export default class PostFormManager extends UIManager {
         for (let field of this.fields) {
             //let inputWrapper = $(field).parent(".input_wrapper");
             //let textareaWrapper = $(field).parent(".textarea_wrapper");
+
             //Si es inválido
-            if (field.checkValidity() == false) {
-                //Si está vacío
+            if (field.checkValidity() === false) {
+
                 const placeholder = $(field).attr("placeholder");
+                let dataName = $(field).data("name");
                 let errorMessage = "";
 
+                //Si está vacío
                 if (!$(field).val()) {
-                    errorMessage = "Este campo es obligatorio";
+                    errorMessage = `El campo "${dataName}" es obligatorio`;
                     $(field).attr("placeholder", errorMessage);
                 }else{
                     $(field).val("");
                     errorMessage = $(field).data("error");
                     $(field).attr("placeholder", errorMessage);
                 }
-                //Si no está vacío
 
+                //Si no está vacío
                 field.focus();
                 this.setFieldError(field);
                 this.setFieldErrorHtml(field, errorMessage);
                 this.setError();
                 this.setErrorHtml(errorMessage);
                 return false;
+
             //Si es válido
             }else{
                 this.setFieldIdeal(field);
             }
         }
-        
+
         // Llegamos aquí, si no hay ningún error
         this.setIdeal();
         return true;
@@ -153,7 +171,7 @@ export default class PostFormManager extends UIManager {
             let field = this.fields[i];
 
             const inputName = $(field).attr("name");
-            const inputValue = $(field).val();
+            const inputValue = encodeURI($(field).val());
 
             listNames.push(inputName);
             listValues.push(inputValue);
@@ -162,12 +180,11 @@ export default class PostFormManager extends UIManager {
         }
 
         if(this.formData){
-            return true;   
+            return true;
         }else{
             console.log("Se ha producido un error al procesar los datos");
             return false;
         }
-        
     }
 
     send() {
@@ -183,7 +200,6 @@ export default class PostFormManager extends UIManager {
         });
     }
 
-       
     resetForm() {
         this.element[0].reset(); // resetea el formulario
     }

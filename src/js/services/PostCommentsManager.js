@@ -24,10 +24,10 @@ export default class PostCommentsManager extends UIManager{
         let windowHeight = $(window).height();
         let windowScrollTop = $(window).scrollTop();
 
-        console.log((commentsPosTop-windowHeight) , windowScrollTop);
+        //console.log((commentsPosTop-windowHeight) , windowScrollTop);
 
         if (windowScrollTop > (commentsPosTop+commentsHeight-windowHeight)){
-            console.log("MAyor");
+            //console.log("MAyor");
             this.loadComments();
         }
     }

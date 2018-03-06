@@ -66,7 +66,7 @@ gulp.task("default", ["img", "html", "sass", "js"], function () {
         proxy: "http://127.0.0.1:3200/",
         // Don't show any notifications in the browser.
         notify: false,
-        browser: ["google chrome"/*, "firefox"*/]
+        browser: ["google chrome", "firefox"]
     });
     //observa cambios en archivos Sass y entonces ejecuta la tarea 'sass'
     gulp.watch([source + "scss/*.scss", source + "scss/**/*"], ["sass"]);

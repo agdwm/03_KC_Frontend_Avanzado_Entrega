@@ -130,11 +130,16 @@
     }
     .com-form_submit {
         background-color: $color-gray-light;
-        color: $color-black-brand;
         padding: 15px 30px;
         float:right;
+        color: $color-black-brand;
         &:hover, &:active{
             background-color: lighten($color-gray-light, 5%);
+        }
+        &:disabled {
+            background-color: $color-green-dark;
+            color:  darken($color-green-dark, 15%);
+            cursor: not-allowed;
         }
     }
 }

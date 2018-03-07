@@ -3,16 +3,17 @@ import UIManager from './UIManager';
 //PostsList SOLO recorre los artículos y los pinta
 export default class PostsListManager extends UIManager{
 
-    constructor(elementSelector, postsService, pubSub) {
+    constructor(elementSelector, postsService, likeService, pubSub) {
         super(elementSelector); //llamamos al constructor de la clase UIManager
         this.postsService = postsService;
+        this.likeService = likeService;
         this.pubSub = pubSub;
 
         this.video = $(".video");
         this.iconLike = $(".fig-like_icon");
     }
 
-    init(post) {
+    init() {
         this.loadPosts();
         this.openDetail();
 
@@ -27,7 +28,7 @@ export default class PostsListManager extends UIManager{
         this.element.on("click", ".fig-like_icon", function(e)  {
             let $this = $(this);
             let postId = $this.closest(".post-item").data("id");
-            self.saveLikeInBrowser(postId, $this);
+            self.likeService.saveOrRemoveLike(postId, $this);
             return false;
         });
     }
@@ -43,34 +44,6 @@ export default class PostsListManager extends UIManager{
         video.paused ? video.play() : video.pause();
     }
 
-    toggleFillIconLike($this, boolean){
-        let fillHeart = $this.find(".glyphicon-heart").toggleClass("active fill", boolean);
-    }
-
-    toggleEmptyIconLike($this, boolean){
-        let emptyHeart = $this.find(".glyphicon-heart-empty").toggleClass("active", boolean);        
-    }
-
-    saveLikeInBrowser(postId, $this){
-
-        if(typeof(Storage) !== "undefined") {
-            //Si NO existe crealo
-            if(!localStorage.getItem(postId)){
-                //Guardar me gusta en WebStorage
-                localStorage.setItem(postId, "<3");
-                this.toggleFillIconLike($this, true);
-                this.toggleEmptyIconLike($this, false);
-            }else{
-                //Si ya existe eliminarlo
-                localStorage.removeItem(postId);
-                this.toggleFillIconLike($this, false);
-                this.toggleEmptyIconLike($this, true);
-            }
-        }else {
-            alert("El navegador no permite localStorage... :(");
-        }
-    }
-
     //loadPost() solo carga los artículos
     loadPosts(){
         //PostsService.list(post => {},  error => {});
@@ -83,8 +56,9 @@ export default class PostsListManager extends UIManager{
                     //Mostramos el estado vacío
                     this.setEmpty();
                 } else {
-                    //Componemos el html con todas los artículos
+                    //Componemos el html con todos los artículos
                     this.renderPosts(posts);
+                    this.likeService.checkLikedButton(posts);
                     //Quitamos el mensaje de cargando y mostramos la lista de artículos
                     this.setIdeal();
                 }

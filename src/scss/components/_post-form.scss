@@ -3,6 +3,7 @@
     .ui-status {
         &.error {
             .com-form_input , .com-form_textarea {
+                border: 2px solid transparent;
                 &.error {
                     border: 2px solid $color-orange-brand;
                     outline-color: $color-orange-brand;

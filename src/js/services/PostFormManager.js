@@ -1,3 +1,5 @@
+"use strict";
+
 const $ = require("jquery");
 
 import UIManager from './UIManager';
@@ -8,8 +10,8 @@ export default class PostFormManager extends UIManager {
         super(formSelector);
         this.postsService = commentsService;
         this.pubSub = pubSub;
-        this.textarea = $(".com-form_textarea");
-        this.input = $(".com-form_input");
+        this.textarea = jQuery(".com-form_textarea");
+        this.input = jQuery(".com-form_input");
         this.boxOfLimit = this.element.find("#limit-words"); //this.element = form
         this.boxLimitInitialText = this.boxOfLimit.text();
         this.fields = this.element.find('input, textarea');
@@ -17,9 +19,10 @@ export default class PostFormManager extends UIManager {
     }
 
     init() {
-        this.setupSubmitEventHandler();
-        this.inputChangeEventHandler();
         let self = this;
+
+        this.setupSubmitEventHandler(self);
+        this.changeEventHandler();
 
         this.textarea.on("keyup", function(e){
             let $this = $(this);
@@ -29,34 +32,36 @@ export default class PostFormManager extends UIManager {
     }
 
     limitWords($this) {
-        let numberOfWords = this.textarea.val().trim().replace(/\s\s+/g, ' ');
-        let lengthOfWords = numberOfWords.split(' ').length;
+        let textareaWrapper = this.textarea.parent(".textarea_wrapper");
+        let numberOfWords = this.textarea.val().trim().replace(/\s\s+/g, ' ').split(' ').length;
         let boxOfLimit = this.element.find("#limit-words");
 
         if($this.val() === ""){
             console.log(boxOfLimit.text(this.boxLimitInitialText));
             this.setFieldEmpty(boxOfLimit);
         }else{
-            boxOfLimit.text(`Total de palabras: ${lengthOfWords}`);
-            if(lengthOfWords > 120){
-                this.setFieldError(boxOfLimit);
-                this.switchSubmit(false);
+            boxOfLimit.text(`Total de palabras: ${numberOfWords}`);
+            if(numberOfWords > 120 && numberOfWords !== undefined){
+                this.setFieldError(boxOfLimit); //ok
+                this.setError(); //ui-status error
+                this.setFieldError($this, textareaWrapper); //com-form_textarea y textarea-wrapper error (recuadro)
                 return false;
             }else{
-                this.setFieldIdeal(boxOfLimit);
-                this.switchSubmit(true);
+                this.setFieldIdeal(boxOfLimit); //ok
+                this.setFieldIdeal($this, textareaWrapper); //com-form_textarea empty (recuadro)
+                this.setIdeal(); //ui-status empty
             }
         }
     }
 
-    inputChangeEventHandler(){
+    changeEventHandler(){
         let self = this;
         this.element.find(this.input, this.textarea).bind("change", function(){
-            self.addIcon();
+            self.isValid();
         });
     }
 
-    setupSubmitEventHandler() {
+    setupSubmitEventHandler( ) {
         //element (from UIManager)
         this.element.on("submit", () => {
             this.validateAndSendData();
@@ -65,101 +70,101 @@ export default class PostFormManager extends UIManager {
         });
     }
 
-    switchSubmit(value){
-        let self = this;
-
+    /*switchSubmit(value){
         if (value === false){
             this.element.find("#submit").prop('disabled', true);
         }else if(value === true){
             this.element.find("#submit").prop('disabled', false);
         }
-    }
+    }*/
 
     validateAndSendData(){
         if (this.isValid()) {
+            console.log("hola");
             this.getFormData();
             this.send();
         }
     }
 
-    addIcon() {
-        for (let field of this.fields) {
-
-            let inputWrapper = $(field).parent(".input_wrapper");
-            let textareaWrapper = $(field).parent(".textarea_wrapper");
-
-            //Si es inválido
-            if (field.checkValidity() === false) {
-                //Si el campo está relleno y tiene formato incorrecto
-                if ($(field).val()) {
-                    if (inputWrapper){
-                        inputWrapper.removeClass(this.uiStateClasses).addClass("error");
-                        this.setFieldError(field, inputWrapper);
-                        return false;
-                    }
-                    if(textareaWrapper){
-                        console.log("El campo está relleno y existe el textarea. Mostrar ERROR");
-                        textareaWrapper.removeClass(this.uiStateClasses).addClass("error");
-                        this.setFieldError(field, textareaWrapper);
-                        return false;
-                    }
-                }
-            //Si es válido y tiene el formato correcto
-            }else{
-                if (inputWrapper){
-                    inputWrapper.removeClass(this.uiStateClasses).addClass("ideal");
-                    this.setFieldIdeal(field, inputWrapper);
-                }
-                if(textareaWrapper){
-                    console.log("El campo está relleno y existe el textarea. Mostrar OK");
-                    textareaWrapper.removeClass(this.uiStateClasses).addClass("ideal");
-                    this.setFieldIdeal(field, textareaWrapper);
-                }
-            }
-        }
-    }
-
-
     isValid() {
-
         for (let field of this.fields) {
-            //let inputWrapper = $(field).parent(".input_wrapper");
-            //let textareaWrapper = $(field).parent(".textarea_wrapper");
-
-            //Si es inválido
+            const inputWrapper = $(field).parent(".input_wrapper");
+            const textareaWrapper = $(field).parent(".textarea_wrapper");
+            const eventType = event.type;
+             
+            //Si el campo es inválido
             if (field.checkValidity() === false) {
 
                 const placeholder = $(field).attr("placeholder");
-                let dataName = $(field).data("name");
-                let errorMessage = "";
 
-                //Si está vacío
+                //está vacío
                 if (!$(field).val()) {
-                    errorMessage = `El campo "${dataName}" es obligatorio`;
-                    $(field).attr("placeholder", errorMessage);
-                }else{
-                    $(field).val("");
-                    errorMessage = $(field).data("error");
-                    $(field).attr("placeholder", errorMessage);
-                }
 
-                //Si no está vacío
-                field.focus();
-                this.setFieldError(field);
-                this.setFieldErrorHtml(field, errorMessage);
-                this.setError();
-                this.setErrorHtml(errorMessage);
+                    if (event.type === "submit"){
+                        let dataName = $(field).data("name");
+                        let errorMessage = "";
+
+                        errorMessage = `El campo "${dataName}" es obligatorio`;
+                        $(field).attr("placeholder", errorMessage);
+
+                        if(inputWrapper.length){
+                            this.setFieldError(field, inputWrapper);
+                            this.setError();
+                            field.focus();
+                        }
+                        if(textareaWrapper.length){
+                            this.setFieldError(field, textareaWrapper);
+                            this.setError();
+                            field.focus();
+                        }
+                        return false;
+                    }else{
+                        if(inputWrapper.length){
+                            this.setFieldEmpty(field, inputWrapper);
+                            this.setEmpty();
+                        }
+                        if(textareaWrapper.length){
+                            this.setFieldEmpty(field, textareaWrapper);
+                            this.setEmpty();
+                        }
+                    }
+                //está relleno
+                }else{
+                    if(inputWrapper.length){
+                        this.setFieldError(field, inputWrapper);
+                        this.setError();
+                        //return false;
+                    }
+                    if(textareaWrapper.length){
+                        this.setFieldError(field, textareaWrapper);
+                        this.setError();
+                        //return false;
+                    }
+                }
                 return false;
 
             //Si es válido
             }else{
-                this.setFieldIdeal(field);
+
+                if(inputWrapper.length){
+                    this.setFieldIdeal(field, inputWrapper);
+                    this.setIdeal();
+                }
+                if(textareaWrapper.length){
+                    const numeroPalabras = this.textarea.val().trim().replace(/\s\s+/g, ' ').split(' ').length;
+
+                    if(numeroPalabras > 120 && numeroPalabras !== undefined){
+                        this.setFieldError(field, textareaWrapper);
+                        this.setError();
+                        return false; //false ok
+                    }else{
+                        this.setFieldIdeal(field, textareaWrapper);
+                        this.setIdeal();
+                        return true; //true ok
+                    }
+                }
             }
         }
-
-        // Llegamos aquí, si no hay ningún error
-        this.setIdeal();
-        return true;
     }
 
     getFormData() {

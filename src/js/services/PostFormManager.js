@@ -19,15 +19,35 @@ export default class PostFormManager extends UIManager {
     }
 
     init() {
+
         let self = this;
 
         this.setupSubmitEventHandler();
-        this.changeEventHandler();
+        this.setupKeyUpEventHandler();
+        this.setupChangeEventHandler();
 
-        this.textarea.on("keyup", function(e){
-            //el this hace referencia al elemento "textarea" que emite el evento
-            let $this = $(this);
-            self.limitWords($this);
+    }
+    setupSubmitEventHandler( ) {
+        //element (from UIManager)
+        this.element.on("submit", () => {
+            //este this hace referencia al "this" de fuera del scope (arrow function)
+            this.validateAndSendData();
+            // en jQuery podemos hacer un preventDefault haciendo un return false en los manejadores de evento
+            return false;
+        });
+    }
+
+    setupKeyUpEventHandler() {
+        this.textarea.on("keyup", (e) => {
+            //this es el del OBJETO
+            this.limitWords(jQuery(e.currentTarget));
+            return false;
+        });
+    }
+
+    setupChangeEventHandler() {
+        this.element.find(this.input, this.textarea).on("change", () => {
+            this.isValid();
             return false;
         });
     }
@@ -37,7 +57,7 @@ export default class PostFormManager extends UIManager {
         this.setFieldEmpty(this.boxOfLimit);
     }
 
-    limitWords($this) {
+    limitWords($this){
         let textareaWrapper = this.textarea.parent(".textarea_wrapper");
         let numberOfWords = this.textarea.val().trim().replace(/\s\s+/g, ' ').split(' ').length;
 
@@ -61,22 +81,9 @@ export default class PostFormManager extends UIManager {
         }
     }
 
-    changeEventHandler() {
-        this.element.find(this.input, this.textarea).on("change", () => {
-            this.isValid();
-            return false;
-        });
-    }
 
-    setupSubmitEventHandler( ) {
-        //element (from UIManager)
-        this.element.on("submit", () => {
-            //este this hace referencia al "this" de fuera del scope (arrow function)
-            this.validateAndSendData();
-            // en jQuery podemos hacer un preventDefault haciendo un return false en los manejadores de evento
-            return false;
-        });
-    }
+
+
 
     switchButtonSubmit(value=true){
         if (value === false){

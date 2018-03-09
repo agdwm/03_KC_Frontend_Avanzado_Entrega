@@ -31,23 +31,27 @@ export default class PostFormManager extends UIManager {
         });
     }
 
+    resetBoxOfLimit(){
+        this.boxOfLimit.text(this.boxLimitInitialText);
+        this.setFieldEmpty(this.boxOfLimit);
+    }
+
     limitWords($this) {
         let textareaWrapper = this.textarea.parent(".textarea_wrapper");
         let numberOfWords = this.textarea.val().trim().replace(/\s\s+/g, ' ').split(' ').length;
-        let boxOfLimit = this.element.find("#limit-words");
 
         if($this.val() === ""){
-            console.log(boxOfLimit.text(this.boxLimitInitialText));
-            this.setFieldEmpty(boxOfLimit);
+            this.resetBoxOfLimit();
         }else{
-            boxOfLimit.text(`Total de palabras: ${numberOfWords}`);
+            this.boxOfLimit.text(`Total de palabras: ${numberOfWords}`);
             if(numberOfWords > 120 && numberOfWords !== undefined){
-                this.setFieldError(boxOfLimit); //ok
+                this.setFieldError(this.boxOfLimit); //ok
                 this.setError(); //ui-status error
                 this.setFieldError($this, textareaWrapper); //com-form_textarea y textarea-wrapper error (recuadro)
+                this.switchSubmit(false);
                 return false;
             }else{
-                this.setFieldIdeal(boxOfLimit); //ok
+                this.setFieldIdeal(this.boxOfLimit); //ok
                 this.setFieldIdeal($this, textareaWrapper); //com-form_textarea empty (recuadro)
                 this.setIdeal(); //ui-status empty
             }
@@ -70,13 +74,13 @@ export default class PostFormManager extends UIManager {
         });
     }
 
-    /*switchSubmit(value){
+    switchSubmit(value){
         if (value === false){
             this.element.find("#submit").prop('disabled', true);
         }else if(value === true){
             this.element.find("#submit").prop('disabled', false);
         }
-    }*/
+    }
 
     validateAndSendData(){
         if (this.isValid()) {
@@ -198,6 +202,7 @@ export default class PostFormManager extends UIManager {
         this.postsService.save(this.formData, success => {
             this.pubSub.publish("new-comment", this.formData); // publicamos el evento que informa del envío de un comentario
             this.resetForm();
+            this.resetBoxOfLimit();
             this.setIdeal();
         }, error => {
             this.setErrorHtml("Se ha producido un error enviar los datos.");

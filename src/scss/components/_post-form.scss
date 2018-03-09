@@ -138,8 +138,12 @@
             background-color: lighten($color-gray-light, 5%);
         }
         &:disabled {
-            background-color: $color-green-dark;
-            color:  darken($color-green-dark, 15%);
+            color: $color-gray-medium;
+            cursor: not-allowed;
+        }
+        &:hover:disabled{
+            color: $color-gray-medium;
+            background-color: $color-gray-light;
             cursor: not-allowed;
         }
     }

@@ -11,35 +11,31 @@ export default class PostFormManager extends UIManager {
         this.postsService = commentsService;
         this.pubSub = pubSub;
         this.textarea = jQuery(".com-form_textarea");
-        this.input = jQuery(".com-form_input");
+        this.textareaWrapper = this.textarea.parent(".textarea_wrapper");
+        this.input = jQuery(".com-form_input"); //ok
+        this.inputWrapper = this.input.parent(".input_wrapper");
         this.boxOfLimit = this.element.find("#limit-words"); //this.element = form
-        this.boxLimitInitialText = this.boxOfLimit.text();
-        this.fields = this.element.find('input, textarea');
+        this.boxLimitInitialText = this.boxOfLimit.text(); //ok
+        this.fields = this.element.find('input, textarea'); //ok
         this.formData = {};
     }
 
     init() {
-
-        let self = this;
-
         this.setupSubmitEventHandler();
         this.setupKeyUpEventHandler();
         this.setupChangeEventHandler();
-
     }
-    setupSubmitEventHandler( ) {
+
+    setupSubmitEventHandler() {
         //element (from UIManager)
         this.element.on("submit", () => {
-            //este this hace referencia al "this" de fuera del scope (arrow function)
             this.validateAndSendData();
-            // en jQuery podemos hacer un preventDefault haciendo un return false en los manejadores de evento
             return false;
         });
     }
 
     setupKeyUpEventHandler() {
         this.textarea.on("keyup", (e) => {
-            //this es el del OBJETO
             this.limitWords(jQuery(e.currentTarget));
             return false;
         });
@@ -52,9 +48,15 @@ export default class PostFormManager extends UIManager {
         });
     }
 
-    resetBoxOfLimit(){
-        this.boxOfLimit.text(this.boxLimitInitialText);
+    //Funcinoes de Estilo del elemento BoxOfLimit
+    boxOfLimitEmpty(){
         this.setFieldEmpty(this.boxOfLimit);
+    }
+    boxOfLimitError(){
+        this.setFieldError(this.boxOfLimit);
+    }
+    boxOfLimitIdeal(){
+        this.setFieldIdeal(this.boxOfLimit);
     }
 
     limitWords($this){
@@ -62,30 +64,26 @@ export default class PostFormManager extends UIManager {
         let numberOfWords = this.textarea.val().trim().replace(/\s\s+/g, ' ').split(' ').length;
 
         if($this.val() === ""){
-            this.resetBoxOfLimit();
-            this.setFieldEmpty($this, textareaWrapper);
-            this.setEmpty();
+            this.boxOfLimit.text(this.boxLimitInitialText);
+            this.boxOfLimitEmpty();
+            this.setFieldEmpty($this, this.textareaWrapper);
         }else{
             this.boxOfLimit.text(`Total de palabras: ${numberOfWords}`);
             if(numberOfWords > 120 && numberOfWords !== undefined){
-                this.setFieldError(this.boxOfLimit); //ok
-                this.setError(); //ui-status error
-                this.setFieldError($this, textareaWrapper); //com-form_textarea y textarea-wrapper error (recuadro)
+                this.boxOfLimitError();
+                this.setFieldError($this, this.textareaWrapper);
+                this.setError(); //Seteamos el elemento form a Error
                 this.switchButtonSubmit(false);
                 return false;
             }else{
-                this.setFieldIdeal(this.boxOfLimit); //ok
-                this.setFieldIdeal($this, textareaWrapper); //com-form_textarea empty (recuadro)
-                this.setIdeal(); //ui-status empty
+                this.boxOfLimitIdeal();
+                this.setFieldIdeal($this, this.textareaWrapper);
+                this.switchButtonSubmit(true);
             }
         }
     }
 
-
-
-
-
-    switchButtonSubmit(value=true){
+    switchButtonSubmit(value){
         if (value === false){
             this.element.find("#submit").prop('disabled', true);
         }else if(value === true){
@@ -95,7 +93,6 @@ export default class PostFormManager extends UIManager {
 
     validateAndSendData(){
         if (this.isValid()) {
-            console.log("hola");
             this.getFormData();
             this.send();
         }
@@ -111,6 +108,7 @@ export default class PostFormManager extends UIManager {
             if (field.checkValidity() === false) {
 
                 const placeholder = $(field).attr("placeholder");
+                this.setError(); //Seteamos el elemento form a Error
 
                 //está vacío
                 if (!$(field).val()) {
@@ -124,60 +122,50 @@ export default class PostFormManager extends UIManager {
 
                         if(inputWrapper.length){
                             this.setFieldError(field, inputWrapper);
-                            this.setError();
                             field.focus();
+                            return false;
                         }
                         if(textareaWrapper.length){
                             this.setFieldError(field, textareaWrapper);
-                            this.setError();
                             field.focus();
+                            return false;
                         }
-                        return false;
                     }else{
                         if(inputWrapper.length){
                             this.setFieldEmpty(field, inputWrapper);
-                            this.setEmpty();
-                            field.focus();
                         }
                         if(textareaWrapper.length){
                             this.setFieldEmpty(field, textareaWrapper);
-                            this.setEmpty();
-                            field.focus();
                         }
                     }
                 //está relleno
                 }else{
                     if(inputWrapper.length){
                         this.setFieldError(field, inputWrapper);
-                        this.setError();
-                        //return false;
+                        return false;
                     }
                     if(textareaWrapper.length){
                         this.setFieldError(field, textareaWrapper);
-                        this.setError();
-                        //return false;
+                        return false;
                     }
                 }
-                return false;
-
             //Si es válido
             }else{
-
                 if(inputWrapper.length){
                     this.setFieldIdeal(field, inputWrapper);
-                    this.setIdeal();
                 }
                 if(textareaWrapper.length){
                     const numeroPalabras = this.textarea.val().trim().replace(/\s\s+/g, ' ').split(' ').length;
 
                     if(numeroPalabras > 120 && numeroPalabras !== undefined){
                         this.setFieldError(field, textareaWrapper);
-                        this.setError();
-                        return false; //false ok
+                        this.setError(); //Seteamos el elemento form a Error
+                        this.switchButtonSubmit(false);
+                        return false;
                     }else{
                         this.setFieldIdeal(field, textareaWrapper);
-                        this.setIdeal();
-                        return true; //true ok
+                        this.switchButtonSubmit(true);
+                        return true;
                     }
                 }
             }
@@ -193,14 +181,15 @@ export default class PostFormManager extends UIManager {
             let field = this.fields[i];
 
             const inputName = $(field).attr("name");
-            const inputValue = $(field).val()
-            const inputValueEncoded = encodeURI(inputValue);//.replace(/%20/g, " ");
+            const inputValue = $(field).val();
+            const inputValueEncoded = inputValue.replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 
             listNames.push(inputName);
             listValues.push(inputValueEncoded);
 
             this.formData[listNames[i]] = listValues[i];
         }
+
 
         if(this.formData){
             return true;
@@ -216,9 +205,8 @@ export default class PostFormManager extends UIManager {
         this.postsService.save(this.formData, success => {
             this.pubSub.publish("new-comment", this.formData); // publicamos el evento que informa del envío de un comentario
             this.resetForm();
-            this.resetBoxOfLimit();
-            this.setIdeal();
-            this.switchButtonSubmit();
+            this.resetFormStyles();
+            this.switchButtonSubmit(true);
         }, error => {
             this.setErrorHtml("Se ha producido un error enviar los datos.");
             this.setError();
@@ -227,6 +215,15 @@ export default class PostFormManager extends UIManager {
 
     resetForm() {
         this.element[0].reset(); // resetea el formulario
+    }
+
+    resetFormStyles(){
+        for (let field of this.fields){
+            this.setFieldEmpty(field, this.inputWrapper);
+            this.setFieldEmpty(field, this.textareaWrapper);
+        }
+        this.boxOfLimitEmpty();
+        this.setEmpty();
     }
 
     disableFormControls() {
@@ -250,5 +247,10 @@ export default class PostFormManager extends UIManager {
     setIdeal() {
         super.setIdeal();
         this.enableFormControls();
+    }
+
+    setEmpty(){
+        super.setEmpty();
+        this.enableFormControls();        
     }
 }

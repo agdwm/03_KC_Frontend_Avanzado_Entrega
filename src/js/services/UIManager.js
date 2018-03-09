@@ -13,8 +13,11 @@ export default class UIManager {
         $(this.element).removeClass(this.uiStateClasses).addClass("empty");
     }
 
-    setFieldEmpty(field) {
+    setFieldEmpty(field, fieldParent = false) {
         $(field).removeClass(this.uiStateClasses).addClass("empty");
+        if(fieldParent){
+            fieldParent.removeClass(this.uiStateClasses).addClass("empty");
+        }
     }
 
     setLoading() {

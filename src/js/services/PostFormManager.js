@@ -21,10 +21,11 @@ export default class PostFormManager extends UIManager {
     init() {
         let self = this;
 
-        this.setupSubmitEventHandler(self);
+        this.setupSubmitEventHandler();
         this.changeEventHandler();
 
         this.textarea.on("keyup", function(e){
+            //el this hace referencia al elemento "textarea" que emite el evento
             let $this = $(this);
             self.limitWords($this);
             return false;
@@ -42,13 +43,15 @@ export default class PostFormManager extends UIManager {
 
         if($this.val() === ""){
             this.resetBoxOfLimit();
+            this.setFieldEmpty($this, textareaWrapper);
+            this.setEmpty();
         }else{
             this.boxOfLimit.text(`Total de palabras: ${numberOfWords}`);
             if(numberOfWords > 120 && numberOfWords !== undefined){
                 this.setFieldError(this.boxOfLimit); //ok
                 this.setError(); //ui-status error
                 this.setFieldError($this, textareaWrapper); //com-form_textarea y textarea-wrapper error (recuadro)
-                this.switchSubmit(false);
+                this.switchButtonSubmit(false);
                 return false;
             }else{
                 this.setFieldIdeal(this.boxOfLimit); //ok
@@ -58,23 +61,24 @@ export default class PostFormManager extends UIManager {
         }
     }
 
-    changeEventHandler(){
-        let self = this;
-        this.element.find(this.input, this.textarea).bind("change", function(){
-            self.isValid();
+    changeEventHandler() {
+        this.element.find(this.input, this.textarea).on("change", () => {
+            this.isValid();
+            return false;
         });
     }
 
     setupSubmitEventHandler( ) {
         //element (from UIManager)
         this.element.on("submit", () => {
+            //este this hace referencia al "this" de fuera del scope (arrow function)
             this.validateAndSendData();
             // en jQuery podemos hacer un preventDefault haciendo un return false en los manejadores de evento
-            return false; // == event.preventDefault();
+            return false;
         });
     }
 
-    switchSubmit(value){
+    switchButtonSubmit(value=true){
         if (value === false){
             this.element.find("#submit").prop('disabled', true);
         }else if(value === true){
@@ -126,10 +130,12 @@ export default class PostFormManager extends UIManager {
                         if(inputWrapper.length){
                             this.setFieldEmpty(field, inputWrapper);
                             this.setEmpty();
+                            field.focus();
                         }
                         if(textareaWrapper.length){
                             this.setFieldEmpty(field, textareaWrapper);
                             this.setEmpty();
+                            field.focus();
                         }
                     }
                 //está relleno
@@ -181,7 +187,7 @@ export default class PostFormManager extends UIManager {
 
             const inputName = $(field).attr("name");
             const inputValue = $(field).val()
-            const inputValueEncoded = encodeURI(inputValue).replace(/%20/g, " ");
+            const inputValueEncoded = encodeURI(inputValue);//.replace(/%20/g, " ");
 
             listNames.push(inputName);
             listValues.push(inputValueEncoded);
@@ -205,6 +211,7 @@ export default class PostFormManager extends UIManager {
             this.resetForm();
             this.resetBoxOfLimit();
             this.setIdeal();
+            this.switchButtonSubmit();
         }, error => {
             this.setErrorHtml("Se ha producido un error enviar los datos.");
             this.setError();

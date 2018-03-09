@@ -58,7 +58,7 @@ export default class PostCommentsManager extends UIManager{
     }
 
     renderComment(comment) {
-        
+
         return `<div class="comment-item">
         <div class="com-postNotes clearfix">
             <div class="com-author">

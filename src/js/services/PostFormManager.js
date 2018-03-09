@@ -180,10 +180,11 @@ export default class PostFormManager extends UIManager {
             let field = this.fields[i];
 
             const inputName = $(field).attr("name");
-            const inputValue = encodeURI($(field).val());
+            const inputValue = $(field).val()
+            const inputValueEncoded = encodeURI(inputValue).replace(/%20/g, " ");
 
             listNames.push(inputName);
-            listValues.push(inputValue);
+            listValues.push(inputValueEncoded);
 
             this.formData[listNames[i]] = listValues[i];
         }

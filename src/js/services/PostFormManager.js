@@ -10,6 +10,7 @@ export default class PostFormManager extends UIManager {
         super(formSelector);
         this.postsService = commentsService;
         this.pubSub = pubSub;
+        
         this.textarea = jQuery(".com-form_textarea");
         this.textareaWrapper = this.textarea.parent(".textarea_wrapper");
         this.input = jQuery(".com-form_input"); //ok

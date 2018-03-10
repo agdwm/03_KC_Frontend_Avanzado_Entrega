@@ -3,10 +3,11 @@ import UIManager from './UIManager';
 //PostsList SOLO recorre los artículos y los pinta
 export default class PostsListManager extends UIManager{
 
-    constructor(elementSelector, postsService, likeService, pubSub) {
+    constructor(elementSelector, postsService, likeService, dateService, pubSub) {
         super(elementSelector); //llamamos al constructor de la clase UIManager
         this.postsService = postsService;
         this.likeService = likeService;
+        this.dateService = dateService;
         this.pubSub = pubSub;
 
         this.video = $(".video");
@@ -57,6 +58,7 @@ export default class PostsListManager extends UIManager{
                     this.setEmpty();
                 } else {
                     //Componemos el html con todos los artículos
+                    this.dateService.getDates(posts);
                     this.renderPosts(posts);
                     this.likeService.checkLikedButton(posts);
                     //Quitamos el mensaje de cargando y mostramos la lista de artículos
@@ -69,7 +71,6 @@ export default class PostsListManager extends UIManager{
                 //Hacemos log del error en la consola
                 console.log("ERROR al cargar los artículos. :(", error);
             });
-
         //this.postsService.getDetail(5); //?
     }
 

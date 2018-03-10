@@ -58,7 +58,7 @@ export default class PostsListManager extends UIManager{
                     this.setEmpty();
                 } else {
                     //Componemos el html con todos los artículos
-                    this.dateService.getDates(posts);
+                    //this.dateService.getDates(posts);
                     this.renderPosts(posts);
                     this.likeService.checkLikedButton(posts);
                     //Quitamos el mensaje de cargando y mostramos la lista de artículos
@@ -78,14 +78,15 @@ export default class PostsListManager extends UIManager{
     renderPosts(posts) {
         let html = "";
         for (let post of posts) {
-            html += this.renderPost(post)
+            let post_date = this.dateService.getDates(post)
+            html += this.renderPost(post, post_date)
         }
         //Metemos el HTML en el div que contiene los artículos
         this.setIdealHtml(html);
     }
 
     //renderiza una único artículo
-    renderPost(post) {
+    renderPost(post, post_date) {
         var post_img = post.post_img;
         var author_img = post.author_img;
         var post_src_type = post.post_src_type;
@@ -126,7 +127,7 @@ export default class PostsListManager extends UIManager{
                                 <div class="fig-header">
                                     <p>
                                         <span class="fig-header_type">${post.post_type}</span>
-                                        <span class="fig-header_date">${post.post_date}</span>
+                                        <span class="fig-header_date">${post_date}</span>
                                     </p>
                                     <h2 class="fig-header_title">${post.post_title}</h2>
                                 </div>

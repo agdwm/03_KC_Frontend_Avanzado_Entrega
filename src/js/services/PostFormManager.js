@@ -11,9 +11,9 @@ export default class PostFormManager extends UIManager {
         this.postsService = commentsService;
         this.pubSub = pubSub;
         
-        this.textarea = jQuery(".com-form_textarea");
+        this.textarea = $(".com-form_textarea");
         this.textareaWrapper = this.textarea.parent(".textarea_wrapper");
-        this.input = jQuery(".com-form_input"); //ok
+        this.input = $(".com-form_input"); //ok
         this.inputWrapper = this.input.parent(".input_wrapper");
         this.boxOfLimit = this.element.find("#limit-words"); //this.element = form
         this.boxLimitInitialText = this.boxOfLimit.text(); //ok
@@ -190,7 +190,6 @@ export default class PostFormManager extends UIManager {
 
             this.formData[listNames[i]] = listValues[i];
         }
-
 
         if(this.formData){
             return true;

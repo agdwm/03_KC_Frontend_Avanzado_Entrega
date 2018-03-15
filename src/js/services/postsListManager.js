@@ -85,43 +85,89 @@ export default class PostsListManager extends UIManager{
         this.setIdealHtml(html);
     }
 
+    renderPost_media(post_img, post_video, post_src_type){
+        let post_media = "";
+
+        if (post_img === "") {
+            //Post default image
+            post_media = `<div class="fig-img_frame">
+                <div class="img-default">
+                    <span class="fig-camera_icon">
+                        <i class="glyphicon glyphicon-camera"></i></span>
+                    </div>
+            </div>`
+        }else if(post_src_type === "image"){
+            post_media = `
+            <div class="fig-img_frame">
+                <picture class="img-responsive">
+                    <source 
+                        media="(min-width:768px)"
+                        srcset="${post_img}-360px.jpg 1x,
+                                ${post_img}-768px.jpg 2x">
+                    <source 
+                        media="(min-width:640px)"
+                        srcset="${post_img}-640px.jpg 1x,
+                                ${post_img}-1280px.jpg 2x">
+                    <source 
+                        media="(min-width:481px)"
+                        srcset="${post_img}-768px.jpg 1x,
+                                ${post_img}-1500px.jpg 2x">
+                    <source
+                        media="(max-width:480px)"
+                        srcset="${post_img}-480px.jpg 1x,
+                                ${post_img}-960px.jpg 2x">
+
+                    <!-- img tag for browsers that do not support picture element -->
+                    <img class="img-responsive" 
+                        src="${post_img}-768px.jpg"
+                        alt=""/>
+                </picture>
+            </div>`;
+        }else if(post_src_type === "video") {
+            post_media =  `
+            <div class="fig-vid_frame">
+                <div class="video-wrapper">
+                    <video class="video" width="100%" height="100%" preload="auto" controls poster="${post_img}-768px.jpg">
+                        <source src="${post_video}" type="video/mp4">
+                    </video>
+                </div>
+            </div>`;
+        }
+        return post_media;
+    }
+
+    renderPost_author(author_img) {
+        //Author default image
+        if (author_img === "") {
+            author_img = "img/profiles/author-lorem";
+        }
+
+        let post_author = `
+        <picture>
+            <source 
+                srcset="${author_img}-60px.jpg 1x, 
+                        ${author_img}-120px.jpg 2x">
+            <img class="img-responsive" 
+                src="${author_img}-120px.jpg" 
+                alt="Imagen de perfil del usuario"/>
+        </picture>`;
+
+        return post_author;
+    }
+
     //renderiza una único artículo
     renderPost(post, post_date) {
-        var post_img = post.post_img;
-        var author_img = post.author_img;
-        var post_src_type = post.post_src_type;
-        var srcset = "";
-        var htmlPartial = "";
-
-        //Imagenes por defecto tanto para el post como para el autor
-        if (post_img === "") {
-            post_img = "img/lorem.jpg";
-            //srcset = ' srcset="img/disk-150px.png 150w, img/disk-250px.png 250w, img/disk-300px.png 300w"';
-        }else{}
-
-        if (author_img === "") {
-            author_img = "img/author_lorem.jpg";
-            //srcset = ' srcset="img/disk-150px.png 150w, img/disk-250px.png 250w, img/disk-300px.png 300w"';
-        }else{}
-
-        if (post_src_type === "video" )
-            htmlPartial =  `<div class="fig-vid_frame">
-                    <div class="video-wrapper">
-                        <video class="video" width="100%" height="100%" preload="auto" controls poster="img/preview_little.jpg">
-                            <source src="/video/little_talks.m4v" type="video/mp4">
-                        </video>
-                    </div>
-                </div>`;
-        else {
-            htmlPartial = `<div class="fig-img_frame">
-                    <img class="img-responsive" src="${post_img}" alt="Fotografía de manos tatuadas">
-                </div>`;
-        }
+        let post_img = post.post_img;
+        let post_video = post.post_video;
+        let author_img = post.author_img;
+        let post_src_type = post.post_src_type;
+        let html_post_media = this.renderPost_media(post_img, post_video, post_src_type);
+        let html_post_author = this.renderPost_author(author_img);
 
         return `<div class="col-xs-12 col-sm-6 col-md-4">
                 <article class="post-item" data-id="${post.post_id}">
                     <figure>
-                    ${htmlPartial}
+                        ${html_post_media}
                         <figcaption class="figcaption">
                             <div class="fig-content">
                                 <div class="fig-header">
@@ -141,7 +187,7 @@ export default class PostsListManager extends UIManager{
                                 <div class="fig-author">
                                     <div class="fig-author_img">
                                         <div class="fig-author_img_frame">
-                                            <img src="${author_img}" class="img-responsive" alt="imagen de perfil">
+                                            ${html_post_author}
                                         </div>
                                     </div>
                                     <div class="fig-author_details">

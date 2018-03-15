@@ -60,7 +60,7 @@ gulp.task('fonts', function () {
 //definimos la tarea por defecto --> comando: gulp o gulp default
 //Solo tenemos que ejecutar una vez este comando, 
 //a partir de ahora cada vez que guardemos automáticamente se compilará el archivo .scss*/
-gulp.task("default", ["img", "html", "sass", "js"], function () {
+gulp.task("default", ["imgArticles", "imgProfiles", "html", "sass", "js"], function () {
     browserSync.init({
         //server: "./dist/",
         proxy: "http://127.0.0.1:3200/",
@@ -132,18 +132,34 @@ gulp.task("js", function () {
     .pipe(gulp.dest(dest))
     .pipe(browserSync.stream())
     .pipe(notify("JS Compilado"));
-})
+});
 
 //Tarea que optimiza y crea las imágenes responsive
-gulp.task("img", function () {
-    gulp.src("src/img/*")
-        .pipe(imagemin()) // optimizamos el peso de las imágenes
-        /*.pipe(responsive({
-            '*.png': [
-                {width: 150, rename:{suffix: "-150px"}}, //mobile
-                {width: 250, rename:{suffix: "-250px"}}, //tablet
-                {width: 300, rename:{suffix: "-300px"}}  //desktop
+gulp.task("imgArticles", function () {
+    gulp.src("src/img/articles/*")
+        .pipe(responsive({
+            '*.jpg': [
+                { width: 360, rename: { suffix: "-360px"}},
+                { width: 480, rename: { suffix: "-480px"}},
+                { width: 640, rename: { suffix: "-640px"}},
+                { width: 768, rename: { suffix: "-768px"}},
+                { width: 960, rename: { suffix: "-960px"}},
+                { width: 1280, rename: { suffix: "-1280px"}},
+                { width: 1500, rename: { suffix: "-1500px"}}
             ]
-        }))*/ //generamos las versiones responsive
-        .pipe(gulp.dest(dest + "img/"));
+        }))
+        .pipe(imagemin()) //imagemin despues de responsive
+        .pipe(gulp.dest("dist/img/articles/"));
+});
+
+gulp.task("imgProfiles", function () {
+    gulp.src("src/img/profiles/*")
+        .pipe(responsive({
+            '*.jpg': [
+                { width: 60, rename: { suffix: "-60px"}},
+                { width: 120, rename: { suffix: "-120px"}}
+            ]
+        }))
+        .pipe(imagemin()) //imagemin despues de responsive
+        .pipe(gulp.dest("dist/img/profiles/"));
 });

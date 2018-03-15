@@ -30,6 +30,16 @@
         .img-responsive {
             display: block;
         }
+        .img-default {
+            background-color: $color-gray-ligthen;
+            text-align: center;
+            height: 100%;
+            .fig-camera_icon {
+                color: darken($color-gray-ligthen, 15%);
+                font-size: $font-size-detail-title;
+                @include centerer();
+            }
+        }
     }
     .video-wrapper {
         height: 100%;
@@ -75,7 +85,7 @@
     .fig-header_date {
         margin-left: 10px;
         font-size: $font-size-small;
-        color: $color-gray-dark;
+        color: lighten($color-gray-dark, 10%);
     }
     .fig-header_title {
         font-size: $font-size-h3;
@@ -169,7 +179,7 @@
                 margin-top: -5px;
                 transform-origin: center center;
                 p{
-                    @include centerer(true,true);
+                    @include centerer();
                 }
                 i{
                     display: none;

@@ -95,6 +95,5 @@ export default class HeaderManager {
         
         inputSearch.fadeToggle("fast");
         ancla.toggleClass("search-active");
-        console.log("search");
     }
 }

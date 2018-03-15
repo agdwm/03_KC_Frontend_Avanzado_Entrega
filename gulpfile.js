@@ -60,7 +60,7 @@ gulp.task('fonts', function () {
 //definimos la tarea por defecto --> comando: gulp o gulp default
 //Solo tenemos que ejecutar una vez este comando, 
 //a partir de ahora cada vez que guardemos automáticamente se compilará el archivo .scss*/
-gulp.task("default", ["imgArticles", "imgProfiles", "html", "sass", "js"], function () {
+gulp.task("default", ["imgArticles", "imgProfiles", "videoArticles", "html", "sass", "js"], function () {
     browserSync.init({
         //server: "./dist/",
         proxy: "http://127.0.0.1:3200/",
@@ -162,4 +162,9 @@ gulp.task("imgProfiles", function () {
         }))
         .pipe(imagemin()) //imagemin despues de responsive
         .pipe(gulp.dest("dist/img/profiles/"));
+});
+
+gulp.task("videoArticles", function () {
+    gulp.src("src/video/articles/*")
+        .pipe(gulp.dest("dist/video/articles/"));
 });

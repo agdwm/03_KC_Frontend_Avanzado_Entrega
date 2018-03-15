@@ -128,7 +128,11 @@ export default class PostsListManager extends UIManager{
             <div class="fig-vid_frame">
                 <div class="video-wrapper">
                     <video class="video" width="100%" height="100%" preload="auto" controls poster="${post_img}-768px.jpg">
-                        <source src="${post_video}" type="video/mp4">
+                        <source src="${post_video}.mp4" type="video/mp4">
+                        <source src="${post_video}.m4v" type="video/m4v">
+                        <source src="${post_video}.mov" type="video/mov">
+                        <source src="${post_video}.wmv" type="video/wmv">
+                        Your browser does not support the video tag.
                     </video>
                 </div>
             </div>`;

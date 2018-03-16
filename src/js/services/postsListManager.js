@@ -133,7 +133,8 @@ export default class PostsListManager extends UIManager{
             post_media =  `
             <div class="fig-vid_frame">
                 <div class="video-wrapper">
-                    <iframe width="100%" height="100%" src="${post_video}" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                    <iframe width="100%" height="100%" src="${post_video}" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen>
+                    </iframe>
                 </div>
             </div>`;
         }

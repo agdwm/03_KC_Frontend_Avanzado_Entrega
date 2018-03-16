@@ -27,6 +27,10 @@
         height: 180px;
         overflow: hidden;
         position: relative;
+        .fig-img_picture {
+            width: 100%;
+            @include centerer();
+        }
         .img-responsive {
             display: block;
         }
@@ -47,13 +51,6 @@
         position: relative;
         background-color: $color-black-brand;
         transition: opacity .3s;
-
-        video {
-            background: transparent;
-            position: absolute;
-            top:0;
-            left: 0;
-        }
     }
     .figcaption{
         height: 300px;

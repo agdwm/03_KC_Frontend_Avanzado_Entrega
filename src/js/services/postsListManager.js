@@ -1,14 +1,19 @@
+"use strict";
+window.$ = window.jQuery = require("jquery"); //Necesario para que funcione la paginacion
+const $ = require("jquery");
+
 import UIManager from './UIManager';
 
 //PostsList SOLO recorre los artículos y los pinta
 export default class PostsListManager extends UIManager{
 
-    constructor(elementSelector, postsService, likeService, dateService, pubSub) {
+    constructor(elementSelector, postsService, likeService, dateService, pubSub, Pagination) {
         super(elementSelector); //llamamos al constructor de la clase UIManager
         this.postsService = postsService;
         this.likeService = likeService;
         this.dateService = dateService;
         this.pubSub = pubSub;
+        this.pagination = Pagination;
 
         this.video = $(".video");
         this.iconLike = $(".fig-like_icon");
@@ -88,7 +93,7 @@ export default class PostsListManager extends UIManager{
     renderPost_media(post_img, post_video, post_src_type){
         let post_media = "";
 
-        if (post_img === "") {
+        if (post_img === "" && post_video === "") {
             //Post default image
             post_media = `<div class="fig-img_frame">
                 <div class="img-default">
@@ -99,19 +104,20 @@ export default class PostsListManager extends UIManager{
         }else if(post_src_type === "image"){
             post_media = `
             <div class="fig-img_frame">
-                <picture class="img-responsive">
-                    <source 
+                <picture class="fig-img_picture">
+                    <source
                         media="(min-width:768px)"
                         srcset="${post_img}-360px.jpg 1x,
                                 ${post_img}-768px.jpg 2x">
                     <source 
                         media="(min-width:640px)"
-                        srcset="${post_img}-640px.jpg 1x,
-                                ${post_img}-1280px.jpg 2x">
-                    <source 
-                        media="(min-width:481px)"
                         srcset="${post_img}-768px.jpg 1x,
                                 ${post_img}-1500px.jpg 2x">
+                    <source 
+                        media="(min-width:481px)"
+                        srcset="${post_img}-640px.jpg 1x,
+                                ${post_img}-1280px.jpg 2x">
+
                     <source
                         media="(max-width:480px)"
                         srcset="${post_img}-480px.jpg 1x,
@@ -127,13 +133,7 @@ export default class PostsListManager extends UIManager{
             post_media =  `
             <div class="fig-vid_frame">
                 <div class="video-wrapper">
-                    <video class="video" width="100%" height="100%" preload="auto" controls poster="${post_img}-768px.jpg">
-                        <source src="${post_video}.mp4" type="video/mp4">
-                        <source src="${post_video}.m4v" type="video/m4v">
-                        <source src="${post_video}.mov" type="video/mov">
-                        <source src="${post_video}.wmv" type="video/wmv">
-                        Your browser does not support the video tag.
-                    </video>
+                    <iframe width="100%" height="100%" src="${post_video}" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
                 </div>
             </div>`;
         }

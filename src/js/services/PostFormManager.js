@@ -1,5 +1,4 @@
 "use strict";
-
 const $ = require("jquery");
 
 import UIManager from './UIManager';

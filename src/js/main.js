@@ -10,6 +10,7 @@ import PostCommentsManager from "./services/PostCommentsManager";
 import PostFormManager from "./services/PostFormManager";
 
 import PubSub from 'pubsub-js';
+import Pagination from 'paginationjs';
 
 const headerManager = new HeaderManager();
 const footerManager = new FooterManager("#js_scroll-link");
@@ -19,7 +20,7 @@ const dateService = new DateService();
 const postsService = new PostsService("/posts/");
 const commentsService = new PostsService("/comments/");
 
-const postsListManager = new PostsListManager("#posts-list", postsService, likeService, dateService, PubSub);
+const postsListManager = new PostsListManager("#posts-list", postsService, likeService, dateService, PubSub, Pagination);
 const postCommentsManager = new PostCommentsManager("#post-comments", commentsService, PubSub);
 const postFormManager = new PostFormManager("#post-form", commentsService, PubSub);
 

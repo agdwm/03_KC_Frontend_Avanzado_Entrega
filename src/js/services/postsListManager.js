@@ -17,6 +17,7 @@ export default class PostsListManager extends UIManager{
 
         this.video = $(".video");
         this.iconLike = $(".fig-like_icon");
+        this.postListContainer = $("#post-list");
     }
 
     init() {
@@ -88,6 +89,45 @@ export default class PostsListManager extends UIManager{
         }
         //Metemos el HTML en el div que contiene los artículos
         this.setIdealHtml(html);
+        this.paginationPost();
+    }
+
+    paginationPost(){
+        let self = this;
+        $("#pagination").pagination({
+            dataSource:  ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31', '32', '33', '34', '35', '36', '37', '38', '39', '40'],
+            pageSize: 5,
+            showGoInput: true,
+            showGoButton: true,
+            showBeginingOnOmit: false,
+            showEndingOnOmit: false,
+            pageRange: 1,
+            prevText: '<i class="glyphicon glyphicon-chevron-left"></i>',
+            nextText: '<i class="glyphicon glyphicon-chevron-right"></i>',
+            callback: function(data, pagination){
+                var html = self.renderPagination(data);
+                $("#paginated-posts").html(html);
+            }
+        })
+    }
+
+    renderPagination(data){
+        var html = '<div class="pagination-main"><ul>';
+
+        if (data[0].published || data[0].title) {
+          // data from flickr
+          $.each(data, function(index, item) {
+            html += '<li><a href="'+ item.link +'">'+ (item.title || item.link) +'<\/a><\/li>';
+          });
+        } else {
+          $.each(data, function(index, item) {
+            html += '<li>'+ item +'</li>';
+          });
+        }
+
+        html += '</ul></div>';
+
+        return html;
     }
 
     renderPost_media(post_img, post_video, post_src_type){

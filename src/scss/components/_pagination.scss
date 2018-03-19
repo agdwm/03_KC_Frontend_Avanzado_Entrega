@@ -20,20 +20,17 @@
         }
     }
     @media screen and (min-width: 768px) {
-        width: 60%;
+        width: 90%;
         margin-left: auto;
         margin-right: auto;
         display: block;
     }
     @media screen and (min-width: 992px) {
-        width: 50%;
-    }
-    @media screen and (min-width: 992px) {
-        width: 45%;
+        width: 80%;
     }
 }
 
-.pagination-prev, .pagination-next {
+.paginationjs-prev, .pagination-next {
     .pag-btn_out {
         margin-bottom: 0;
         display: inline-block;
@@ -59,13 +56,8 @@
         }
     }
 }
-.pagination-prev {
-    float: left;
-}
-.pagination-next {
-    float: right;
-}
-.pagination-main {
+
+.paginationjs-pages {
     display: inline-block;
     ul{
         margin-bottom: 0;
@@ -79,11 +71,40 @@
             padding-left: 5px;
             padding-right: 5px;
             cursor: default;
+        } 
+        &.active {
+            a{
+                background-color: $color-green-brand;
+            }
+        }
+        &.paginationjs-prev {
+            float: left;
+            &.disabled {
+                a{
+                    background-color: $color-gray-ligthen;
+                    color: $color-gray-light;
+                }            
+            }
+        }
+        &.paginationjs-next {
+            float: right;
+            &.disabled {
+                a{
+                    background-color: $color-gray-ligthen;
+                    color: $color-gray-light;
+                }          
+            }
         }
     }
     a{
         padding: 9px 15px 10px;
         font-weight: bold;
+        &:hover {
+            background-color: darken($color-gray-light, 5%);
+        }
+        &:active {
+            background-color: $color-green-light;
+        }
     }
     @media screen and (min-width: 768px) {
         li{
@@ -93,6 +114,30 @@
         }
         a{
             padding: 13px 18px 11px;
+        }
+    }
+}
+.paginationjs-go-input{
+    display: inline-block;
+    margin-left: 20px;
+    .J-paginationjs-go-pagenumber{
+        padding: 13px 18px 11px;
+        max-width: 48px;
+        max-height: 45px;
+    }
+}
+
+.paginationjs-go-button{
+    display: inline-block;
+    margin-left: 10px;
+    .J-paginationjs-go-button{
+        appearance: none;
+        -webkit-appearance: none;
+        padding: 13px 14px 11px;
+        max-width: 48px;
+        max-height: 45px;
+        &:hover{
+            background-color: $color-gray-light;
         }
     }
 }

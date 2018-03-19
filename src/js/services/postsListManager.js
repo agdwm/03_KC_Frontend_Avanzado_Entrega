@@ -82,21 +82,34 @@ export default class PostsListManager extends UIManager{
 
     //renderPosts() PINTA los post en el html
     renderPosts(posts) {
-        let html = "";
-        for (let post of posts) {
-            let post_date = this.dateService.getDates(post)
-            html += this.renderPost(post, post_date)
-        }
+        //let html = "";
+        //let postsLength = posts.length;
+
+        //for (let post of posts) {
+            //let post_date = this.dateService.getDates(post)
+            //html += this.renderPost(post, post_date)
+        //}
         //Metemos el HTML en el div que contiene los artículos
-        this.setIdealHtml(html);
-        this.paginationPost();
+        
+        this.paginationPost(posts);
+        //this.setIdealHtml(html);
     }
 
-    paginationPost(){
+    paginationPost(posts){
+        let html = "";
         let self = this;
+        let postsLength = posts.length;
+
         $("#pagination").pagination({
-            dataSource:  ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31', '32', '33', '34', '35', '36', '37', '38', '39', '40'],
-            pageSize: 5,
+            dataSource: function(done){
+                let result = [];
+
+                for (var i = 1; i < postsLength; i++) {
+                    result.push(i);
+                }
+                done(result); //nº total de elementos
+            },
+            pageSize: 9, //nº elementos por pagina
             showGoInput: true,
             showGoButton: true,
             showBeginingOnOmit: false,
@@ -105,27 +118,24 @@ export default class PostsListManager extends UIManager{
             prevText: '<i class="glyphicon glyphicon-chevron-left"></i>',
             nextText: '<i class="glyphicon glyphicon-chevron-right"></i>',
             callback: function(data, pagination){
-                var html = self.renderPagination(data);
+                var html = self.renderPaginatedPosts(data, posts);
+                //var html = self.renderPost(post, data)
                 $("#paginated-posts").html(html);
             }
         })
     }
 
-    renderPagination(data){
-        var html = '<div class="pagination-main"><ul>';
+    renderPaginatedPosts(data, posts){ //data = pageSize
+        let html = '';
+        let self = this;
 
-        if (data[0].published || data[0].title) {
-          // data from flickr
-          $.each(data, function(index, item) {
-            html += '<li><a href="'+ item.link +'">'+ (item.title || item.link) +'<\/a><\/li>';
-          });
-        } else {
-          $.each(data, function(index, item) {
-            html += '<li>'+ item +'</li>';
-          });
-        }
-
-        html += '</ul></div>';
+        if (posts.length > 0) {
+            for (let i = 0; i < data.length; i++){
+                let currentPost = data[i]-1;
+                let post = posts[currentPost];
+                html += self.renderPost(post);
+            }
+        }else{}
 
         return html;
     }
@@ -201,15 +211,17 @@ export default class PostsListManager extends UIManager{
     }
 
     //renderiza una único artículo
-    renderPost(post, post_date) {
+    renderPost(post) {
         let post_img = post.post_img;
         let post_video = post.post_video;
         let author_img = post.author_img;
         let post_src_type = post.post_src_type;
         let html_post_media = this.renderPost_media(post_img, post_video, post_src_type);
         let html_post_author = this.renderPost_author(author_img);
+        let post_date = this.dateService.getDates(post);
 
-        return `<div class="col-xs-12 col-sm-6 col-md-4">
+        return `
+            <div class="col-xs-12 col-sm-6 col-md-4">
                 <article class="post-item" data-id="${post.post_id}">
                     <figure>
                         ${html_post_media}

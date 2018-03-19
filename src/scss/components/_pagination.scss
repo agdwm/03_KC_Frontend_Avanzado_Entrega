@@ -64,6 +64,7 @@
     }
     li{
         display: inline-block;
+        vertical-align: middle;
         &:not(:last-child){
             margin-right: 7px;
         }
@@ -99,11 +100,14 @@
     a{
         padding: 9px 15px 10px;
         font-weight: bold;
+        border: 1px solid $color-gray-light;
         &:hover {
             background-color: darken($color-gray-light, 5%);
+            border: 1px solid darken($color-gray-light, 5%);
         }
         &:active {
             background-color: $color-green-light;
+            border: 1px solid $color-green-light;
         }
     }
     @media screen and (min-width: 768px) {
@@ -120,22 +124,29 @@
 .paginationjs-go-input{
     display: inline-block;
     margin-left: 20px;
+    vertical-align: middle;
     .J-paginationjs-go-pagenumber{
-        padding: 13px 18px 11px;
+        text-align:center;
+        padding: 14px 15px 10px;
         max-width: 48px;
-        max-height: 45px;
+        appearance: none;
+        -webkit-appearance: none;
+        outline-color: #089a78;
+        box-sizing: border-box;
+        border: 1px solid $color-gray-light;
     }
 }
 
 .paginationjs-go-button{
     display: inline-block;
     margin-left: 10px;
+    vertical-align: middle;
     .J-paginationjs-go-button{
         appearance: none;
         -webkit-appearance: none;
-        padding: 13px 14px 11px;
-        max-width: 48px;
-        max-height: 45px;
+        padding: 14px 15px 10px;
+        box-sizing: border-box;
+        border: 1px solid darken($color-gray-light, 15%);
         &:hover{
             background-color: $color-gray-light;
         }

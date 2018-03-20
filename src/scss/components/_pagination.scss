@@ -9,9 +9,6 @@
         background-color: $color-gray-ligthen;
         color: $color-black-brand;
         display: block;
-        &:hover {
-            background-color: $color-green-brand;
-        }
         &:active {
             background-color: $color-green-light;
         }
@@ -27,33 +24,7 @@
     }
 }
 
-.paginationjs-prev, .pagination-next {
-    .pag-btn_out {
-        margin-bottom: 0;
-        display: inline-block;
-        a{
-            padding: 10px;
-        }
-        i {
-            top:2px;
-        }
-    }
-    @media screen and (min-width: 480px) {
-        .pag-btn_out {
-            a{
-                padding: 10px 20px;
-            }
-        }
-    }
-    @media screen and (min-width: 768px) {
-        .pag-btn_out {
-            a{
-                padding: 12px 25px;
-            }
-        }
-    }
-}
-
+//The names of the following classes extracted from "paginationjs" library
 .paginationjs-pages {
     display: block;
     padding-bottom: 20px;
@@ -63,35 +34,11 @@
     li{
         display: inline-block;
         vertical-align: middle;
-        &:not(:last-child){
-            margin-right: 7px;
-        }
-        &:nth-child(4) {
-            padding-left: 5px;
-            padding-right: 5px;
-            cursor: default;
-        } 
+        margin-right: 4px;
+        margin-left: 4px;
         &.active {
             a{
                 background-color: $color-green-brand;
-            }
-        }
-        &.paginationjs-prev {
-            float: left;
-            &.disabled {
-                a{
-                    background-color: $color-gray-ligthen;
-                    color: $color-gray-light;
-                }            
-            }
-        }
-        &.paginationjs-next {
-            float: right;
-            &.disabled {
-                a{
-                    background-color: $color-gray-ligthen;
-                    color: $color-gray-light;
-                }          
             }
         }
     }
@@ -108,33 +55,48 @@
             border: 1px solid $color-green-light;
         }
     }
+    .paginationjs-prev, .paginationjs-next{
+        &.disabled {
+            a{
+                background-color: $color-gray-ligthen;
+                color: $color-gray-light;
+            }            
+        }
+    }
+    .paginationjs-prev {
+        float: left;
+        margin-right: 8px;
+    }
+    .paginationjs-next {
+        float: right;
+        margin-left: 8px;
+    }
     @media screen and (min-width: 481px) {
         display: inline-block;
     }
     @media screen and (min-width: 768px) {
-        li{
-            &:not(:last-child){
-                margin-right: 10px;
-            }
-        }
         a{
             padding: 13px 18px 11px;
         }
     }
 }
 
+.paginationjs-go-base{
+    appearance: none;
+    padding: 14px 15px 10px;
+    box-sizing: border-box;
+}
+
 .paginationjs-go-input{
     display: inline-block;
     vertical-align: middle;
+
     .J-paginationjs-go-pagenumber{
-        text-align:center;
-        padding: 14px 15px 10px;
-        max-width: 48px;
-        appearance: none;
-        -webkit-appearance: none;
-        outline-color: #089a78;
-        box-sizing: border-box;
+        @extend .paginationjs-go-base;
         border: 1px solid $color-gray-light;
+        text-align:center;
+        max-width: 48px;
+        outline-color: #089a78;
     }
     @media screen and (min-width: 481px) {
         margin-left: 20px;
@@ -143,13 +105,11 @@
 
 .paginationjs-go-button{
     display: inline-block;
-    margin-left: 10px;
     vertical-align: middle;
+    margin-left: 10px;
+
     .J-paginationjs-go-button{
-        appearance: none;
-        -webkit-appearance: none;
-        padding: 14px 15px 10px;
-        box-sizing: border-box;
+        @extend .paginationjs-go-base;
         border: 1px solid darken($color-gray-light, 15%);
         &:hover{
             background-color: $color-gray-light;

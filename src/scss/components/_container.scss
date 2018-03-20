@@ -1,6 +1,10 @@
-.pushable-content {
-    height: 100%;
+.wrapper {
+    min-height: 100%;
     position: relative;
+}
+.pushable-content {
+    //height: 100%;
+    //position: relative;
     padding-bottom: 70px;
     &.move-mobile{
         left: $menu-mobile-width;
@@ -12,5 +16,4 @@
     overflow: hidden;
     //margin-top = header height + margin top
     margin-top: 69px;
-    
 }

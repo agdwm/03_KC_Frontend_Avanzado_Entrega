@@ -1,10 +1,12 @@
 * {
     box-sizing: border-box;
 }
-
+html{
+    height: 100%;
+}
 body {
     height: 100%;
-    position: relative;
+    //position: relative;
     font-family: $body-font-family;
 }
 

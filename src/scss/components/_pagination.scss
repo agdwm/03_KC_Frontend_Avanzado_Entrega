@@ -59,7 +59,8 @@
 }
 
 .paginationjs-pages {
-    display: inline-block;
+    display: block;
+    padding-bottom: 20px;
     ul{
         margin-bottom: 0;
     }
@@ -111,6 +112,9 @@
             border: 1px solid $color-green-light;
         }
     }
+    @media screen and (min-width: 481px) {
+        display: inline-block;
+    }
     @media screen and (min-width: 768px) {
         li{
             &:not(:last-child){
@@ -124,7 +128,6 @@
 }
 .paginationjs-go-input{
     display: inline-block;
-    margin-left: 20px;
     vertical-align: middle;
     .J-paginationjs-go-pagenumber{
         text-align:center;
@@ -135,6 +138,9 @@
         outline-color: #089a78;
         box-sizing: border-box;
         border: 1px solid $color-gray-light;
+    }
+    @media screen and (min-width: 481px) {
+        margin-left: 20px;
     }
 }
 

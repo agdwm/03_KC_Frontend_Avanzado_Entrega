@@ -11,16 +11,17 @@ import PostFormManager from "./services/PostFormManager";
 
 import PubSub from 'pubsub-js';
 import Pagination from 'paginationjs';
+import Paginator from './services/PaginationService';
 
-const headerManager = new HeaderManager();
-const footerManager = new FooterManager("#js_scroll-link");
-
+const paginationService = new Paginator();
 const likeService = new LikeService();
 const dateService = new DateService();
 const postsService = new PostsService("/posts/");
 const commentsService = new PostsService("/comments/");
 
-const postsListManager = new PostsListManager("#posts-list", postsService, likeService, dateService, PubSub, Pagination);
+const headerManager = new HeaderManager();
+const footerManager = new FooterManager("#js_scroll-link");
+const postsListManager = new PostsListManager("#posts-list", postsService, likeService, dateService, PubSub, paginationService);
 const postCommentsManager = new PostCommentsManager("#post-comments", commentsService, PubSub);
 const postFormManager = new PostFormManager("#post-form", commentsService, PubSub);
 
@@ -36,5 +37,5 @@ $(function(){
     //on scroll
     $(document).on('scroll', function(){
         postCommentsManager.scroll();
-    })
+    });
 });

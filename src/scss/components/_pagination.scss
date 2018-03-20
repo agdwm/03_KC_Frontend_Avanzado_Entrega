@@ -9,15 +9,11 @@
         background-color: $color-gray-ligthen;
         color: $color-black-brand;
         display: block;
-
         &:hover {
             background-color: $color-green-brand;
         }
         &:active {
             background-color: $color-green-light;
-        }
-        &.pag-active {
-            background-color: $color-green-brand;
         }
     }
     @media screen and (min-width: 768px) {
@@ -126,6 +122,7 @@
         }
     }
 }
+
 .paginationjs-go-input{
     display: inline-block;
     vertical-align: middle;

@@ -7,13 +7,13 @@ import UIManager from './UIManager';
 //PostsList SOLO recorre los artículos y los pinta
 export default class PostsListManager extends UIManager{
 
-    constructor(elementSelector, postsService, likeService, dateService, pubSub, Pagination) {
+    constructor(elementSelector, postsService, likeService, dateService, pubSub, paginationService) {
         super(elementSelector); //llamamos al constructor de la clase UIManager
         this.postsService = postsService;
         this.likeService = likeService;
         this.dateService = dateService;
         this.pubSub = pubSub;
-        this.pagination = Pagination;
+        this.paginationService = paginationService;
 
         this.video = $(".video");
         this.iconLike = $(".fig-like_icon");
@@ -84,30 +84,9 @@ export default class PostsListManager extends UIManager{
         let html = "";
         let self = this;
         let postsLength = posts.length;
+        let htmlContainer = "#paginated-posts";
 
-        $("#pagination").pagination({
-            dataSource: function(done){
-                let result = [];
-
-                for (var i = 1; i < postsLength; i++) {
-                    result.push(i);
-                }
-                done(result); //nº total de elementos
-            },
-            pageSize: 9, //nº elementos por pagina
-            showGoInput: true,
-            showGoButton: true,
-            showBeginingOnOmit: false,
-            showEndingOnOmit: false,
-            pageRange: 1,
-            prevText: '<i class="glyphicon glyphicon-chevron-left"></i>',
-            nextText: '<i class="glyphicon glyphicon-chevron-right"></i>',
-            callback: function(data, pagination){
-                var html = self.renderPaginatedPosts(data, posts);
-                //var html = self.renderPost(post, data)
-                $("#paginated-posts").html(html);
-            }
-        })
+        this.paginationService.paginate(postsLength, posts, htmlContainer, self);
     }
 
     renderPaginatedPosts(data, posts){ //data = pageSize

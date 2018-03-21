@@ -1,4 +1,4 @@
-export default class LikeService {
+export default class LikeManager {
 
     constructor(){}
 
@@ -9,7 +9,7 @@ export default class LikeService {
     toggleEmptyIconLike($this, boolean){
         let emptyHeart = $this.find(".glyphicon-heart-empty").toggleClass("active", boolean);   
     }
-    
+
     saveLikeInBrowser(postId, $this){
         localStorage.setItem(postId, "<3");
         this.toggleFillIconLike($this, true);

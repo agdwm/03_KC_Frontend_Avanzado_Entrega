@@ -7,10 +7,10 @@ import UIManager from './UIManager';
 //PostsList SOLO recorre los artículos y los pinta
 export default class PostsListManager extends UIManager{
 
-    constructor(elementSelector, postsService, likeService, dateService, pubSub, paginationService) {
+    constructor(elementSelector, postsService, dateService, likeManager, pubSub, paginationService) {
         super(elementSelector); //llamamos al constructor de la clase UIManager
         this.postsService = postsService;
-        this.likeService = likeService;
+        this.likeManager = likeManager;
         this.dateService = dateService;
         this.pubSub = pubSub;
         this.paginationService = paginationService;
@@ -26,16 +26,15 @@ export default class PostsListManager extends UIManager{
 
         let self = this;
 
-        this.element.on("click", ".video", function(e)  {
-            let $this = $(this);
-            self.playVideo($this);
+        this.element.on("click", ".video", (e) => {
+            this.playVideo(e.currentTarget);
             return false;
         });
 
         this.element.on("click", ".fig-like_icon", function(e)  {
             let $this = $(this);
             let postId = $this.closest(".post-item").data("id");
-            self.likeService.saveOrRemoveLike(postId, $this);
+            self.likeManager.saveOrRemoveLike(postId, $this);
             return false;
         });
     }
@@ -43,7 +42,7 @@ export default class PostsListManager extends UIManager{
     openDetail(){
         this.element.on("click", ".fig-content", function(e)  {
             window.location.href = `./detail.html`;
-        })
+        });
     }
 
     playVideo($this){
@@ -69,7 +68,7 @@ export default class PostsListManager extends UIManager{
                     //Componemos el html con todos los artículos
                     //this.dateService.getDates(posts);
                     this.paginationPosts(posts);
-                    this.likeService.checkLikedButton(posts);
+                    this.likeManager.checkLikedButton(posts);
                     //Quitamos el mensaje de cargando y mostramos la lista de artículos
                     this.setIdeal();
                 }

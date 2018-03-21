@@ -7,11 +7,12 @@ export default class PostsService {
 
     // Obtener listado de artículos GET
     //list recibe 2 parametros (2 funciones callback): posts() y error()
-    list(successCallback, errorCallback) {
+    list(beforeSendCallback, successCallback, errorCallback) {
         $.ajax({
             url: this.url,
+            beforeSend: beforeSendCallback,
             success: successCallback,
-            error: errorCallback
+            error: errorCallback,
         });
     }
 

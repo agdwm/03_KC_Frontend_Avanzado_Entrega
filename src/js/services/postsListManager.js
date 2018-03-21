@@ -57,6 +57,9 @@ export default class PostsListManager extends UIManager{
         /*Llamamos al método "list()" del objeto "postService" y le pasamos 2 funciones callback que gestionará 
         el objeto en caso de éxito o error de la llamada Ajax.*/
         this.postsService.list(
+            load => {
+                this.setLoading();
+            },
             posts => {
                 //Comprobamos si hay artículos
                 if (posts.length == 0) {

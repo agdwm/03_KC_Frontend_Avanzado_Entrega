@@ -15,7 +15,7 @@ export default class PostCommentsManager extends UIManager{
     }
 
     scroll(){
-        
+
     }
 
     addScrollHandler(){
@@ -43,6 +43,9 @@ export default class PostCommentsManager extends UIManager{
 
     loadComments() {
         this.postsService.list(
+            load => {
+                this.setLoading();
+            },
             comments => {
                 if (comments.length == 0){
                     this.setEmpty();

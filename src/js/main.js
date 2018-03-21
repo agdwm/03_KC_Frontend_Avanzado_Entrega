@@ -33,9 +33,4 @@ $(function(){
     postsListManager.init();
     postCommentsManager.init();
     postFormManager.init();
-
-    //on scroll
-    $(document).on('scroll', function(){
-        postCommentsManager.scroll();
-    });
 });

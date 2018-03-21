@@ -11,11 +11,21 @@ export default class PostCommentsManager extends UIManager{
     }
 
     init(){
-
+        this.addScrollHandler();
     }
 
     scroll(){
-       this.checkScrollAndLoad();
+        
+    }
+
+    addScrollHandler(){
+        $(document).on('scroll', () => {
+            this.checkScrollAndLoad();
+        });
+    }
+
+    removeScrollHandler(){
+        $(document).off('scroll');
     }
 
     checkScrollAndLoad() {
@@ -27,7 +37,6 @@ export default class PostCommentsManager extends UIManager{
         //console.log((commentsPosTop-windowHeight) , windowScrollTop);
 
         if (windowScrollTop > (commentsPosTop+commentsHeight-windowHeight)){
-            //console.log("MAyor");
             this.loadComments();
         }
     }
@@ -40,6 +49,7 @@ export default class PostCommentsManager extends UIManager{
                 } else {
                     this.renderComments(comments);
                     this.setIdeal();
+                    this.removeScrollHandler();
                 }
             },
             error => {

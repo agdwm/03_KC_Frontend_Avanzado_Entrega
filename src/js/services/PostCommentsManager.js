@@ -64,7 +64,7 @@ export default class PostCommentsManager extends UIManager{
             <div class="com-author">
                 <div class="com-author_img">
                     <div class="com-author_img_frame">
-                        <img src="img/author_lorem.jpg" class="img-responsive" alt="imagen de perfil">
+                        <img src="img/profiles/author-lorem-60px.jpg" class="img-responsive" alt="imagen de perfil">
                     </div>
                 </div>
                 <div class="com-author_details">

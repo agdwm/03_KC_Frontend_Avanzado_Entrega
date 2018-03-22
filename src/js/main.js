@@ -2,7 +2,7 @@ window.$ = window.jQuery = require("jquery"); //Hace jQuery accesible públicame
 
 import HeaderManager from "./services/headerManager";
 import FooterManager from "./services/footerManager";
-import LikeManager from "./services/likeService";
+import LikeService from "./services/LikeService";
 import BlogService from "./services/BlogService";
 import PostsListManager from "./services/PostsListManager";
 import DateService from "./services/DateService";
@@ -17,7 +17,7 @@ const paginationService = new Paginator();
 const dateService = new DateService();
 const blogService = new BlogService("/posts/");
 const commentsService = new BlogService("/comments/");
-const likeService = new BlogService("/posts/post_like-num/")
+const likeService = new LikeService();
 
 const headerManager = new HeaderManager();
 const footerManager = new FooterManager("#js_scroll-link");

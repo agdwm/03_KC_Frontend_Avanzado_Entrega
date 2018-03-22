@@ -1,6 +1,15 @@
 export default class PaginationService {
 
-    constructor(){ }
+    constructor(){
+        this.pageSize = 9;
+        this.showGoInput = true;
+        this.showGoButton = true;
+        this.showBeginingOnOmit = false;
+        this.showEndingOnOmit = false;
+        this.pageRange = 1;
+        this.prevText = '<i class="glyphicon glyphicon-chevron-left"></i>';
+        this.nextText = '<i class="glyphicon glyphicon-chevron-right"></i>';
+     }
 
     paginate(itemsLength, items, htmlContainer, self){
 
@@ -13,14 +22,14 @@ export default class PaginationService {
                 }
                 done(result); //nº total de elementos
             },
-            pageSize: 9, //nº elementos por pagina
-            showGoInput: true,
-            showGoButton: true,
-            showBeginingOnOmit: false,
-            showEndingOnOmit: false,
-            pageRange: 1,
-            prevText: '<i class="glyphicon glyphicon-chevron-left"></i>',
-            nextText: '<i class="glyphicon glyphicon-chevron-right"></i>',
+            pageSize: this.pageSize, //nº elementos por pagina
+            showGoInput: this.showGoInput,
+            showGoButton: this.showGoButton,
+            showBeginingOnOmit: this.showBeginingOnOmit,
+            showEndingOnOmit: this.showEndingOnOmit,
+            pageRange: this.pageRange,
+            prevText: this.prevText,
+            nextText: this.nextText,
             callback: function(data, pagination){
                 var html = self.renderPaginatedPosts(data, items);
                 $(htmlContainer).html(html);

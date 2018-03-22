@@ -36,7 +36,16 @@
                 </div>
             </div>
             <div class="det-img_frame">
-                <img class="img-responsive" src="img/article_01.jpg" alt="">
+                <picture class="fig-img_picture">
+                    <source media="(min-width:768px)" srcset="img/articles/article_01-768px.jpg 1x,
+                                img/articles/article_01-1500px.jpg 2x">
+                    <source media="(min-width:481px)" srcset="img/articles/article_01-640px.jpg 1x,
+                                img/articles/article_01-1280px.jpg 2x">
+                    <source media="(max-width:480px)" srcset="img/articles/article_01-480px.jpg 1x,
+                                img/articles/article_01-960px.jpg 2x">
+                    <!-- img tag for browsers that do not support picture element -->
+                    <img class="img-responsive" src="img/articles/article_01-768px.jpg" alt="">
+                </picture>
             </div>
             <div class="det-body">
                     <div class="det-body_text">

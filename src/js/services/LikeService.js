@@ -1,4 +1,4 @@
-export default class LikeManager {
+export default class LikeService {
 
     constructor(){}
 

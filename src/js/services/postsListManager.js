@@ -17,12 +17,15 @@ export default class PostsListManager extends UIManager{
 
         this.video = $(".video");
         this.iconLike = $(".fig-like_icon");
-        this.postListContainer = $("#post-list");
+        this.postListView = $("#posts-list");
     }
 
     init() {
-        this.loadPosts();
-        this.openDetail();
+
+        if(this.postListView.length > 0) {
+            this.loadPosts();
+            this.openDetail();
+        }
 
         let self = this;
 
@@ -66,7 +69,6 @@ export default class PostsListManager extends UIManager{
                     this.setEmpty();
                 } else {
                     //Componemos el html con todos los artículos
-                    //this.dateService.getDates(posts);
                     this.paginationPosts(posts);
                     this.likeService.checkLikedButton(posts);
                     //Quitamos el mensaje de cargando y mostramos la lista de artículos

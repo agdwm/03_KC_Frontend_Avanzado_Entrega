@@ -8,21 +8,20 @@ export default class PostCommentsManager extends UIManager{
         this.blogService = commentsService;
         this.pubSub = pubSub;
         this.postComments = $(elementSelector);
+        this.commentsView = $("#post-comments");
     }
 
     init(){
-        this.addScrollHandler();
+        if(this.commentsView.length > 0) {
+            $(document).on('scroll', () => {
+                this.scroll();
+            });
+        }
     }
 
     scroll(){
-
-    }
-
-    addScrollHandler(){
-        $(document).on('scroll', () => {
-            this.checkScrollAndLoad();
-        });
-    }
+        this.checkScrollAndLoad();
+    }  
 
     removeScrollHandler(){
         $(document).off('scroll');

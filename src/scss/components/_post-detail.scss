@@ -80,4 +80,10 @@
 .det-img_frame{
     padding-top: 25px;
     padding-bottom: 30px;
+    @media screen and (min-width:768px){
+        text-align: center;
+    }
+    .fig-img_picture{
+        display: inline-block;
+    }
 }

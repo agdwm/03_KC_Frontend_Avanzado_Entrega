@@ -7,11 +7,11 @@ import UIManager from './UIManager';
 //PostsList SOLO recorre los artículos y los pinta
 export default class PostsListManager extends UIManager{
 
-    constructor(elementSelector, blogService, dateService, likeManager, pubSub, paginationService) {
+    constructor(elementSelector, blogService, dateService, likeService, pubSub, paginationService) {
         super(elementSelector); //llamamos al constructor de la clase UIManager
         this.blogService = blogService;
-        this.likeManager = likeManager;
         this.dateService = dateService;
+        this.likeService = likeService;
         this.pubSub = pubSub;
         this.paginationService = paginationService;
 
@@ -34,7 +34,7 @@ export default class PostsListManager extends UIManager{
         this.element.on("click", ".fig-like_icon", function(e)  {
             let $this = $(this);
             let postId = $this.closest(".post-item").data("id");
-            self.likeManager.saveOrRemoveLike(postId, $this);
+            self.likeService.saveOrRemoveLike(postId, $this);
             return false;
         });
     }
@@ -68,7 +68,7 @@ export default class PostsListManager extends UIManager{
                     //Componemos el html con todos los artículos
                     //this.dateService.getDates(posts);
                     this.paginationPosts(posts);
-                    this.likeManager.checkLikedButton(posts);
+                    this.likeService.checkLikedButton(posts);
                     //Quitamos el mensaje de cargando y mostramos la lista de artículos
                     this.setIdeal();
                 }

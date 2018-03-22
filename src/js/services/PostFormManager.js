@@ -7,7 +7,7 @@ export default class PostFormManager extends UIManager {
 
     constructor(formSelector, commentsService, pubSub) {
         super(formSelector);
-        this.postsService = commentsService;
+        this.blogService = commentsService;
         this.pubSub = pubSub;
         
         this.textarea = $(".com-form_textarea");
@@ -201,7 +201,7 @@ export default class PostFormManager extends UIManager {
     send() {
         this.setLoading();
 
-        this.postsService.save(this.formData, success => {
+        this.blogService.save(this.formData, success => {
             this.pubSub.publish("new-comment", this.formData); // publicamos el evento que informa del envío de un comentario
             this.resetForm();
             this.resetFormStyles();

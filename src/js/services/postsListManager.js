@@ -7,9 +7,9 @@ import UIManager from './UIManager';
 //PostsList SOLO recorre los artículos y los pinta
 export default class PostsListManager extends UIManager{
 
-    constructor(elementSelector, postsService, dateService, likeManager, pubSub, paginationService) {
+    constructor(elementSelector, blogService, dateService, likeManager, pubSub, paginationService) {
         super(elementSelector); //llamamos al constructor de la clase UIManager
-        this.postsService = postsService;
+        this.blogService = blogService;
         this.likeManager = likeManager;
         this.dateService = dateService;
         this.pubSub = pubSub;
@@ -52,10 +52,10 @@ export default class PostsListManager extends UIManager{
 
     //loadPost() solo carga los artículos
     loadPosts(){
-        //PostsService.list(post => {},  error => {});
+        //BlogService.list(post => {},  error => {});
         /*Llamamos al método "list()" del objeto "postService" y le pasamos 2 funciones callback que gestionará 
         el objeto en caso de éxito o error de la llamada Ajax.*/
-        this.postsService.list(
+        this.blogService.list(
             load => {
                 this.setLoading();
             },
@@ -79,7 +79,7 @@ export default class PostsListManager extends UIManager{
                 //Hacemos log del error en la consola
                 console.log("ERROR al cargar los artículos. :(", error);
             });
-        //this.postsService.getDetail(5); //?
+        //this.blogService.getDetail(5); //?
     }
 
     paginationPosts(posts){

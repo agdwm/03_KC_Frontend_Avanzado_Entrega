@@ -5,7 +5,7 @@ export default class PostCommentsManager extends UIManager{
     
     constructor(elementSelector, commentsService, pubSub) {
         super(elementSelector); //llamamos al constructor de la clase UIManager
-        this.postsService = commentsService;
+        this.blogService = commentsService;
         this.pubSub = pubSub;
         this.postComments = $(elementSelector);
     }
@@ -42,7 +42,7 @@ export default class PostCommentsManager extends UIManager{
     }
 
     loadComments() {
-        this.postsService.list(
+        this.blogService.list(
             load => {
                 this.setLoading();
             },

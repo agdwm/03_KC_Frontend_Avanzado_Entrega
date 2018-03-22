@@ -1,5 +1,5 @@
-//PostsService {} únicamente ENVIA y RECIBE datos, no hace nada con ellos
-export default class PostsService {
+//BlogService {} únicamente ENVIA y RECIBE datos, no hace nada con ellos
+export default class BlogService {
 
     constructor(url){
         this.url = url;
@@ -64,7 +64,7 @@ export default class PostsService {
         });
     }
 
-    // Eliminar un artículo (postsService.delete(4, response => {}, error => {}))
+    // Eliminar un artículo (blogService.delete(4, response => {}, error => {}))
     delete(postId, successCallback, errorCallback) {
         $.ajax({
             url: `${this.url}${postId}`,// "/posts/id"

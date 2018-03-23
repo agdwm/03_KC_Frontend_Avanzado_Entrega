@@ -40,7 +40,7 @@ Todas las plantillas deberán compartir:
 
 * El **menú** deberá ser responsive, de manera que se adapte de la mejor manera posible a los diferentes tipos de dispositivos para los que se desea dar soporte.
 
-* En el **pie de página** deberá mostrarse el nombre de la plataforma (a elección del alumno) así como un enlace que permita subir a la parte superior de la página.
+* En el **pie de página** deberá mostrarse el nombre de la plataforma (a elección del alumno) así como un **enlace que permita subir a la parte superior de la página**.
 
 Se deja a elección del alumno la posibilidad de incorporar más elementos a la cabecera o al pie de página.
 
@@ -48,17 +48,17 @@ Se deja a elección del alumno la posibilidad de incorporar más elementos a la 
 ### Requisitos de la plantilla de listado de artículos:
 En la plantilla de listado de artículos se deberá mostrar un listado de 9-10 artículos donde al hacer click sobre uno de ellos se acceda a la plantilla de detalle de un artículo y cada arículo esté compuesto de:
 
-* Un título
-* Una imagen o video (opcional). Entre los 10 artículos que debe haber en esta plantilla de listado, al menos uno de ellos deberá mostrar una imagen, al menos uno deberá mostrar un placeholder (imagen por defecto) y al menos uno deberá mostrar un vídeo.
-* Un texto a modo de introducción del artículo: se deberá mostrar el nombre del autor del artículo así como una foto de perfil. *Al menos dos de los artículos deberán mostrar una imagen de placeholder (es decir una imagen de sustitución, simulando que el autor del artículo no hubiera subido ninguna imagen como foto de perfil)*.
-* La fecha y hora de publicación del artículo: esta fecha deberá mostrar:
+* Un **título**
+* Una **imagen o video** (opcional). Entre los 10 artículos que debe haber en esta plantilla de listado, al menos uno de ellos deberá mostrar una imagen, al menos uno deberá mostrar un placeholder (imagen por defecto) y al menos uno deberá mostrar un vídeo.
+* Un **texto a modo de introducción** del artículo: se deberá mostrar el nombre del autor del artículo así como una foto de perfil. *Al menos dos de los artículos deberán mostrar una imagen de placeholder (es decir una imagen de sustitución, simulando que el autor del artículo no hubiera subido ninguna imagen como foto de perfil)*.
+* La **fecha y hora** de publicación del artículo: esta fecha deberá mostrar:
 	- El número de segundos que han pasado desde la fecha y hora de publicación en caso de haber sido hace menos de un minuto.
 	- El número de minutos en caso de haber sido hace menos de una hora.
 	- El número de horas en caso de haber sido hace menos de un día. 
 	- El día de la semana, en caso de haberse publicado hace menos de una semana y 
 	- La fecha y hora al completo, en cualquier otro caso
-* Un elemento de iteración (icono o botón), que permita a un usuario indicar que le gusta el artículo.
-* El número de comentarios que tiene el artículo. Al hacer click en el número de comentarios, se deberá cargar la plantilla de detalle de artículo mostrando directamente la zona de comentarios del artículo.
+* Un **elemento de iteración** (icono o botón), que permita a un usuario indicar que le gusta el artículo.
+* El **número de comentarios** que tiene el artículo. Al hacer click en el número de comentarios, se deberá cargar la plantilla de detalle de artículo mostrando directamente la zona de comentarios del artículo.
 
 Además, al final del listado de artículos deberá existir una navegación que permita al usuario cargar artículos más antiguos o más recientes (dicho de otra manera: un **sistema de paginación**). En esta práctica no es necesario que la paginación sea funcional, ya que no disponemos de un backend que implemente dicha lógica.
 
@@ -68,8 +68,8 @@ Como en el listado de artículos existe un botón de "me gusta", se deberá impl
 ### Requisitos del detalle de un artículo:
 En la página de detalle de un artículo se deberán mostrar los mismos elementos que se mostraban en un artículo de la plantilla del listado de artículos (título, imagen...) pero con las siguientes modificaciones:
 
-* Se mostrará una imagen (no video)
-* Se mostrará el contenido total del texto. Es decir, se mostrará un texto de varios párrafos en lugar del "texto a modo de introducción" (ya que se trata del detalle de un artículo). En estos párrafos se deberán mostrar algunas palabras en negrita, algunas en cursiva y algún enlace.
+* Se mostrará una **imagen (no video)**
+* Se mostrará el **contenido total del texto**. Es decir, se mostrará un texto de varios párrafos en lugar del "texto a modo de introducción" (ya que se trata del detalle de un artículo). En estos párrafos se deberán mostrar algunas palabras en negrita, algunas en cursiva y algún enlace.
 
 Además de estos componentes, antes del pie de página se deberá mostrar un sistema de comentarios que se detalla a continuación. 
 

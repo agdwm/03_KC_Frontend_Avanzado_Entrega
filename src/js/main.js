@@ -11,9 +11,9 @@ import PostFormManager from "./services/PostFormManager";
 
 import PubSub from 'pubsub-js';
 import Pagination from 'paginationjs';
-import Paginator from './services/PaginationService';
+import Paginator from './services/PaginateService';
 
-const paginationService = new Paginator();
+const paginateService = new Paginator();
 const dateService = new DateService();
 const blogService = new BlogService("/posts/");
 const commentsService = new BlogService("/comments/");
@@ -21,7 +21,7 @@ const likeService = new LikeService();
 
 const headerManager = new HeaderManager();
 const footerManager = new FooterManager("#js_scroll-link");
-const postsListManager = new PostsListManager("#posts-list", blogService, dateService, likeService, PubSub, paginationService);
+const postsListManager = new PostsListManager("#posts-list", blogService, dateService, likeService, PubSub, paginateService);
 const postCommentsManager = new PostCommentsManager("#post-comments", commentsService, PubSub);
 const postFormManager = new PostFormManager("#post-form", commentsService, PubSub);
 

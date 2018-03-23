@@ -1,4 +1,4 @@
-export default class PaginationService {
+export default class PaginateService {
 
     constructor(){
         this.pageSize = 9;
@@ -9,7 +9,7 @@ export default class PaginationService {
         this.pageRange = 1;
         this.prevText = '<i class="glyphicon glyphicon-chevron-left"></i>';
         this.nextText = '<i class="glyphicon glyphicon-chevron-right"></i>';
-     }
+    }
 
     paginate(itemsLength, items, htmlContainer, self){
 

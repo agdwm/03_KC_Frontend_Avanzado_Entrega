@@ -7,13 +7,13 @@ import UIManager from './UIManager';
 //PostsList SOLO recorre los artículos y los pinta
 export default class PostsListManager extends UIManager{
 
-    constructor(elementSelector, blogService, dateService, likeService, pubSub, paginationService) {
+    constructor(elementSelector, blogService, dateService, likeService, pubSub, paginateService) {
         super(elementSelector); //llamamos al constructor de la clase UIManager
         this.blogService = blogService;
         this.dateService = dateService;
         this.likeService = likeService;
         this.pubSub = pubSub;
-        this.paginationService = paginationService;
+        this.paginateService = paginateService;
 
         this.video = $(".video");
         this.iconLike = $(".fig-like_icon");
@@ -90,7 +90,7 @@ export default class PostsListManager extends UIManager{
         let postsLength = posts.length;
         let htmlContainer = "#paginated-posts";
 
-        this.paginationService.paginate(postsLength, posts, htmlContainer, self);
+        this.paginateService.paginate(postsLength, posts, htmlContainer, self);
     }
 
     renderPaginatedPosts(data, posts){ //data = pageSize

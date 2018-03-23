@@ -1,16 +1,16 @@
 ## Plataforma de artículos
 
 ### Poner a correr el proyecto:
-#####Terminal 1 -> `npm install`
+##### Terminal 1 -> `npm install`
 
 Para descargarnos a través de npm todas las dependencias del proyecto en la carpeta node_modules.
 
-#####Terminal 2 -> `npm run server`
+##### Terminal 2 -> `npm run server`
 Para poner a correr el servidor "json-server".
 
-#####Terminal 3 -> `gulp`
+##### Terminal 3 -> `gulp`
 
-#####url -> ´localhost:3200´
+##### url -> ´localhost:3200´
 Para visualizar la web en un navegador escribimos la url 'localhost:3200', que es la que hemos especificado en el archivo "package.json". 
 
 ## Detalles de la práctica:

@@ -1,4 +1,5 @@
 window.$ = window.jQuery = require("jquery"); //Hace jQuery accesible públicamente
+import Pagination from 'paginationjs';
 
 import HeaderManager from "./services/headerManager";
 import FooterManager from "./services/footerManager";
@@ -10,7 +11,6 @@ import PostCommentsManager from "./services/PostCommentsManager";
 import PostFormManager from "./services/PostFormManager";
 
 import PubSub from 'pubsub-js';
-import Pagination from 'paginationjs';
 import Paginator from './services/PaginateService';
 
 const paginateService = new Paginator();
@@ -27,10 +27,11 @@ const postFormManager = new PostFormManager("#post-form", commentsService, PubSu
 
 
 $(function(){
-    //on load
+	//on load
     headerManager.init();
     footerManager.init();
     postsListManager.init();
     postCommentsManager.init();
-    postFormManager.init();
+	postFormManager.init();
+	paginationManager.init();
 });

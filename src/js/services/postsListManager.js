@@ -56,7 +56,7 @@ export default class PostsListManager extends UIManager{
     //loadPost() solo carga los artículos
     loadPosts(){
         //BlogService.list(post => {},  error => {});
-        /*Llamamos al método "list()" del objeto "postService" y le pasamos 2 funciones callback que gestionará 
+        /*Llamamos al método "list()" del objeto "BlogService" y le pasamos 2 funciones callback que gestionará 
         el objeto en caso de éxito o error de la llamada Ajax.*/
         this.blogService.list(
             load => {
